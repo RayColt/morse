@@ -1,0 +1,15 @@
+#morse.mf
+
+servlet name:
+morse
+
+variables:
+encode
+decode
+binary
+
+usage:
+/morse?encode=text&decode=.- .- .-
+/morse?encode=text
+/morse?decode=.- .- .-
+/morse?binary=text or 010101

@@ -1,0 +1,15 @@
+#morse.mf
+
+servlet name:
+morse.php
+
+variables:
+encode
+decode
+binary
+
+usage:
+morse.php?encode=text&decode=.- .- .-
+morse.php?encode=text
+morse.php?decode=.- .- .- or 010101
+morse.php?binary=text

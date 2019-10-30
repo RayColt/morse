@@ -1,0 +1,42 @@
+package morsepack;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class MorseServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	Morse morse = null;
+
+	public void init() throws ServletException {
+		morse = new Morse();
+	}
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String message = "";
+		String encode = request.getParameter("encode");
+		String decode = request.getParameter("decode");
+		String binary = request.getParameter("binary");
+		if (!morse.isEmpty(encode))
+			message += morse.morse_encode(encode);
+		if (!morse.isEmpty(decode))
+			message += morse.morse_decode(decode);
+		if (!morse.isEmpty(binary))
+			message += morse.morse_binary(binary);
+		response.setContentType("text/plain");
+		PrintWriter out = response.getWriter();
+		out.println(message);
+		out.close();
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+	public void destroy() {
+		// do nothing
+	}
+}
