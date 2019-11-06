@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  **/
 public class Morse {
 
-	HashMap<String, String> reversedTable = new HashMap<String, String>();
+	private HashMap<String, String> reversedMorseMap = new HashMap<String, String>();
 	/**
 	 * The Morse Mapping
 	 */
@@ -89,7 +89,7 @@ public class Morse {
 	 * Constructor
 	 */
 	public Morse() {
-		reversedTable = (HashMap<String, String>) invert(morseMap);
+		reversedMorseMap = (HashMap<String, String>) invert(morseMap);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class Morse {
 	 * @return String
 	 */
 	public String getCharacter(String morse) {
-		return reversedTable.get(strtr(morse, ".-", "01"));
+		return reversedMorseMap.get(strtr(morse, ".-", "01"));
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class Morse {
 		}
 		return line.replaceAll("\\s{2,}", " ").trim();
 	}
-
+	
 	/**
 	 * Main function
 	 * 
