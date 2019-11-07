@@ -169,7 +169,7 @@ class MorseTable {
         $morsecodes = array();
         $morsecodes = explode(' ',$string);
         foreach ($morsecodes as $morse) {
-            if (!array_key_exists($morse, $morsecodes))
+            if (empty($morse))
                 $line .= ' ';
             $character = $this->getCharacter($morse);
             $line .= $character;
