@@ -193,7 +193,6 @@
 	}
 </script>
 </head>
-
 <body>
 <script type="text/javascript">	
 	function morseForm() {
@@ -207,31 +206,31 @@
 		  document.getElementById("data").value = morse_encode(data);	  
 	}		
 </script>
-  <table width="100%" border="0" cellspacing="2" cellpadding="2">
-    <tr>
-      <td align="center"><b>Morse</b></td>
-    </tr>
-    <tr>
-      <td align="center"><textarea id="data" name="data" cols="50" rows="15">ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567890 !$'(),-./ :; =?@"</textarea></td>
-    </tr>
-    <tr>
-      <td align="center"><table width="333" border="0">
-          <tr>
-            <td align="center"><label>
-                <input type="radio" id="modus" name="modus" value="encode" checked="checked"/>
-                Encode</label></td>
-            <td align="center"><label>
-                <input type="radio" id="modus" name="modus" value="decode" />
-                Decode</label></td>
-            <td align="center"><label>
-                <input type="radio" id="modus" name="modus" value="binary_encode" />
-                Binary Encode</label></td>
-          </tr>
-        </table></td>
-    </tr>
-    <tr>
-      <td align="center"><input type="submit" onclick="morseForm()" /></td>
-    </tr>
-  </table>
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+<tr>
+  <td align="center"><b>Morse</b></td>
+</tr>
+<tr>
+  <td align="center"><textarea id="data" name="data" cols="50" rows="15">ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567890 !$'(),-./ :; =?@"</textarea></td>
+</tr>
+<tr>
+  <td align="center"><table width="333" border="0">
+      <tr>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="encode" checked="checked"/>
+            Encode</label></td>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="decode" />
+            Decode</label></td>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="binary_encode" />
+            Binary Encode</label></td>
+      </tr>
+    </table></td>
+</tr>
+<tr>
+  <td align="center"><input type="submit" onclick="morseForm()" /></td>
+</tr>
+</table>
 </body>
 </html>
