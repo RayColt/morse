@@ -202,8 +202,8 @@
 		  document.getElementById("data").value = morse_encode(data);
 	  if(modus == "decode")
 		  document.getElementById("data").value = morse_decode(data);	  
-	  if(modus== "binary_encode")
-		  document.getElementById("data").value = morse_encode(data);	  
+	  if(modus == "binary_encode")
+		  document.getElementById("data").value = morse_binary(data);	  
 	}		
 </script>
 <table width="100%" border="0" cellspacing="2" cellpadding="2">
@@ -229,7 +229,7 @@
     </table></td>
 </tr>
 <tr>
-  <td align="center"><input type="submit" onclick="morseForm()" /></td>
+  <td align="center"><input type="submit" onClick="morseForm()" /></td>
 </tr>
 </table>
 </body>
