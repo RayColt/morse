@@ -2,7 +2,7 @@
 <head>
 <script type="text/javascript">	
 /**
- * JAVASCRIPT MorseMap
+ * JavaScript MorseMap
  *
  * @author Ray Colt <ray_colt@pentagon.mil>
  * @copyright Copyright (c) 2015 Ray Colt
@@ -67,7 +67,7 @@
 		"ERR" : "00000000" // ........
 	};
 
-	var reversedmorseMap = array_flip(morseMap);
+	var reversedMorseMap = array_flip(morseMap);
 	
 	/**
 	 * Similar to array_flip in php, returns an array in flip order, <br>
@@ -138,7 +138,7 @@
 	 * @return String
 	 */
 	function getCharacter(morse) {
-		return reversedmorseMap[strtr(morse, ".-", "01")];
+		return reversedMorseMap[strtr(morse, ".-", "01")];
 	}
 
 	/**
