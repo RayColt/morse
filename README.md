@@ -69,3 +69,4 @@ uint16_t Morse::encode(uint8_t character) {<br>
     default: return 0b100000000;  // INVALID
   }
 }
+<img src=https://github.com/RayColt/morse/blob/master/TCP/morse-http-powershell.jpg />
