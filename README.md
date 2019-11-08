@@ -71,4 +71,4 @@ uint16_t Morse::encode(uint8_t character) {<br>
 <br>Servlet use with PoweShell:<br>
 <img src=https://github.com/RayColt/morse/blob/master/TCP/morse-http-powershell.jpg />
 <br>PHP or JavaScript Form (<a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a>):<br>
-<img src=https://github.com/RayColt/morse/blob/master/javascript/morse-form.jpg />
+<a href="https://raycolt.github.io/morse/"><img src=https://github.com/RayColt/morse/blob/master/javascript/morse-form.jpg /></a>
