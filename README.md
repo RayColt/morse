@@ -68,5 +68,7 @@ uint16_t Morse::encode(uint8_t character) {<br>
     case 95: return 0b1101100;    // _
     default: return 0b100000000;  // INVALID
   }
-}
+<br>Servlet use with PoweShell:<br>
 <img src=https://github.com/RayColt/morse/blob/master/TCP/morse-http-powershell.jpg />
+<br>PHP or JavaScript Form (<a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a>):<br>
+<img src=https://github.com/RayColt/morse/blob/master/javascript/morse-form.jpg />
