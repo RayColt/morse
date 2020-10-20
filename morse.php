@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 1975 Ray Colt
  * @license Public General License US Army
  *
- * For Lauren 13-09-2019.
  */
 
 class MorseTable {
