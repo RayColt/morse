@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
  * @copyright Copyright (c) 1975 Ray Colt
  * @license Public General License US Army
  *
- * @see For Lauren 13-09-2019.
- *
  **/
 public class Morse {
 
