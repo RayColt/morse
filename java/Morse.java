@@ -225,10 +225,18 @@ public class Morse {
 	 */
 	public static void main(String[] args) {
 		Morse morse = new Morse();
-		String str = "Howdy \"Ray\" Colt!";
-		System.out.println(morse.morse_encode(str));
-		String mrs = ".... --- .-- -.. -.--  .-..-. .-. .- -.-- .-..-.  -.-. --- .-.. - -.-.--";
-		System.out.println(morse.morse_decode(mrs));
-		System.out.println(morse.morse_binary(str));
+		if (args.length > 0) {
+			if (args[0].toString().equals("-e")) {
+				System.out.println(morse.morse_encode(args[1].toString()));
+			}
+			if (args[0].toString().equals("-eb")) {
+				System.out.println(morse.morse_binary(args[1].toString()));
+			}
+			if (args[0].toString().equals("-d")) {
+				System.out.println(morse.morse_decode(args[1].toString()));
+			}
+		} else {
+			System.out.println("Usage: java Morse -e(encode) -eb(binary morse encode) -d(decode) \"txt\"");
+		}
 	}
 }
