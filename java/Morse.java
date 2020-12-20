@@ -228,12 +228,12 @@ public class Morse {
 		if (args.length > 0) {
 			if (args[0].toString().equals("-e")) {
 				System.out.println(morse.morse_encode(args[1].toString()));
-			}
-			if (args[0].toString().equals("-eb")) {
+			} else if (args[0].toString().equals("-eb")) {
 				System.out.println(morse.morse_binary(args[1].toString()));
-			}
-			if (args[0].toString().equals("-d")) {
+			} else if (args[0].toString().equals("-d")) {
 				System.out.println(morse.morse_decode(args[1].toString()));
+			} else {
+				System.out.println("Usage: java Morse -e(encode) -eb(binary morse encode) -d(decode) \"txt\"");
 			}
 		} else {
 			System.out.println("Usage: java Morse -e(encode) -eb(binary morse encode) -d(decode) \"txt\"");
