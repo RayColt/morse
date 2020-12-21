@@ -203,7 +203,7 @@ string morse_decode(string str) {
 	vector<string> morsecodes = explode(str, ' ');
 	for (auto morse : morsecodes)
 	{
-		if (empty(morse))
+		if (morse.empty())
 			line += " ";
 		string chr = getCharacter(morse);
 		line += chr;
@@ -248,7 +248,7 @@ string strtr(string str, string from, string to)
 			out.push_back(std::string(1, t));
 		}
 	}
-	if (!empty(out))
+	if (!out.empty())
 		return stringArrToString(out);
 	else
 		return str;
