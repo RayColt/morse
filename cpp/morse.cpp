@@ -244,8 +244,6 @@ string strtr(string str, string from, string to)
 
 		if (p >= 0)
 		{
-			//if (empty(out))
-				//out.push_back(str);
 			char t = to.at(p);
 			out.push_back(std::string(1, t));
 		}
