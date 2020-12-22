@@ -2,11 +2,8 @@
 #include <iostream>
 #include <map> 
 #include <iterator>
-#include <algorithm>
 #include <vector>
 #include <regex>
-#include <sstream>
-#include <functional>
 /**
 * C++ Morse
 *
@@ -48,7 +45,7 @@ int main()
 		action = "binary";
 	if (arg_in == "3")
 		action = "decode";
-	cout << "type or paste input and press <enter>\n";
+	cout << "type or paste input and press [enter]\n";
 	getline(std::cin, arg_in);
 	if (action == "encode")
 		cout << morse_encode(arg_in) << "\n";
