@@ -14,6 +14,7 @@
 **/
 using namespace std;
 // header part
+// TODO: getopt? :)
 multimap <string, string> morse_map;
 multimap <string, string> morse_map_reversed;
 void fill_morse_maps();
