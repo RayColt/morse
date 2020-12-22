@@ -249,10 +249,7 @@ string strtr(string str, string from, string to)
 			out.push_back(string(1, t));
 		}
 	}
-	if (!out.empty())
-		return stringArrToString(out);
-	else
-		return str;
+	return !out.empty() ? stringArrToString(out) : str;
 }
 
 /**
