@@ -16,26 +16,27 @@
 *
 **/
 using namespace std;
-
+// header part
 multimap <string, string> morse_map;
 multimap <string, string> morse_map_reversed;
 void fill_morse_maps();
 string getBinChar(string character);
 string getMorse(string character);
 string getCharacter(string morse);
-string stringToUpper(string strToConvert);
-string strtr(string str, string from, string to);
-string trim(const string& str);
-const vector<string> explode(const string& s, const char& c);
-string stringArrToString(vector<string> vstr);
 string morse_binary(string str);
 string morse_encode(string str);
 string morse_decode(string str);
+string stringToUpper(string strToConvert);
+string strtr(string str, string from, string to);
+string stringArrToString(vector<string> vstr);
+string trim(const string& str);
+const vector<string> explode(const string& s, const char& c);
+
 
 int main()
 {
 	fill_morse_maps();
-	// command line part
+	// command line part, feel free to ...
 	string arg_in;
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3\n";
@@ -241,11 +242,10 @@ string strtr(string str, string from, string to)
 	{
 		char c = str.at(i);
 		int p = from.find(c);
-
 		if (p >= 0)
 		{
 			char t = to.at(p);
-			out.push_back(std::string(1, t));
+			out.push_back(string(1, t));
 		}
 	}
 	if (!out.empty())
@@ -303,14 +303,18 @@ const vector<string> explode(const string& s, const char& c)
 	vector<string> vstr;
 	for (auto n : s)
 	{
-		if (n != c) 
-			buff += n; 
+		if (n != c)
+		{
+			buff += n;
+		}
 		else
+		{
 			if (n == c)// && buff != "") 
-			{ 
+			{
 				vstr.push_back(buff);
-				buff = ""; 
+				buff = "";
 			}
+		}
 	}
 	if (buff != "") 
 		vstr.push_back(buff);
