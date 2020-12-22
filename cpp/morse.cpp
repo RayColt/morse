@@ -38,7 +38,7 @@ int main()
 	fill_morse_maps();
 	// command line part, feel free to ...
 	string arg_in;
-	cout << "morse table: space 0-9 A-Z a-z ! \ $ ' ( ) , . _ - / : ; = ? @ ERR \n";
+	cout << "morse table: space 0-9 A-Z a-z ! \\ $ ' \" ( ) , . _ - / : ; = ? @ ERR \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3\n";
 	getline(std::cin, arg_in); string action;
