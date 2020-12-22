@@ -1,4 +1,5 @@
 under construction but working! windows and linux that is.<br>
+in the zip file: a morse.exe example<br>
 <br>
 example:<br>
 morse table: space 0-9 A-Z a-z ! \ $ ' " ( ) , . _ - / : ; = ? @ ERR<br>
