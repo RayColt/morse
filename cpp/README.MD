@@ -1,1 +1,1 @@
-under construction but working! visual studio and linux that is.
+under construction but working! windows and linux that is.
