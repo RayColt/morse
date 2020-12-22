@@ -14,7 +14,6 @@
 **/
 using namespace std;
 // header part
-// TODO: getopt? :)
 multimap <string, string> morse_map;
 multimap <string, string> morse_map_reversed;
 void fill_morse_maps();
@@ -35,6 +34,7 @@ int main()
 {
 	fill_morse_maps();
 	// command line part, feel free to ...
+	// TODO: getopt?
 	string arg_in;
 	cout << "morse table: space 0-9 A-Z a-z ! \\ $ ' \" ( ) , . _ - / : ; = ? @ ERR \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
@@ -166,9 +166,11 @@ string getCharacter(string morse)
 * @param str
 * @return string
 */
-string morse_binary(string str) {
+string morse_binary(string str) 
+{
 	string line = "";
-	for (int i = 0; i < str.length(); i++) {
+	for (int i = 0; i < str.length(); i++) 
+	{
 		string chr = str.substr(i, 1);
 		line += getBinChar(stringToUpper(chr));
 		line += " ";
@@ -182,9 +184,11 @@ string morse_binary(string str) {
 * @param str
 * @return string
 */
-string morse_encode(string str) {
+string morse_encode(string str) 
+{
 	string line = "";
-	for (int i = 0; i < str.length(); i++) {
+	for (int i = 0; i < str.length(); i++) 
+	{
 		string chr = str.substr(i, 1);
 		line += getMorse(stringToUpper(chr));
 		line += " ";
@@ -198,7 +202,8 @@ string morse_encode(string str) {
 * @param str
 * @return string
 */
-string morse_decode(string str) {
+string morse_decode(string str) 
+{
 	string line = "";
 	vector<string> morsecodes = explode(str, ' ');
 	for (auto morse : morsecodes)
@@ -272,7 +277,7 @@ string stringArrToString(vector<string> vstr)
 /**
 * trimp automatically strips space at the start and end of a given string <br>
 *
-* @param sstr
+* @param str
 * @return string
 */
 string trim(const string& str)
