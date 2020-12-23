@@ -8,7 +8,7 @@
 * C++ Morse
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
-* @copyright Copyright (c) 1975 Ray Colt
+* @copyright Copyright (c) 1975, 2020 Ray Colt
 * @license Public General License US Army
 *
 **/
@@ -268,7 +268,7 @@ string stringArrToString(vector<string> vstr)
 	{
 		for (int i = 0; i<vstr.size(); i++) 
 		{
-			scr += vstr[i];// copy the vector to the string
+			scr += vstr[i];
 		}
 	}
 	return scr;
@@ -302,19 +302,16 @@ const vector<string> explode(const string& s, const char& c)
 {
 	string buff;
 	vector<string> vstr;
-	for (auto n : s)
+	for (auto str : s)
 	{
-		if (n != c)
+		if (str != c)
 		{
-			buff += n;
+			buff += str;
 		}
 		else
 		{
-			if (n == c)// && buff != "") 
-			{
-				vstr.push_back(buff);
-				buff = "";
-			}
+			vstr.push_back(buff);
+			buff = "";
 		}
 	}
 	if (buff != "") 
