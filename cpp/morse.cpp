@@ -4,13 +4,17 @@
 #include <iterator>
 #include <vector>
 #include <regex>
+
 /**
 * C++ Morse
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1975, 2020 Ray Colt
 * @license Public General License US Army
-*
+* Derived from ARPANET Pentagon's morse. 
+* Feel free to make morse, morse-d or morse-b binaries 
+* for it, like once was implemented into Linux and Unix os's.
+* 
 **/
 using namespace std;
 // header part
@@ -166,10 +170,10 @@ string getCharacter(string morse)
 * @param str
 * @return string
 */
-string morse_binary(string str) 
+string morse_binary(string str)
 {
 	string line = "";
-	for (size_t i = 0; i < str.length(); i++) 
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		string chr = str.substr(i, 1);
 		line += getBinChar(stringToUpper(chr));
@@ -184,10 +188,10 @@ string morse_binary(string str)
 * @param str
 * @return string
 */
-string morse_encode(string str) 
+string morse_encode(string str)
 {
 	string line = "";
-	for (size_t i = 0; i < str.length(); i++) 
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		string chr = str.substr(i, 1);
 		line += getMorse(stringToUpper(chr));
@@ -202,7 +206,7 @@ string morse_encode(string str)
 * @param str
 * @return string
 */
-string morse_decode(string str) 
+string morse_decode(string str)
 {
 	string line = "";
 	vector<string> morsecodes = explode(str, ' ');
@@ -213,7 +217,7 @@ string morse_decode(string str)
 		string chr = getCharacter(morse);
 		line += chr;
 	}
-	regex e ("\\s{2,}");
+	regex e("\\s{2,}");
 	return regex_replace(line, e, " ");
 }
 
@@ -263,10 +267,10 @@ string strtr(string str, string from, string to)
 */
 string stringArrToString(vector<string> vstr)
 {
-	string scr ="";
+	string scr = "";
 	if (!vstr.empty())
 	{
-		for (size_t i = 0; i<vstr.size(); i++) 
+		for (size_t i = 0; i < vstr.size(); i++)
 		{
 			scr += vstr[i];
 		}
@@ -314,7 +318,7 @@ const vector<string> explode(const string& s, const char& c)
 			buff = "";
 		}
 	}
-	if (buff != "") 
+	if (buff != "")
 		vstr.push_back(buff);
 	return vstr;
 }
