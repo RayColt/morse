@@ -1,4 +1,4 @@
-under construction but working! windows and linux that is.<br>
+no error handling on input, to keep it in one file, but save and working! on windows and linux that is.<br>
 in the zip file: a morse.exe example<br>
 <br>
 example:<br>
