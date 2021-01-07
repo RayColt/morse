@@ -169,7 +169,7 @@ string getCharacter(string morse)
 string morse_binary(string str) 
 {
 	string line = "";
-	for (int i = 0; i < str.length(); i++) 
+	for (size_t i = 0; i < str.length(); i++) 
 	{
 		string chr = str.substr(i, 1);
 		line += getBinChar(stringToUpper(chr));
@@ -187,7 +187,7 @@ string morse_binary(string str)
 string morse_encode(string str) 
 {
 	string line = "";
-	for (int i = 0; i < str.length(); i++) 
+	for (size_t i = 0; i < str.length(); i++) 
 	{
 		string chr = str.substr(i, 1);
 		line += getMorse(stringToUpper(chr));
@@ -242,7 +242,7 @@ string stringToUpper(string str)
 string strtr(string str, string from, string to)
 {
 	vector<string> out;
-	for (int i = 0, len = str.length(); i < len; i++)
+	for (size_t i = 0, len = str.length(); i < len; i++)
 	{
 		char c = str.at(i);
 		int p = from.find(c);
@@ -266,7 +266,7 @@ string stringArrToString(vector<string> vstr)
 	string scr ="";
 	if (!vstr.empty())
 	{
-		for (int i = 0; i<vstr.size(); i++) 
+		for (size_t i = 0; i<vstr.size(); i++) 
 		{
 			scr += vstr[i];
 		}
