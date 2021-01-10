@@ -37,10 +37,9 @@ const vector<string> explode(const string& s, const char& c);
 int main()
 {
 	fill_morse_maps();
-	// command line part, feel free to ...
-	// TODO: getopt?
+	// command line part
 	string arg_in;
-	cout << "morse table: space 0-9 A-Z a-z ! \\ $ ' \" ( ) , . _ - / : ; = ? @ ERR \n";
+	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' (), . _ - / : \; = ? @ \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3\n";
 	getline(std::cin, arg_in); string action;
@@ -67,7 +66,6 @@ void fill_morse_maps()
 {
 	morse_map.insert(pair <string, string>(" ", "")); // SPACE (0b1)
 	morse_map.insert(pair <string, string>("!", "101011")); // -.-.--
-	morse_map.insert(pair <string, string>("\"", "010010")); // .-..-.
 	morse_map.insert(pair <string, string>("$", "0001001")); // ...-..-
 
 	morse_map.insert(pair <string, string>("'", "011110")); // .----.
