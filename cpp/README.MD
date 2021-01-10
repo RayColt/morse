@@ -4,7 +4,7 @@ no error handling on input, to keep it in one file, but save and working! on win
 in the zip file: a morse.exe example<br>
 <br>
 example:<br>
-morse table: space 0-9 A-Z a-z ! \ $ ' " ( ) , . _ - / : ; = ? @ ERR<br>
+morse table:<br>ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' (), . _ - / : ; = ? @<br>
 morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].<br>
 choose action 1, 2 or 3<br>
 3<br>
