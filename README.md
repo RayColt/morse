@@ -73,7 +73,8 @@ uint16_t Morse::encode(uint8_t character) {<br>
     case 90: return 0b10011;      // Z
     case 95: return 0b1101100;    // _
     default: return 0b100000000;  // INVALID
-  }}
+  }
+}
   </pre>
 <br>Servlet use with PowerShell:<br>
 <img src=https://github.com/RayColt/morse/blob/master/TCP/morse-http-powershell.jpg />
