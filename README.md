@@ -1,6 +1,7 @@
 # Colt's HTTP Morse PHP, C++, Java and JavaScript
 A PHP&JAVA servlet with a binary Morse mapping, inverted(think Endian/IBM PowerPC) based upon this c code* of my kids and me, inventors of Morse, it became the (international) USA morse code! **based upon Synthesizer Binary tables(speach (of a mouse I believe hence the small table))...or just a military algorithm:-). <br><br>Public General License US Army means free of use, public that is. <br> Prof. and GA Ray Colt, USA Hartford. <br><BR>REMOVE THE FIRST BIT(aka ob1), REVERSE THE BINARY VALUES, ET VOILA THE MORSE CODE!<BR>
 <a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a><br>
+<code>
 uint16_t Morse::encode(uint8_t character) {<br>
   switch (character) {<br>
     
@@ -68,6 +69,7 @@ uint16_t Morse::encode(uint8_t character) {<br>
     case 95: return 0b1101100;    // _
     default: return 0b100000000;  // INVALID
   }
+  </code>
 <br>Servlet use with PowerShell:<br>
 <img src=https://github.com/RayColt/morse/blob/master/TCP/morse-http-powershell.jpg />
 <br>PHP or JavaScript Form (<a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a>):<br>
