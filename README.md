@@ -1,6 +1,6 @@
 # Colt's HTTP Morse PHP, C++, Java and JavaScript
 The real, first and only US Morse mapping,<br>
-      based upon Synthesizer Binary tables(from a mouse I believe),<br>
+      based upon Synthesizer Binary tables, from a mouse I believe,<br>
 or just a military  algorithm:-):<br />
         <b>We removed the first number one,
         reversed it(think Endian/IBM PowerPC) 
