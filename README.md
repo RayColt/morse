@@ -7,8 +7,10 @@ or just a military  algorithm:-):<br />
         to save Data and CPU's in war times.<br>
 <a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a><br>
 <pre>
-uint16_t Morse::encode(uint8_t character) {<br>
-  switch (character) {
+uint16_t Morse::encode(uint8_t character) 
+{
+  switch (character) 
+  {
     
     case 32: return 0b1;          // SPACE
     case 33: return 0b1110101;    // !
