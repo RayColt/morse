@@ -33,7 +33,6 @@ string stringArrToString(vector<string> vstr);
 string trim(const string& str);
 const vector<string> explode(const string& s, const char& c);
 
-
 int main()
 {
 	fill_morse_maps();
