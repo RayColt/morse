@@ -48,7 +48,7 @@ int main()
 		arg_in = "1";
 		// cursor one column up and erase line. vs studio and linux only!
 		//cout << "\033[A\33[2K" << arg_in << "\n";
-		cout << "wrong input, action " + arg_in << " is active now" << "\n";
+		cout << "wrong input, action " << arg_in << " is active now" << "\n";
 	}
 	if (arg_in == "1") action = "encode";
 	if (arg_in == "2") action = "binary";
