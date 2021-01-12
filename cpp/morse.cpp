@@ -47,7 +47,8 @@ int main()
 	if (!regex_match(arg_in, e))
 	{
 		arg_in = "1";
-		cout << "wrong input, action " + arg_in << " is active now" << "\n";
+		// cursor one column up and erase line
+		cout << "\033[A\33[2K" << arg_in + "\n";
 	}
 	if (arg_in == "1")
 		action = "encode";
