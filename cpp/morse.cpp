@@ -44,7 +44,11 @@ int main()
 	cout << "choose action 1, 2 or 3\n";
 	getline(std::cin, arg_in); string action;
 	regex e("[1-3]");
-	if (!regex_match(arg_in, e)) arg_in = "1";
+	if (!regex_match(arg_in, e))
+	{
+		arg_in = "1";
+		cout << "\u001B[A" + arg_in + "\n";
+	}
 	if (arg_in == "1")
 		action = "encode";
 	if (arg_in == "2")
