@@ -42,12 +42,13 @@ int main()
 	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' (), . _ - / : ; = ? @ \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3\n";
+	system(" ");
 	getline(std::cin, arg_in); string action;
 	regex e("[1-3]");
 	if (!regex_match(arg_in, e))
 	{
 		arg_in = "1";
-		cout << "\u001B[A" + arg_in + "\n";
+		cout << "\r" + arg_in  << flush << "\n";
 	}
 	if (arg_in == "1")
 		action = "encode";
