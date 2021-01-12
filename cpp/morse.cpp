@@ -42,7 +42,7 @@ int main()
 	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' (), . _ - / : ; = ? @ \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3 and press [enter]\n";
-	getline(std::cin, arg_in); string action; regex e("[1-3]");
+	getline(cin, arg_in); string action; regex e("[1-3]");
 	if (!regex_match(arg_in, e))
 	{
 		arg_in = "1";
@@ -69,6 +69,7 @@ void fill_morse_maps()
 	morse_map.insert(pair <string, string>(" ", "")); // SPACE (0b1)
 	morse_map.insert(pair <string, string>("!", "101011")); // -.-.--
 	morse_map.insert(pair <string, string>("$", "0001001")); // ...-..-
+	morse_map.insert(pair <string, string>("\"", "010010")); // .-..-.
 
 	morse_map.insert(pair <string, string>("'", "011110")); // .----.
 	morse_map.insert(pair <string, string>("(", "10110")); // -.--.
@@ -332,7 +333,7 @@ const vector<string> explode(const string& s, const char& c)
 */
 string fix_input(string str)
 {
-	regex e("[^a-zA-Z0-9!'@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+	regex e("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
 	string ret = "";
 	sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
 	vector<string> vec(iter, end);
