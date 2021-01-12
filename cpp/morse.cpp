@@ -64,7 +64,7 @@ int main()
 		cout << morse_binary(arg_in) << "\n";
 	if (action == "decode")
 		cout << morse_decode(arg_in) << "\n";
-	cout << "Press any key to continue . . .";
+	cout << "Press any key to close program . . .";
 	int c = getchar();
 	return 0;
 }
