@@ -42,29 +42,23 @@ int main()
 	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' (), . _ - / : ; = ? @ \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3 and press [enter]\n";
-	getline(std::cin, arg_in); string action;
-	regex e("[1-3]");
+	getline(std::cin, arg_in); string action; regex e("[1-3]");
 	if (!regex_match(arg_in, e))
 	{
 		arg_in = "1";
-		// cursor one column up and erase line
-		cout << "\033[A\33[2K" << arg_in + "\n";
+		// cursor one column up and erase line. vs studio and linux only!
+		//cout << "\033[A\33[2K" << arg_in << "\n";
+		cout << "wrong input, action " + arg_in << " is active now" << "\n";
 	}
-	if (arg_in == "1")
-		action = "encode";
-	if (arg_in == "2")
-		action = "binary";
-	if (arg_in == "3")
-		action = "decode";
+	if (arg_in == "1") action = "encode";
+	if (arg_in == "2") action = "binary";
+	if (arg_in == "3") action = "decode";
 	cout << "type or paste input and press [enter]\n";
 	getline(std::cin, arg_in);
 	arg_in = fix_input(arg_in);
-	if (action == "encode")
-		cout << morse_encode(arg_in) << "\n";
-	if (action == "binary")
-		cout << morse_binary(arg_in) << "\n";
-	if (action == "decode")
-		cout << morse_decode(arg_in) << "\n";
+	if (action == "encode") cout << morse_encode(arg_in) << "\n";
+	if (action == "binary")	cout << morse_binary(arg_in) << "\n";
+	if (action == "decode")	cout << morse_decode(arg_in) << "\n";
 	cout << "Press any key to close program . . .";
 	int c = getchar();
 	return 0;
