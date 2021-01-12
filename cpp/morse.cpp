@@ -32,6 +32,7 @@ string strtr(string str, string from, string to);
 string stringArrToString(vector<string> vstr);
 string trim(const string& str);
 const vector<string> explode(const string& s, const char& c);
+string fix_input(string str);
 
 int main()
 {
@@ -42,6 +43,8 @@ int main()
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3\n";
 	getline(std::cin, arg_in); string action;
+	regex e("[1-3]");
+	if (!regex_match(arg_in, e)) arg_in = "1";
 	if (arg_in == "1")
 		action = "encode";
 	if (arg_in == "2")
@@ -50,6 +53,7 @@ int main()
 		action = "decode";
 	cout << "type or paste input and press [enter]\n";
 	getline(std::cin, arg_in);
+	arg_in = fix_input(arg_in);
 	if (action == "encode")
 		cout << morse_encode(arg_in) << "\n";
 	if (action == "binary")
@@ -318,4 +322,23 @@ const vector<string> explode(const string& s, const char& c)
 	if (buff != "")
 		vstr.push_back(buff);
 	return vstr;
+}
+
+/**
+* Fix input with whitespace to reduce errors
+* info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
+* 
+* @param str
+* @return string
+*/
+string fix_input(string str)
+{
+	regex e("[^a-zA-Z0-9!'@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+	string ret = "";
+	sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
+	vector<string> vec(iter, end);
+	for (auto a : vec) {
+		ret += a + " ";
+	}
+	return ret;
 }
