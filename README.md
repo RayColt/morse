@@ -16,7 +16,8 @@ uint16_t Morse::encode(uint8_t character)
     case 33: return 0b1110101;    // !
     case 34: return 0b1010010;    // "
     case 36: return 0b11001000;   // $
-
+    case 37: returm 0b010010;     // "
+    
     case 38: return 0b100010;     // &
     case 39: return 0b1011110;    // '
     case 40: return 0b101101;     // (
