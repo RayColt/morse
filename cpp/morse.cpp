@@ -45,9 +45,9 @@ int main(int argc, char* argv[])
 		if(strcmp(argv[1], "e")==0) action = "encode";
 		if (strcmp(argv[1], "d") == 0) 	action = "decode";
 		if (strcmp(argv[1], "b") == 0) 	action = "binary";
-		if (action == "encode") cout << morse_encode(argv[2]) << "\n";
-		if (action == "binary")	cout << morse_binary(argv[2]) << "\n";
-		if (action == "decode")	cout << morse_decode(argv[2]) << "\n";
+		if (action == "encode") cout << morse_encode(fix_input(argv[2])) << "\n";
+		if (action == "binary")	cout << morse_binary(fix_input(argv[2])) << "\n";
+		if (action == "decode")	cout << morse_decode(fix_input(argv[2])) << "\n";
 	}
 	else
 	{
