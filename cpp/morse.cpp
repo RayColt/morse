@@ -15,7 +15,7 @@ using namespace std;
 * Feel free to make morse, morse-d or morse-b binaries
 * for it, like once was implemented into Linux and Unix os's.
 * 
-* Usage console app version: * .\morse.exe
+* Usage console app version: .\morse.exe
 * Usage console line two arguments version: .\morse.exe "[d,e,b]" "morse or txt"
 * e=encode, b=binary encode, d=decode
 **/
