@@ -1,8 +1,8 @@
 # Colt's HTTP Morse PHP, JavaScript, Java and C++<br>
-PHP & Java:  forms, stand alone and servlet<br>
-JavaScript: form*<br>
-C++: console app*<br>
-* easy to make class files for them<br><br>
+PHP & Java:  forms, class files and servlet<br>
+JavaScript: form&ast;<br>
+C++: console app&ast;<br>
+&ast; easy to make class files for them<br><br>
 The real, first and only US Morse mapping,<br>
       based upon Synthesizer Binary tables, from a mouse I believe,<br>
 or just a military  algorithm:-):<br />
