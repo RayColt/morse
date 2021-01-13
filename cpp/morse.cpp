@@ -17,7 +17,8 @@ using namespace std;
 * 
 * Usage console app version: .\morse.exe
 * Usage console line two arguments version: .\morse.exe "[d,e,b]" "morse or txt"
-* e=encode, b=binary encode, d=decode
+* e=encode, b=binary encode, d=decode 
+* (.\morse.exe e "morse is fun!!" OR .\morse.exe "e" "morse is fun!!")
 **/
 multimap <string, string> morse_map;
 multimap <string, string> morse_map_reversed;
