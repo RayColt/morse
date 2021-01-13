@@ -9,7 +9,7 @@
 * C++ Morse
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
-* @copyright Copyright (c) 1975, 2020 Ray Colt
+* @copyright Copyright (c) 1975, 2021 Ray Colt
 * @license Public General License US Army
 * Derived from ARPANET Pentagon's morse. 
 * Feel free to make morse, morse-d or morse-b binaries 
