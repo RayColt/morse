@@ -69,10 +69,9 @@ int main(int argc, char* argv[])
 		if (arg_in == "3") action = "decode";
 		cout << "type or paste input and press [enter]\n";
 		getline(std::cin, arg_in);
-		arg_in = fix_input(arg_in);
-		if (action == "encode") cout << morse_encode(arg_in) << "\n";
-		if (action == "binary")	cout << morse_binary(arg_in) << "\n";
-		if (action == "decode")	cout << morse_decode(arg_in) << "\n";
+		if (action == "encode") cout << morse_encode(fix_input(arg_in)) << "\n";
+		if (action == "binary")	cout << morse_binary(fix_input(arg_in)) << "\n";
+		if (action == "decode")	cout << morse_decode(fix_input(arg_in)) << "\n";
 		cout << "Press any key to close program . . .";
 		int c = getchar();
 		return 0;
