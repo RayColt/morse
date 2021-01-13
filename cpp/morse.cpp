@@ -14,7 +14,10 @@ using namespace std;
 * Derived from ARPANET Pentagon's morse.
 * Feel free to make morse, morse-d or morse-b binaries
 * for it, like once was implemented into Linux and Unix os's.
-*
+* 
+* Usage console app version: * .\morse.exe
+* Usage console line two arguments version: .\morse.exe "[d,e,b]" "morse or txt"
+* e=encode, b=binary encode, d=decode
 **/
 multimap <string, string> morse_map;
 multimap <string, string> morse_map_reversed;
@@ -32,34 +35,48 @@ string trim(const string& str);
 const vector<string> explode(const string& s, const char& c);
 string fix_input(string str);
 
-int main()
+int main(int argc, char* argv[])
 {
 	fill_morse_maps();
-	// command line part
-	string arg_in;
-	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
-	cout << "choose action 1, 2 or 3 and press [enter]\n";
-	getline(cin, arg_in); string action; regex e("[1-3]");
-	if (!regex_match(arg_in, e))
+	string action;
+	if (argc == 3)
 	{
-		arg_in = "1";
-		// cursor one column up and erase line. vs studio and linux only!
-		//cout << "\033[A\33[2K" << arg_in << "\n";
-		cout << "wrong input, action " << arg_in << " is active now" << "\n";
+		// arguments part
+		if(strcmp(argv[1], "e")==0) action = "encode";
+		if (strcmp(argv[1], "d") == 0) 	action = "decode";
+		if (strcmp(argv[1], "b") == 0) 	action = "binary";
+		if (action == "encode") cout << morse_encode(argv[2]) << "\n";
+		if (action == "binary")	cout << morse_binary(argv[2]) << "\n";
+		if (action == "decode")	cout << morse_decode(argv[2]) << "\n";
 	}
-	if (arg_in == "1") action = "encode";
-	if (arg_in == "2") action = "binary";
-	if (arg_in == "3") action = "decode";
-	cout << "type or paste input and press [enter]\n";
-	getline(std::cin, arg_in);
-	arg_in = fix_input(arg_in);
-	if (action == "encode") cout << morse_encode(arg_in) << "\n";
-	if (action == "binary")	cout << morse_binary(arg_in) << "\n";
-	if (action == "decode")	cout << morse_decode(arg_in) << "\n";
-	cout << "Press any key to close program . . .";
-	int c = getchar();
-	return 0;
+	else
+	{
+		// console part
+		string arg_in;
+		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
+		cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
+		cout << "choose action 1, 2 or 3 and press [enter]\n";
+		getline(cin, arg_in); regex e("[1-3]");
+		if (!regex_match(arg_in, e))
+		{
+			arg_in = "1";
+			// cursor one column up and erase line. vs studio and linux only!
+			//cout << "\033[A\33[2K" << arg_in << "\n";
+			cout << "wrong input, action " << arg_in << " is active now" << "\n";
+		}
+		if (arg_in == "1") action = "encode";
+		if (arg_in == "2") action = "binary";
+		if (arg_in == "3") action = "decode";
+		cout << "type or paste input and press [enter]\n";
+		getline(std::cin, arg_in);
+		arg_in = fix_input(arg_in);
+		if (action == "encode") cout << morse_encode(arg_in) << "\n";
+		if (action == "binary")	cout << morse_binary(arg_in) << "\n";
+		if (action == "decode")	cout << morse_decode(arg_in) << "\n";
+		cout << "Press any key to close program . . .";
+		int c = getchar();
+		return 0;
+	}
 }
 
 void fill_morse_maps()
