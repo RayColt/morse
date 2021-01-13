@@ -4,20 +4,18 @@
 #include <iterator>
 #include <vector>
 #include <regex>
-
+using namespace std;
 /**
 * C++ Morse
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1975, 2021 Ray Colt
 * @license Public General License US Army
-* Derived from ARPANET Pentagon's morse. 
-* Feel free to make morse, morse-d or morse-b binaries 
+* Derived from ARPANET Pentagon's morse.
+* Feel free to make morse, morse-d or morse-b binaries
 * for it, like once was implemented into Linux and Unix os's.
-* 
+*
 **/
-using namespace std;
-// header part
 multimap <string, string> morse_map;
 multimap <string, string> morse_map_reversed;
 void fill_morse_maps();
@@ -39,7 +37,7 @@ int main()
 	fill_morse_maps();
 	// command line part
 	string arg_in;
-	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' (), . _ - / : ; = ? @ \n";
+	cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 	cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
 	cout << "choose action 1, 2 or 3 and press [enter]\n";
 	getline(cin, arg_in); string action; regex e("[1-3]");
@@ -327,7 +325,7 @@ const vector<string> explode(const string& s, const char& c)
 /**
 * Fix input with whitespace to reduce errors
 * info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
-* 
+*
 * @param str
 * @return string
 */
