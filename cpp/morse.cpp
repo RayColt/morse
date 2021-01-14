@@ -30,64 +30,64 @@ public:
 	std::multimap <std::string, std::string> morse_map_reversed;
 	void fill_morse_maps()
 	{
-		morse_map.insert(std::pair <std::string, std::string>(" ", "")); // SPACE (0b1)
-		morse_map.insert(std::pair <std::string, std::string>("!", "101011")); // -.-.--
+		morse_map.insert(std::pair <std::string, std::string>(" ", ""));        // SPACE (0b1)
+		morse_map.insert(std::pair <std::string, std::string>("!", "101011"));  // -.-.--
 		morse_map.insert(std::pair <std::string, std::string>("$", "0001001")); // ...-..-
 		morse_map.insert(std::pair <std::string, std::string>("\"", "010010")); // .-..-.
 
-		morse_map.insert(std::pair <std::string, std::string>("'", "011110")); // .----.
-		morse_map.insert(std::pair <std::string, std::string>("(", "10110")); // -.--.
-		morse_map.insert(std::pair <std::string, std::string>(")", "101101")); // -.--.-
+		morse_map.insert(std::pair <std::string, std::string>("'", "011110"));  // .----.
+		morse_map.insert(std::pair <std::string, std::string>("(", "10110"));   // -.--.
+		morse_map.insert(std::pair <std::string, std::string>(")", "101101"));  // -.--.-
 
-		morse_map.insert(std::pair <std::string, std::string>(",", "110011")); // --..--
-		morse_map.insert(std::pair <std::string, std::string>("-", "100001")); // -....-
-		morse_map.insert(std::pair <std::string, std::string>(".", "010101")); // .-.-.-
-		morse_map.insert(std::pair <std::string, std::string>("/", "10010")); // -..-.
+		morse_map.insert(std::pair <std::string, std::string>(",", "110011"));  // --..--
+		morse_map.insert(std::pair <std::string, std::string>("-", "100001"));  // -....-
+		morse_map.insert(std::pair <std::string, std::string>(".", "010101"));  // .-.-.-
+		morse_map.insert(std::pair <std::string, std::string>("/", "10010"));   // -..-.
 
-		morse_map.insert(std::pair <std::string, std::string>("0", "11111")); // -----
-		morse_map.insert(std::pair <std::string, std::string>("1", "01111")); // .----
-		morse_map.insert(std::pair <std::string, std::string>("2", "00111")); // ..---
-		morse_map.insert(std::pair <std::string, std::string>("3", "00011")); // ...--
-		morse_map.insert(std::pair <std::string, std::string>("4", "00001")); // ....-
-		morse_map.insert(std::pair <std::string, std::string>("5", "00000")); // .....
-		morse_map.insert(std::pair <std::string, std::string>("6", "10000")); // -....
-		morse_map.insert(std::pair <std::string, std::string>("7", "11000")); // --...
-		morse_map.insert(std::pair <std::string, std::string>("8", "11100")); // ---..
-		morse_map.insert(std::pair <std::string, std::string>("9", "11110")); // ----.
+		morse_map.insert(std::pair <std::string, std::string>("0", "11111"));   // -----
+		morse_map.insert(std::pair <std::string, std::string>("1", "01111"));   // .----
+		morse_map.insert(std::pair <std::string, std::string>("2", "00111"));   // ..---
+		morse_map.insert(std::pair <std::string, std::string>("3", "00011"));   // ...--
+		morse_map.insert(std::pair <std::string, std::string>("4", "00001"));   // ....-
+		morse_map.insert(std::pair <std::string, std::string>("5", "00000"));   // .....
+		morse_map.insert(std::pair <std::string, std::string>("6", "10000"));   // -....
+		morse_map.insert(std::pair <std::string, std::string>("7", "11000"));   // --...
+		morse_map.insert(std::pair <std::string, std::string>("8", "11100"));   // ---..
+		morse_map.insert(std::pair <std::string, std::string>("9", "11110"));   // ----.
 
-		morse_map.insert(std::pair <std::string, std::string>(":", "111000")); // ---...
-		morse_map.insert(std::pair <std::string, std::string>(";", "101010")); // -.-.-.
-		morse_map.insert(std::pair <std::string, std::string>("=", "10001")); // -...-
-		morse_map.insert(std::pair <std::string, std::string>("?", "001100")); // ..--..
-		morse_map.insert(std::pair <std::string, std::string>("@", "011010")); // .--.-.
+		morse_map.insert(std::pair <std::string, std::string>(":", "111000"));  // ---...
+		morse_map.insert(std::pair <std::string, std::string>(";", "101010"));  // -.-.-.
+		morse_map.insert(std::pair <std::string, std::string>("=", "10001"));   // -...-
+		morse_map.insert(std::pair <std::string, std::string>("?", "001100"));  // ..--..
+		morse_map.insert(std::pair <std::string, std::string>("@", "011010"));  // .--.-.
 
-		morse_map.insert(std::pair <std::string, std::string>("A", "01")); // .-
-		morse_map.insert(std::pair <std::string, std::string>("B", "1000")); // -...
-		morse_map.insert(std::pair <std::string, std::string>("C", "1010")); // -.-.
-		morse_map.insert(std::pair <std::string, std::string>("D", "100")); // -..
-		morse_map.insert(std::pair <std::string, std::string>("E", "0")); // .
-		morse_map.insert(std::pair <std::string, std::string>("F", "0010")); // ..-.
-		morse_map.insert(std::pair <std::string, std::string>("G", "110")); // --.
-		morse_map.insert(std::pair <std::string, std::string>("H", "0000")); // ....
-		morse_map.insert(std::pair <std::string, std::string>("I", "00")); // ..
-		morse_map.insert(std::pair <std::string, std::string>("J", "0111")); // .---
-		morse_map.insert(std::pair <std::string, std::string>("K", "101")); // -.-
-		morse_map.insert(std::pair <std::string, std::string>("L", "0100")); // .-..
-		morse_map.insert(std::pair <std::string, std::string>("M", "11")); // --
-		morse_map.insert(std::pair <std::string, std::string>("N", "10")); // -.
-		morse_map.insert(std::pair <std::string, std::string>("O", "111")); // ---
-		morse_map.insert(std::pair <std::string, std::string>("P", "0110")); // .--.
-		morse_map.insert(std::pair <std::string, std::string>("Q", "1101")); // --.-
-		morse_map.insert(std::pair <std::string, std::string>("R", "010")); // .-.
-		morse_map.insert(std::pair <std::string, std::string>("S", "000")); // ...
-		morse_map.insert(std::pair <std::string, std::string>("T", "1")); // -
-		morse_map.insert(std::pair <std::string, std::string>("U", "001")); // ..-
-		morse_map.insert(std::pair <std::string, std::string>("V", "0001")); // ...-
-		morse_map.insert(std::pair <std::string, std::string>("W", "011")); // .--
-		morse_map.insert(std::pair <std::string, std::string>("X", "1001")); // -..-
-		morse_map.insert(std::pair <std::string, std::string>("Y", "1011")); // -.--
-		morse_map.insert(std::pair <std::string, std::string>("Z", "1100")); // --..
-		morse_map.insert(std::pair <std::string, std::string>("_", "001101")); // ..--.-
+		morse_map.insert(std::pair <std::string, std::string>("A", "01"));      // .-
+		morse_map.insert(std::pair <std::string, std::string>("B", "1000"));    // -...
+		morse_map.insert(std::pair <std::string, std::string>("C", "1010"));    // -.-.
+		morse_map.insert(std::pair <std::string, std::string>("D", "100"));     // -..
+		morse_map.insert(std::pair <std::string, std::string>("E", "0"));       // .
+		morse_map.insert(std::pair <std::string, std::string>("F", "0010"));    // ..-.
+		morse_map.insert(std::pair <std::string, std::string>("G", "110"));     // --.
+		morse_map.insert(std::pair <std::string, std::string>("H", "0000"));    // ....
+		morse_map.insert(std::pair <std::string, std::string>("I", "00"));      // ..
+		morse_map.insert(std::pair <std::string, std::string>("J", "0111"));    // .---
+		morse_map.insert(std::pair <std::string, std::string>("K", "101"));     // -.-
+		morse_map.insert(std::pair <std::string, std::string>("L", "0100"));    // .-..
+		morse_map.insert(std::pair <std::string, std::string>("M", "11"));      // --
+		morse_map.insert(std::pair <std::string, std::string>("N", "10"));      // -.
+		morse_map.insert(std::pair <std::string, std::string>("O", "111"));     // ---
+		morse_map.insert(std::pair <std::string, std::string>("P", "0110"));    // .--.
+		morse_map.insert(std::pair <std::string, std::string>("Q", "1101"));    // --.-
+		morse_map.insert(std::pair <std::string, std::string>("R", "010"));     // .-.
+		morse_map.insert(std::pair <std::string, std::string>("S", "000"));     // ...
+		morse_map.insert(std::pair <std::string, std::string>("T", "1"));       // -
+		morse_map.insert(std::pair <std::string, std::string>("U", "001"));     // ..-
+		morse_map.insert(std::pair <std::string, std::string>("V", "0001"));    // ...-
+		morse_map.insert(std::pair <std::string, std::string>("W", "011"));     // .--
+		morse_map.insert(std::pair <std::string, std::string>("X", "1001"));    // -..-
+		morse_map.insert(std::pair <std::string, std::string>("Y", "1011"));    // -.--
+		morse_map.insert(std::pair <std::string, std::string>("Z", "1100"));    // --..
+		morse_map.insert(std::pair <std::string, std::string>("_", "001101"));  // ..--.-
 		morse_map.insert(std::pair <std::string, std::string>("ERR", "00000000")); // ........
 		// invert morse_map
 		for (const auto& it : morse_map)
