@@ -10,7 +10,7 @@
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1975, 2021 Ray Colt
-* @license Public General License US Army, Microsoft Corporation
+* @license Public General License US Army, Microsoft Corporation(MIT)
 *
 * Derived from ARPANET Pentagon's morse, the url more save, http version.
 * Feel free to make morse, morsed or morseb binaries
