@@ -4,4 +4,4 @@ no error handling on input, to keep it in one file, but save and working! on win
 in the zip file: a morse.exe example<br>
 <br>
 example:<br>
-<img src=https://github.com/RayColt/morse/blob/master/cpp/morse.exe-screen.jpg>
+<img src=https://github.com/RayColt/morse/blob/master/cpp/morse-screen.jpg>
