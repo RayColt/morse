@@ -84,7 +84,7 @@ uint16_t Morse::encode(uint8_t character)
 }
   </pre>
 <br>C++ Windows and Linux ARPANET version<br>
-<img src=https://github.com/RayColt/morse/blob/master/cpp/morse.exe-screen.jpg>
+<img src=https://github.com/RayColt/morse/blob/master/cpp/morse-screen.jpg>
 <br>PHP Servlet usage with PowerShell:<br>
 <img src=https://github.com/RayColt/morse/blob/master/TCP/morse-http-powershell.jpg />
 <br>PHP or JavaScript Form (<a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a>):<br>
