@@ -335,7 +335,7 @@ int main(int argc, char* argv[])
 		{
 			arg_in = "1";
 			// cursor one column up and erase line. vs studio and linux only!
-			//cout << "\033[A\33[2K" << arg_in << "\n";
+			//std::cout << "\033[A\33[2K" << arg_in << "\n";
 			std::cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
 		if (arg_in == "1") action = "encode";
