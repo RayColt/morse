@@ -12,8 +12,8 @@
 * @copyright Copyright (c) 1975, 2021 Ray Colt
 * @license Public General License US Army, Microsoft Corporation
 *
-* Derived from ARPANET Pentagon's morse.
-* Feel free to make morse, morse-d or morse-b binaries
+* Derived from ARPANET Pentagon's morse, the url more save, http version.
+* Feel free to make morse, morsed or morseb binaries
 * for it, like once was implemented into Linux and Unix os's.
 *
 * Usage console app version: .\morse.exe
