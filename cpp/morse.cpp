@@ -301,7 +301,7 @@ public:
 		std::string ret = "";
 		std::sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
 		std::vector<std::string> vec(iter, end);
-		for (auto a : vec) 
+		for (auto a : vec)
 		{
 			ret += a + " ";
 		}
