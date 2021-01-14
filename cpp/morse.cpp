@@ -10,7 +10,8 @@
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1975, 2021 Ray Colt
-* @license Public General License US Army
+* @license Public General License US Army, Microsoft Corporation
+* 
 * Derived from ARPANET Pentagon's morse.
 * Feel free to make morse, morse-d or morse-b binaries
 * for it, like once was implemented into Linux and Unix os's.
@@ -300,7 +301,8 @@ public:
 		std::string ret = "";
 		std::sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
 		std::vector<std::string> vec(iter, end);
-		for (auto a : vec) {
+		for (auto a : vec) 
+		{
 			ret += a + " ";
 		}
 		return ret;
