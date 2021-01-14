@@ -1,6 +1,6 @@
-#include <string> 
+#include <string>
 #include <iostream>
-#include <map> 
+#include <map>
 #include <iterator>
 #include <vector>
 #include <regex>
@@ -11,7 +11,7 @@
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1975, 2021 Ray Colt
 * @license Public General License US Army, Microsoft Corporation
-* 
+*
 * Derived from ARPANET Pentagon's morse.
 * Feel free to make morse, morse-d or morse-b binaries
 * for it, like once was implemented into Linux and Unix os's.
