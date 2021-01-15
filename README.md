@@ -95,5 +95,5 @@ uint16_t Morse::encode(uint8_t character)
 }
   </pre>
 <br>C++ Windows and Linux ARPANET version<br>
-<img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg>
+<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>
 <br>
