@@ -1,12 +1,12 @@
 <table border="0">
  <tr>
-       <td>
+       <td valign="top">
  # Colt's HTTP Morse PHP, JavaScript, Java and C++<br>
 PHP & Java:  forms, class files and servlet<br>
 JavaScript: form&ast;<br>
 C++: console app&ast;<br>
 &ast; easy to make class files for them</td>
-      <td>
+      <td  valign="top">
        <img src="https://github.com/RayColt/morse/blob/master/international_morse_code.jpg" />
        </td>
 </tr>
