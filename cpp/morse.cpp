@@ -20,7 +20,7 @@ using namespace std;
 * Usage console app version: ./morse.exe
 * Usage console line two arguments version: ./morse.exe "[e,b,d]" "morse or txt"
 * e=encode, b=binary-encode, d=decode
-* .\morse.exe e "morse is fun!!" OR .\morse.exe "e" "morse is fun!!"
+* ./morse.exe e "morse is fun!!" OR ./morse.exe "e" "morse is fun!!"
 **/
 class Morse
 {
