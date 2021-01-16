@@ -5,6 +5,7 @@
 #include <vector>
 #include <regex>
 
+using namespace std;
 /**
 * C++ Morse
 *
@@ -16,9 +17,9 @@
 * Feel free to make morse, morsed or morseb binaries
 * for it, like once was implemented into Linux and Unix os's.
 *
-* Usage console app version: .\morse.exe
-* Usage console line two arguments version: .\morse.exe "[e,b,d]" "morse or txt"
-* e=encode, b=binary encode, d=decode
+* Usage console app version: ./morse.exe
+* Usage console line two arguments version: ./morse.exe "[e,b,d]" "morse or txt"
+* e=encode, b=binary-encode, d=decode
 * .\morse.exe e "morse is fun!!" OR .\morse.exe "e" "morse is fun!!"
 **/
 class Morse
@@ -26,8 +27,8 @@ class Morse
 public:
 	Morse() { fill_morse_maps(); }
 
-	std::multimap <std::string, std::string> morse_map;
-	std::multimap <std::string, std::string> morse_map_reversed;
+	multimap <string, string> morse_map;
+	multimap <string, string> morse_map_reversed;
 	void fill_morse_maps()
 	{
 		morse_map.insert(std::pair <std::string, std::string>(" ", ""));        // SPACE (0b1)
@@ -100,9 +101,9 @@ public:
 	* Get binary morse code (dit/dah) for a given character
 	*
 	* @param character
-	* @return std::string
+	* @return string
 	*/
-	std::string getBinChar(std::string character)
+	string getBinChar(string character)
 	{
 		return  morse_map.find(character)->second;
 	}
@@ -111,9 +112,9 @@ public:
 	* Get morse code (dit/dah) for a given character
 	*
 	* @param character
-	* @return std::string
+	* @return string
 	*/
-	std::string getMorse(std::string character)
+	string getMorse(string character)
 	{
 		return strtr(morse_map.find(character)->second, "01", ".-");
 	}
@@ -122,25 +123,25 @@ public:
 	* Get character for given morse code
 	*
 	* @param morse
-	* @return std::string
+	* @return string
 	*/
-	std::string getCharacter(std::string morse)
+	string getCharacter(string morse)
 	{
 		return morse_map_reversed.find(strtr(morse, ".-", "01"))->second;
 	}
 
 	/**
-	* Get binary morse code for given std::string
+	* Get binary morse code for given string
 	*
 	* @param str
-	* @return std::string
+	* @return string
 	*/
-	std::string morse_binary(std::string str)
+	string morse_binary(string str)
 	{
-		std::string line = "";
+		string line = "";
 		for (size_t i = 0; i < str.length(); i++)
 		{
-			std::string chr = str.substr(i, 1);
+			string chr = str.substr(i, 1);
 			line += getBinChar(stringToUpper(chr));
 			line += " ";
 		}
@@ -148,17 +149,17 @@ public:
 	}
 
 	/**
-	* Get morse code for given std::string
+	* Get morse code for given string
 	*
 	* @param str
-	* @return std::string
+	* @return string
 	*/
-	std::string morse_encode(std::string str)
+	string morse_encode(string str)
 	{
-		std::string line = "";
+		string line = "";
 		for (size_t i = 0; i < str.length(); i++)
 		{
-			std::string chr = str.substr(i, 1);
+			string chr = str.substr(i, 1);
 			line += getMorse(stringToUpper(chr));
 			line += " ";
 		}
@@ -166,33 +167,33 @@ public:
 	}
 
 	/**
-	* Get character std::string for given morse code
+	* Get character string for given morse code
 	*
 	* @param str
-	* @return std::string
+	* @return string
 	*/
-	std::string morse_decode(std::string str)
+	string morse_decode(string str)
 	{
-		std::string line = "";
-		std::vector<std::string> morsecodes = explode(str, ' ');
+		string line = "";
+		vector<string> morsecodes = explode(str, ' ');
 		for (auto morse : morsecodes)
 		{
 			if (morse.empty())
 				line += " ";
-			std::string chr = getCharacter(morse);
+			string chr = getCharacter(morse);
 			line += chr;
 		}
-		std::regex e("\\s{2,}");
-		return std::regex_replace(line, e, " ");
+		regex e("\\s{2,}");
+		return regex_replace(line, e, " ");
 	}
 
 	/**
-	* A function that converts a std::string to uppercase letters
+	* A function that converts a string to uppercase letters
 	*
 	* @param str
-	* @return std::string
+	* @return string
 	*/
-	std::string stringToUpper(std::string str)
+	string stringToUpper(string str)
 	{
 		transform(str.begin(), str.end(), str.begin(), ::toupper);
 		return str;
@@ -206,11 +207,11 @@ public:
 	* @param str
 	* @param from
 	* @param to
-	* @return std::string
+	* @return string
 	*/
-	std::string strtr(std::string str, std::string from, std::string to)
+	string strtr(string str, string from, string to)
 	{
-		std::vector<std::string> out;
+		vector<string> out;
 		for (size_t i = 0, len = str.length(); i < len; i++)
 		{
 			char c = str.at(i);
@@ -218,21 +219,21 @@ public:
 			if (p >= 0)
 			{
 				char t = to.at(p);
-				out.push_back(std::string(1, t));
+				out.push_back(string(1, t));
 			}
 		}
-		return !out.empty() ? stringArrTostring(out) : str;
+		return !out.empty() ? stringArrToString(out) : str;
 	}
 
 	/**
-	* Convert a std::string array into a std::string <br>
+	* Convert a string array into a string <br>
 	*
 	* @param vstr
-	* @return std::string
+	* @return string
 	*/
-	std::string stringArrTostring(std::vector<std::string> vstr)
+	string stringArrToString(vector<string> vstr)
 	{
-		std::string scr = "";
+		string scr = "";
 		if (!vstr.empty())
 		{
 			for (size_t i = 0; i < vstr.size(); i++)
@@ -244,15 +245,15 @@ public:
 	}
 
 	/**
-	* trimp automatically strips space at the start and end of a given std::string <br>
+	* trimp automatically strips space at the start and end of a given string <br>
 	*
 	* @param str
-	* @return std::string
+	* @return string
 	*/
-	std::string trim(const std::string& str)
+	string trim(const string& str)
 	{
 		size_t first = str.find_first_not_of(' ');
-		if (std::string::npos == first)
+		if (string::npos == first)
 		{
 			return str;
 		}
@@ -265,12 +266,12 @@ public:
 	*
 	* @param s
 	* @param c
-	* @return std::vector
+	* @return vector
 	*/
-	const std::vector<std::string> explode(const std::string& s, const char& c)
+	const vector<string> explode(const string& s, const char& c)
 	{
-		std::string buff;
-		std::vector<std::string> vstr;
+		string buff;
+		vector<string> vstr;
 		for (auto str : s)
 		{
 			if (str != c)
@@ -293,16 +294,15 @@ public:
 	* info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
 	*
 	* @param str
-	* @return std::string
+	* @return string
 	*/
-	std::string fix_input(std::string str)
+	string fix_input(string str)
 	{
-		std::regex e("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
-		std::string ret = "";
-		std::sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
-		std::vector<std::string> vec(iter, end);
-		for (auto a : vec)
-		{
+		regex e("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+		string ret = "";
+		sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
+		vector<string> vec(iter, end);
+		for (auto a : vec) {
 			ret += a + " ";
 		}
 		return ret;
@@ -312,41 +312,41 @@ public:
 int main(int argc, char* argv[])
 {
 	Morse m;
-	std::string action;
+	string action;
 	if (argc == 3)
 	{
 		// arguments part
 		if (strcmp(argv[1], "e") == 0) action = "encode";
 		if (strcmp(argv[1], "d") == 0) 	action = "decode";
 		if (strcmp(argv[1], "b") == 0) 	action = "binary";
-		if (action == "encode") std::cout << m.morse_encode(m.fix_input(argv[2])) << "\n";
-		if (action == "binary")	std::cout << m.morse_binary(m.fix_input(argv[2])) << "\n";
-		if (action == "decode")	std::cout << m.morse_decode(m.fix_input(argv[2])) << "\n";
+		if (action == "encode") cout << m.morse_encode(m.fix_input(argv[2])) << "\n";
+		if (action == "binary")	cout << m.morse_binary(m.fix_input(argv[2])) << "\n";
+		if (action == "decode")	cout << m.morse_decode(m.fix_input(argv[2])) << "\n";
 	}
 	else
 	{
 		// console part
-		std::string arg_in;
-		std::cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		std::cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
-		std::cout << "choose action 1, 2 or 3 and press [enter]\n";
-		getline(std::cin, arg_in); std::regex e("[1-3]");
-		if (!std::regex_match(arg_in, e))
+		string arg_in;
+		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
+		cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
+		cout << "choose action 1, 2 or 3 and press [enter]\n";
+		getline(cin, arg_in); regex e("[1-3]");
+		if (!regex_match(arg_in, e))
 		{
 			arg_in = "1";
 			// cursor one column up and erase line. vs studio and linux only!
-			//std::cout << "\033[A\33[2K" << arg_in << "\n";
-			std::cout << "wrong input, action " << arg_in << " is active now" << "\n";
+			//cout << "\033[A\33[2K" << arg_in << "\n";
+			cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
 		if (arg_in == "1") action = "encode";
 		if (arg_in == "2") action = "binary";
 		if (arg_in == "3") action = "decode";
-		std::cout << "type or paste input and press [enter]\n";
+		cout << "type or paste input and press [enter]\n";
 		getline(std::cin, arg_in);
-		if (action == "encode") std::cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
-		if (action == "binary")	std::cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
-		if (action == "decode")	std::cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
-		std::cout << "Press any key to close program . . .";
+		if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
+		if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
+		if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
+		cout << "Press any key to close program . . .";
 		int c = getchar();
 		return 0;
 	}
