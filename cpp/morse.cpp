@@ -27,6 +27,7 @@ class Morse
 public:
 	Morse() { fill_morse_maps(); }
 
+private:
 	multimap <string, string> morse_map;
 	multimap <string, string> morse_map_reversed;
 	void fill_morse_maps()
@@ -97,6 +98,7 @@ public:
 		}
 	}
 
+private:
 	/**
 	* Get binary morse code (dit/dah) for a given character
 	*
@@ -108,6 +110,7 @@ public:
 		return  morse_map.find(character)->second;
 	}
 
+private:
 	/**
 	* Get morse code (dit/dah) for a given character
 	*
@@ -119,6 +122,7 @@ public:
 		return strtr(morse_map.find(character)->second, "01", ".-");
 	}
 
+private:
 	/**
 	* Get character for given morse code
 	*
@@ -130,6 +134,7 @@ public:
 		return morse_map_reversed.find(strtr(morse, ".-", "01"))->second;
 	}
 
+public:
 	/**
 	* Get binary morse code for given string
 	*
@@ -148,6 +153,7 @@ public:
 		return trim(line);
 	}
 
+public:
 	/**
 	* Get morse code for given string
 	*
@@ -165,7 +171,7 @@ public:
 		}
 		return trim(line);
 	}
-
+public:
 	/**
 	* Get character string for given morse code
 	*
@@ -187,6 +193,7 @@ public:
 		return regex_replace(line, e, " ");
 	}
 
+private:
 	/**
 	* A function that converts a string to uppercase letters
 	*
@@ -199,6 +206,7 @@ public:
 		return str;
 	}
 
+private:
 	/**
 	* Similar to strtr in php, characters in 'from' will be <br>
 	* replaced by characters in 'to' in the same <br>
@@ -225,6 +233,7 @@ public:
 		return !out.empty() ? stringArrToString(out) : str;
 	}
 
+private:
 	/**
 	* Convert a string array into a string <br>
 	*
@@ -244,6 +253,7 @@ public:
 		return scr;
 	}
 
+private:
 	/**
 	* trimp automatically strips space at the start and end of a given string <br>
 	*
@@ -261,6 +271,7 @@ public:
 		return str.substr(first, (last - first + 1));
 	}
 
+private:
 	/**
 	* Similar to explode in php, a split function on a delimiter <br>
 	*
@@ -289,6 +300,7 @@ public:
 		return vstr;
 	}
 
+public:
 	/**
 	* Fix input with whitespace to reduce errors
 	* info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
