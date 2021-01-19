@@ -174,7 +174,8 @@ public:
 
 public:
 	/**
-	* Get hexadecimal morse code for given string
+	* ^..^
+	* Get hexadecimal morse code for given binary morse
 	*
 	* @param str
 	* @return string
@@ -185,6 +186,8 @@ public:
 		line = std::regex_replace(line, std::regex("0"), "30 ");
 		line = std::regex_replace(line, std::regex("1"), "31 ");
 		line = std::regex_replace(line, std::regex(" "), " 20 ");
+		size_t p = line.find_last_not_of(' 20');
+		line = line.substr(0, p-3);
 		regex e("\\s{2,}");
 		return regex_replace(line, e, " ");
 	}
@@ -360,8 +363,8 @@ int main(int argc, char* argv[])
 		// console part
 		string arg_in;
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary ].\n";
-		cout << "choose action 1, 2 or 3 and press [enter]\n";
+		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
+		cout << "choose action 1, 2 or 3 and press [enter]:\n";
 		getline(cin, arg_in); regex e("[1-4]");
 		if (!regex_match(arg_in, e))
 		{
