@@ -107,7 +107,9 @@ private:
 	*/
 	string getBinChar(string character)
 	{
-		return  morse_map.find(character)->second;
+		regex e("[a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+		if (regex_match(character, e)) return  morse_map.find(character)->second;
+		return "";
 	}
 
 private:
@@ -119,7 +121,9 @@ private:
 	*/
 	string getMorse(string character)
 	{
-		return strtr(morse_map.find(character)->second, "01", ".-");
+		regex e("[a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+		if (regex_match(character, e)) return strtr(morse_map.find(character)->second, "01", ".-");
+		return "";
 	}
 
 private:
@@ -171,6 +175,48 @@ public:
 		}
 		return trim(line);
 	}
+
+public:
+	/**
+	* (\  /)
+	* ( .  .)
+	* Get hexadecimal morse code for given string
+	*
+	* @param str
+	* @return string
+	*/
+	string bin_morse_hexadecimal(string str)
+	{
+		string line = morse_binary(str);
+		line = regex_replace(line, regex("0"), "30 ");
+		line = regex_replace(line, regex("1"), "31 ");
+		line = regex_replace(line, regex(" "), " 20 ");
+		size_t p = line.find_last_of('20');
+		line = line.substr(0, p - 2);
+		regex e("\\s{2,}");
+		return regex_replace(line, e, " ");
+	}
+
+public:
+	/**
+	* (\  /)
+	* ( .  .)
+	* Get txt for given hexadecimal morse code
+	*
+	* @param str
+	* @return string
+	*/
+	string hexadecimal_bin_txt(string str)
+	{
+		string line = remove_whitespaces(str);
+		line = regex_replace(line, regex("202020"), "  ");
+		line = regex_replace(line, regex("2020"), " ");
+		line = regex_replace(line, regex("20"), "");
+		line = regex_replace(line, regex("30"), "0");
+		line = regex_replace(line, regex("31"), "1");
+		return morse_decode(line);
+	}
+
 public:
 	/**
 	* Get character string for given morse code
@@ -314,10 +360,24 @@ public:
 		string ret = "";
 		sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
 		vector<string> vec(iter, end);
-		for (auto a : vec) {
+		for (auto a : vec) 
+		{
 			ret += a + " ";
 		}
-		return ret;
+		return trim(ret);
+	}
+
+private:
+	/**
+	* Remove all whitespaces for given string
+	*
+	* @param str
+	* @return string
+	*/
+	string remove_whitespaces(string str)
+	{
+		str.erase(remove(str.begin(), str.end(), ' '), str.end());
+		return str;
 	}
 };
 
@@ -331,33 +391,51 @@ int main(int argc, char* argv[])
 		if (strcmp(argv[1], "e") == 0) action = "encode";
 		if (strcmp(argv[1], "d") == 0) 	action = "decode";
 		if (strcmp(argv[1], "b") == 0) 	action = "binary";
+		if (strcmp(argv[1], "h") == 0) 	action = "hexa";
+		if (strcmp(argv[1], "hd") == 0) action = "hexadec";
 		if (action == "encode") cout << m.morse_encode(m.fix_input(argv[2])) << "\n";
 		if (action == "binary")	cout << m.morse_binary(m.fix_input(argv[2])) << "\n";
 		if (action == "decode")	cout << m.morse_decode(m.fix_input(argv[2])) << "\n";
+		if (action == "hexa")	cout << m.bin_morse_hexadecimal(m.fix_input(argv[2])) << "\n";
+		if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(argv[2])) << "\n";
 	}
 	else
 	{
 		// console part
 		string arg_in;
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: 1 [encode], 2 [binary morse encode], 3 [decode].\n";
-		cout << "choose action 1, 2 or 3 and press [enter]\n";
-		getline(cin, arg_in); regex e("[1-3]");
-		if (!regex_match(arg_in, e))
+		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
+		cout << "choose action 1, 2 or 3 and press [enter]:\n";
+		getline(cin, arg_in); 
+		regex e("[1-3]");
+		regex ee("[4-5]");
+		if (!regex_match(arg_in, e) && !regex_match(arg_in, ee))
 		{
 			arg_in = "1";
 			// cursor one column up and erase line. vs studio console and linux only!
-			cout << "\033[A\33[2K" << arg_in << "\n";
-			//cout << "wrong input, action " << arg_in << " is active now" << "\n";
+			//cout << "\033[A\33[2K" << arg_in << "\n";
+			cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
-		if (arg_in == "1") action = "encode";
-		if (arg_in == "2") action = "binary";
-		if (arg_in == "3") action = "decode";
-		cout << "type or paste input and press [enter]\n";
-		getline(std::cin, arg_in);
-		if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
-		if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
-		if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
+		if (regex_match(arg_in, e))
+		{
+			if (arg_in == "1") action = "encode";
+			if (arg_in == "2") action = "binary";
+			if (arg_in == "3") action = "decode";
+			cout << "type or paste input and press [enter]\n";
+			getline(std::cin, arg_in);
+			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
+			if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
+			if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
+		}
+		if (regex_match(arg_in, ee))
+		{
+			if (arg_in == "4") action = "hexa";
+			if (arg_in == "5") action = "hexadec";
+			cout << "type or paste input and press [enter]\n";
+			getline(std::cin, arg_in);
+			if (action == "hexa") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in)) << "\n";
+			if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in)) << "\n";
+		}
 		cout << "Press any key to close program . . .";
 		int c = getchar();
 		return 0;
