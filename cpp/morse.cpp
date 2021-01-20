@@ -198,7 +198,7 @@ public:
 		}
 		else
 		{
-			return "only these characters in morse are allowed: 0 1 . _ and spaces";
+			return "only these characters in morse are allowed: 0 1 . - and spaces";
 		}
 	}
 
