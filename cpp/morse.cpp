@@ -107,9 +107,7 @@ private:
 	*/
 	string getBinChar(string character)
 	{
-		regex e("[a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
-		if (regex_match(character, e)) return  morse_map.find(character)->second;
-		return "";
+		return  morse_map.find(character)->second;
 	}
 
 private:
@@ -121,9 +119,7 @@ private:
 	*/
 	string getMorse(string character)
 	{
-		regex e("[a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
-		if (regex_match(character, e)) return strtr(morse_map.find(character)->second, "01", ".-");
-		return "";
+		return strtr(morse_map.find(character)->second, "01", ".-");
 	}
 
 private:
