@@ -390,7 +390,7 @@ int main(int argc, char* argv[])
 		if (strcmp(argv[1], "hd") == 0) action = "hexadec";
 		if (action == "encode") cout << m.morse_encode(m.fix_input(argv[2])) << "\n";
 		if (action == "binary")	cout << m.morse_binary(m.fix_input(argv[2])) << "\n";
-		if (action == "decode")	cout << m.hexadecimal_bin_txt(m.fix_input(argv[2])) << "\n";
+		if (action == "decode")	cout << m.morse_decode(m.fix_input(argv[2])) << "\n";
 		if (action == "hexa")	cout << m.bin_morse_hexadecimal(m.fix_input(argv[2])) << "\n";
 		if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(argv[2])) << "\n";
 	}
@@ -418,7 +418,7 @@ int main(int argc, char* argv[])
 		getline(std::cin, arg_in);
 		if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
 		if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
-		if (action == "decode")	cout << m.hexadecimal_bin_txt(m.fix_input(arg_in)) << "\n";
+		if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
 		if (action == "hexa")	cout << m.bin_morse_hexadecimal(m.fix_input(arg_in)) << "\n";
 		if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in)) << "\n";
 		cout << "Press any key to close program . . .";
