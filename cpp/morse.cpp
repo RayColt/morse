@@ -188,33 +188,33 @@ public:
 	string bin_morse_hexadecimal(string str)
 	{
 		string line = morse_binary(str);
+		line = regex_replace(line, regex("  "), "A");
+		line = regex_replace(line, regex(" "), "K");
 		line = regex_replace(line, regex("0"), "30 ");
 		line = regex_replace(line, regex("1"), "31 ");
-		line = regex_replace(line, regex(" "), " 20 ");
-		size_t p = line.find_last_of('20');
-		line = line.substr(0, p - 2);
-		regex e("\\s{2,}");
-		return regex_replace(line, e, " ");
+		line = regex_replace(line, regex("A"), "20 20 ");
+		line = regex_replace(line, regex("K"), "20 ");
+		return trim(line);
 	}
+
 
 public:
 	/**
 	* (\  /)
 	* ( .  .)
 	* Get txt for given hexadecimal morse code
-	*
+	* 
 	* @param str
 	* @return string
 	*/
 	string hexadecimal_bin_txt(string str)
 	{
 		string line = remove_whitespaces(str);
-		line = regex_replace(line, regex("202020"), "  ");
-		line = regex_replace(line, regex("2020"), " ");
-		line = regex_replace(line, regex("20"), "");
+		line = regex_replace(line, regex("2020"), "  ");
+		line = regex_replace(line, regex("20"), " ");
 		line = regex_replace(line, regex("30"), "0");
 		line = regex_replace(line, regex("31"), "1");
-		return morse_decode(line);
+		return morse_decode(trim(line));
 	}
 
 public:
