@@ -174,6 +174,36 @@ public:
 
 public:
 	/**
+	* Get character string for given morse code
+	*
+	* @param str
+	* @return string
+	*/
+	string morse_decode(string str)
+	{
+		string line = "";
+		regex e("[10\\s\\.\\-]+");
+		if (regex_match(str, e))
+		{
+			vector<string> morsecodes = explode(str, ' ');
+			for (auto morse : morsecodes)
+			{
+				if (morse.empty())
+					line += " ";
+				string chr = getCharacter(morse);
+				line += chr;
+			}
+			regex e("\\s{2,}");
+			return regex_replace(line, e, " ");
+		}
+		else
+		{
+			return "only these characters in morse are allowed: 0 1 . _ and spaces";
+		}
+	}
+
+public:
+	/**
 	* (\  /)
 	* ( .  .)
 	* Get hexadecimal morse code for given string
@@ -193,7 +223,6 @@ public:
 		return trim(line);
 	}
 
-
 public:
 	/**
 	* (\  /)
@@ -211,28 +240,6 @@ public:
 		line = regex_replace(line, regex("30"), "0");
 		line = regex_replace(line, regex("31"), "1");
 		return morse_decode(trim(line));
-	}
-
-public:
-	/**
-	* Get character string for given morse code
-	*
-	* @param str
-	* @return string
-	*/
-	string morse_decode(string str)
-	{
-		string line = "";
-		vector<string> morsecodes = explode(str, ' ');
-		for (auto morse : morsecodes)
-		{
-			if (morse.empty())
-				line += " ";
-			string chr = getCharacter(morse);
-			line += chr;
-		}
-		regex e("\\s{2,}");
-		return regex_replace(line, e, " ");
 	}
 
 private:
