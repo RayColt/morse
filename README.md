@@ -1,18 +1,10 @@
-<table border="0">
- <tr>
-       <td valign="top">
  # Colt's HTTP Morse PHP, JavaScript, Java and C++<br>
 PHP & Java:  forms, class files and servlet<br>
 JavaScript: form<br>
 C++: console app<br>
-</td>
-      <td  valign="top">
-       <img src="https://github.com/RayColt/morse/blob/master/international_morse_code.jpg" />
-       </td>
-</tr>
-</table>
-             
-           
+   
+ <br>C++ Windows and Linux ARPANET version<br>
+<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>          
 
 The real, first and only US Morse mapping,<br>
       based upon Synthesizer Binary tables, from a mouse I believe,<br>
@@ -94,6 +86,5 @@ uint16_t Morse::encode(uint8_t character)
   }
 }
   </pre>
-<br>C++ Windows and Linux ARPANET version<br>
-<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>
+
 <br>
