@@ -402,11 +402,11 @@ int main(int argc, char* argv[])
 	{
 		// arguments part
 		if (strcmp(argv[1], "e") == 0) action = "encode";
-		if (strcmp(argv[1], "d") == 0) 	action = "decode";
-		if (strcmp(argv[1], "b") == 0) 	action = "binary";
-		if (strcmp(argv[1], "he") == 0) 	action = "hexa";
+		if (strcmp(argv[1], "d") == 0) action = "decode";
+		if (strcmp(argv[1], "b") == 0) action = "binary";
+		if (strcmp(argv[1], "he") == 0) action = "hexa";
 		if (strcmp(argv[1], "hd") == 0) action = "hexadec";
-		if (strcmp(argv[1], "hb") == 0) 	action = "hexabin";
+		if (strcmp(argv[1], "hb") == 0) action = "hexabin";
 		if (strcmp(argv[1], "hbd") == 0) action = "hexabindec";
 		if (action == "encode") cout << m.morse_encode(m.fix_input(argv[2])) << "\n";
 		if (action == "binary")	cout << m.morse_binary(m.fix_input(argv[2])) << "\n";
