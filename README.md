@@ -2,8 +2,8 @@
 PHP & Java:  forms, class files and servlet<br>
 JavaScript: form<br>
 C++: console app<br>
-   
- <br>C++ Windows and Linux ARPANET version<br>
+
+C++ Windows and Linux ARPANET version<br>
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>          
 
 The real, first and only US Morse mapping,<br>
