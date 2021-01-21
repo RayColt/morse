@@ -406,14 +406,14 @@ int main(int argc, char* argv[])
 	{
 		// console part
 		string arg_in;
-		cout << "MORSE (cmd line: morse e or b or d \"your code or message\")\n";
+		cout << "MORSE (cmd line: morse e,b,d,h or hd \"your code or message\")\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
-		cout << "choose action 1, 2 or 3 and press [enter]:\n";
+		cout << "4 [encode hexadecimal], 5 [decode hexadecimal].\n";
+		cout << "choose action 1,2,3,4 or 5 and press [enter]:\n";
 		getline(cin, arg_in);
-		regex e("[1-3]");
-		regex ee("[4-5]");
-		if (!regex_match(arg_in, e) && !regex_match(arg_in, ee))
+		regex e("[1-5]");
+		if (!regex_match(arg_in, e))
 		{
 			arg_in = "1";
 			// cursor one column up and erase line. vs studio console and linux only!
@@ -425,18 +425,13 @@ int main(int argc, char* argv[])
 			if (arg_in == "1") action = "encode";
 			if (arg_in == "2") action = "binary";
 			if (arg_in == "3") action = "decode";
+			if (arg_in == "4") action = "hexa";
+			if (arg_in == "5") action = "hexadec";
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
 			if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
 			if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
-		}
-		if (regex_match(arg_in, ee))
-		{
-			if (arg_in == "4") action = "hexa";
-			if (arg_in == "5") action = "hexadec";
-			cout << "type or paste input and press [enter]\n";
-			getline(std::cin, arg_in);
 			if (action == "hexa") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in)) << "\n";
 			if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in)) << "\n";
 		}
