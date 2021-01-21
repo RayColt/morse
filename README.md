@@ -1,4 +1,4 @@
- # Colt's HTTP Morse PHP, JavaScript, Java and C++<br>
+ # Colt's HTTP int. Morse PHP, JavaScript, Java and C++<br>
 PHP & Java:  forms, class files and servlet<br>
 JavaScript: form<br>
 C++: console app<br>
