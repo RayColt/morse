@@ -363,7 +363,7 @@ public:
 		string ret = "";
 		sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
 		vector<string> vec(iter, end);
-		for (auto a : vec) 
+		for (auto a : vec)
 		{
 			ret += a + " ";
 		}
@@ -406,10 +406,11 @@ int main(int argc, char* argv[])
 	{
 		// console part
 		string arg_in;
+		cout << "MORSE (cmd line: morse e or b or d \"your code or message\")\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
 		cout << "choose action 1, 2 or 3 and press [enter]:\n";
-		getline(cin, arg_in); 
+		getline(cin, arg_in);
 		regex e("[1-3]");
 		regex ee("[4-5]");
 		if (!regex_match(arg_in, e) && !regex_match(arg_in, ee))
