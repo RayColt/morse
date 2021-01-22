@@ -393,6 +393,10 @@ private:
 		str.erase(remove(str.begin(), str.end(), ' '), str.end());
 		return str;
 	}
+
+public:
+	
+
 };
 
 int main(int argc, char* argv[])
@@ -426,9 +430,9 @@ int main(int argc, char* argv[])
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(900, 100);
-				if (s == "-") Beep(900, 300);
-				if (s == " ") Beep(0, 350);
+				if (s == ".") Beep(900, 75);
+				if (s == "-") Beep(900, 225);
+				if (s == " ") Beep(0, 262.5);
 			}
 		}
 	}
@@ -473,9 +477,9 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(900, 100);
-					if (s == "-") Beep(900, 300);
-					if (s == " ") Beep(0, 350);
+					if (s == ".") Beep(900, 75);
+					if (s == "-") Beep(900, 225);
+					if (s == " ") Beep(0, 262.5);
 				}
 			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
