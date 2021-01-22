@@ -398,7 +398,7 @@ private:
 int main(int argc, char* argv[])
 {
 	Morse m;
-	double mhz = 880;
+	double mhz = 880;//880 = note A5
 	double pitch = 80;
 	string action;
 	if (argc == 3)
