@@ -393,15 +393,13 @@ private:
 		str.erase(remove(str.begin(), str.end(), ' '), str.end());
 		return str;
 	}
-
-public:
-	
-
 };
 
 int main(int argc, char* argv[])
 {
 	Morse m;
+	double mhz = 900;
+	double pitch = 66;
 	string action;
 	if (argc == 3)
 	{
@@ -430,9 +428,9 @@ int main(int argc, char* argv[])
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(900, 75);
-				if (s == "-") Beep(900, 225);
-				if (s == " ") Beep(0, 262.5);
+				if (s == ".") Beep(mhz, 1 * pitch);
+				if (s == "-") Beep(mhz, 3 * pitch);
+				if (s == " ") Beep(0, 3.5 * pitch);
 			}
 		}
 	}
@@ -477,9 +475,9 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(900, 75);
-					if (s == "-") Beep(900, 225);
-					if (s == " ") Beep(0, 262.5);
+					if (s == ".") Beep(mhz, 1 * pitch);
+					if (s == "-") Beep(mhz, 3 * pitch);
+					if (s == " ") Beep(0, 3.5 * pitch);
 				}
 			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
