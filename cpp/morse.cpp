@@ -5,6 +5,7 @@
 #include <vector>
 #include <regex>
 #include <windows.h>
+
 using namespace std;
 /**
 * C++ Morse
@@ -462,7 +463,7 @@ int main(int argc, char* argv[])
 			if (arg_in == "6") action = "hexabin";
 			if (arg_in == "7") action = "hexabindec";
 			cout << "type or paste input and press [enter]\n";
-			getline(std::cin, arg_in);			
+			getline(std::cin, arg_in);
 			if (action == "sound")
 			{
 				string str = m.morse_encode(m.fix_input(arg_in));
