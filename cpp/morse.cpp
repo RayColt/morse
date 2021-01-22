@@ -426,8 +426,8 @@ int main(int argc, char* argv[])
 				string s(1, c);
 				if (s == ".") Beep(523.25, 200);
 				if (s == "-") Beep(523.25, 400);
-				if (s == "  ") Beep(0, 600);
-				if (s == " ") Beep(0, 400);
+				if (s == "  ") Beep(0, 1000);
+				if (s == " ") Beep(0, 100);
 			}
 		}
 	}
