@@ -428,7 +428,7 @@ int main(int argc, char* argv[])
 				string s(1, c);
 				if (s == ".") Beep(1174.66, 100);
 				if (s == "-") Beep(1318.51, 300);
-				if (s == " ") Beep(0, 400);
+				if (s == " ") Beep(0, 350);
 			}
 		}
 	}
@@ -475,7 +475,7 @@ int main(int argc, char* argv[])
 					string s(1, c);
 					if (s == ".") Beep(1174.66, 100);
 					if (s == "-") Beep(1318.51, 300);
-					if (s == " ") Beep(0, 400);
+					if (s == " ") Beep(0, 350);
 				}
 			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
