@@ -4,7 +4,7 @@
 #include <iterator>
 #include <vector>
 #include <regex>
-
+#include <windows.h>
 using namespace std;
 /**
 * C++ Morse
@@ -233,7 +233,7 @@ public:
 	* (\  /)
 	* ( .  .)
 	* Get txt for given hexadecimal morse code
-	* 
+	*
 	* @param str
 	* @param modus
 	* @return string
@@ -401,6 +401,7 @@ int main(int argc, char* argv[])
 	if (argc == 3)
 	{
 		// arguments part
+		if (strcmp(argv[1], "es") == 0) action = "sound";
 		if (strcmp(argv[1], "e") == 0) action = "encode";
 		if (strcmp(argv[1], "d") == 0) action = "decode";
 		if (strcmp(argv[1], "b") == 0) action = "binary";
@@ -415,19 +416,34 @@ int main(int argc, char* argv[])
 		if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(argv[2]), 0) << "\n";
 		if (action == "hexabin") cout << m.bin_morse_hexadecimal(m.fix_input(argv[2]), 1) << "\n";
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(m.fix_input(argv[2]), 1) << "\n";
+		if (action == "sound")
+		{
+			string str = m.morse_encode(m.fix_input(argv[2]));
+			cout << str << "\n";
+			for (size_t i = 0; i < str.size(); ++i)
+			{
+				char c = str.at(i);
+				string s(1, c);
+				if (s == ".") Beep(523.25, 200);
+				if (s == "-") Beep(523.25, 400);
+				if (s == "  ") Beep(0, 600);
+				if (s == " ") Beep(0, 400);
+			}
+		}
 	}
 	else
 	{
 		// console part
 		string arg_in;
-		cout << "MORSE (cmd line: morse e,b,d,he,hd,hb or hbd \"your code or message\")\n";
+		cout << "MORSE (cmd line: morse es,e,b,d,he,hd,hb or hbd \"your code or message\")\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
+		cout << "morse actions: \n0 [encode with sound]\n";
+		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
 		cout << "4 [hexa encode], 5 [hexa decode].\n";
 		cout << "6 [hexa bin encode], 7 [hexa bin decode].\n";
-		cout << "choose action 1,2,3,4,5,6 or 7 and press [enter]:\n";
+		cout << "choose action 0,1,2,3,4,5,6 or 7 and press [enter]:\n";
 		getline(cin, arg_in);
-		regex e("[1-7]");
+		regex e("[0-7]");
 		if (!regex_match(arg_in, e))
 		{
 			arg_in = "1";
@@ -437,6 +453,7 @@ int main(int argc, char* argv[])
 		}
 		if (regex_match(arg_in, e))
 		{
+			if (arg_in == "0") action = "sound";
 			if (arg_in == "1") action = "encode";
 			if (arg_in == "2") action = "binary";
 			if (arg_in == "3") action = "decode";
@@ -445,7 +462,22 @@ int main(int argc, char* argv[])
 			if (arg_in == "6") action = "hexabin";
 			if (arg_in == "7") action = "hexabindec";
 			cout << "type or paste input and press [enter]\n";
-			getline(std::cin, arg_in);
+			getline(std::cin, arg_in);			
+			if (action == "sound")
+			{
+				string str = m.morse_encode(m.fix_input(arg_in));
+				cout << str << "\n";
+				int size = str.size();
+				for (size_t i = 0; i < size; ++i)
+				{
+					char c = str.at(i);
+					string s(1, c);
+					if (s == ".") Beep(523.25, 200);
+					if (s == "-") Beep(523.25, 400);
+					if (s == "  ") Beep(0, 1000);
+					if (s == " ") Beep(0, 100);
+				}
+			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
 			if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
 			if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
