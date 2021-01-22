@@ -399,7 +399,7 @@ int main(int argc, char* argv[])
 {
 	Morse m;
 	double mhz = 880;
-	double pitch = 100;
+	double pitch = 80;
 	string action;
 	if (argc == 3)
 	{
