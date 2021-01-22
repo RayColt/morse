@@ -426,8 +426,8 @@ int main(int argc, char* argv[])
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(1174.66, 100);
-				if (s == "-") Beep(1318.51, 300);
+				if (s == ".") Beep(900, 100);
+				if (s == "-") Beep(900, 300);
 				if (s == " ") Beep(0, 350);
 			}
 		}
@@ -473,8 +473,8 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(1174.66, 100);
-					if (s == "-") Beep(1318.51, 300);
+					if (s == ".") Beep(900, 100);
+					if (s == "-") Beep(900, 300);
 					if (s == " ") Beep(0, 350);
 				}
 			}
