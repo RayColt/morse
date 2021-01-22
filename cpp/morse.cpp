@@ -421,14 +421,14 @@ int main(int argc, char* argv[])
 		{
 			string str = m.morse_encode(m.fix_input(argv[2]));
 			cout << str << "\n";
-			for (size_t i = 0; i < str.size(); ++i)
+			int size = str.size();
+			for (size_t i = 0; i < size; ++i)
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(523.25, 200);
-				if (s == "-") Beep(523.25, 400);
-				if (s == "  ") Beep(0, 1000);
-				if (s == " ") Beep(0, 100);
+				if (s == ".") Beep(1174.66, 100);
+				if (s == "-") Beep(1318.51, 300);
+				if (s == " ") Beep(0, 400);
 			}
 		}
 	}
@@ -473,10 +473,9 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(523.25, 200);
-					if (s == "-") Beep(523.25, 400);
-					if (s == "  ") Beep(0, 1000);
-					if (s == " ") Beep(0, 100);
+					if (s == ".") Beep(1174.66, 100);
+					if (s == "-") Beep(1318.51, 300);
+					if (s == " ") Beep(0, 400);
 				}
 			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
