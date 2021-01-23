@@ -398,7 +398,7 @@ private:
 int main(int argc, char* argv[])
 {
 	Morse m;
-	double mhz = 880;//880 = note A5
+	double Hz = 880;//880 Hz music note A5
 	double pitch = 80;
 	string action;
 	if (argc == 3)
@@ -428,8 +428,8 @@ int main(int argc, char* argv[])
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(mhz, 1 * pitch);
-				if (s == "-") Beep(mhz, 3 * pitch);
+				if (s == ".") Beep(Hz, 1 * pitch);
+				if (s == "-") Beep(Hz, 3 * pitch);
 				if (s == " ") Beep(0, 3.5 * pitch);
 			}
 		}
@@ -475,8 +475,8 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(mhz, 1 * pitch);
-					if (s == "-") Beep(mhz, 3 * pitch);
+					if (s == ".") Beep(Hz, 1 * pitch);
+					if (s == "-") Beep(Hz, 3 * pitch);
 					if (s == " ") Beep(0, 3.5 * pitch);
 				}
 			}
