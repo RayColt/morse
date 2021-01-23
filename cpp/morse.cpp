@@ -407,9 +407,10 @@ public:
 		//13 words per minute is one element every 92.31 ms
 		//20 - 100 may sound better
 		double ms = 100.0;
+		double w = 20.0;
 		if (!d <= 0.0)
 		{
-			ms = (d / 20.0) * ms;
+			ms = (d / w) * ms;
 			return ms;
 		}
 		else return ms;
