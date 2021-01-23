@@ -393,6 +393,26 @@ private:
 		str.erase(remove(str.begin(), str.end(), ' '), str.end());
 		return str;
 	}
+
+public:
+	/**
+	* Calculate the word per minute of the morse code
+	*
+	* @param wpm
+	* @return double
+	*/
+	double words_per_minute(double d)
+	{
+		//13 wpm is one element every 92.31 ms
+		//20 - 100 may sound better
+		double ms = 100.0;
+		if (!d <= 0.0)
+		{
+			ms = (d / 20.0) * ms;
+			return ms;
+		}
+		else return ms;
+	}
 };
 
 int main(int argc, char* argv[])
@@ -400,7 +420,7 @@ int main(int argc, char* argv[])
 	// sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate(samples per second)
 	Morse m;
 	double Hz = 880;//880 Hz music note A5
-	double pitch = 80;
+	double ms = m.words_per_minute(16.0);
 	string action;
 	if (argc == 3)
 	{
@@ -429,9 +449,9 @@ int main(int argc, char* argv[])
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(Hz, 1 * pitch);
-				if (s == "-") Beep(Hz, 3 * pitch);
-				if (s == " ") Beep(0, 3.5 * pitch);
+				if (s == ".") Beep(Hz, 1 * ms);
+				if (s == "-") Beep(Hz, 3 * ms);
+				if (s == " ") Beep(0, 3.5 * ms);
 			}
 		}
 	}
@@ -474,9 +494,9 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(Hz, 1 * pitch);
-					if (s == "-") Beep(Hz, 3 * pitch);
-					if (s == " ") Beep(0, 3.5 * pitch);
+					if (s == ".") Beep(Hz, 1 * ms);
+					if (s == "-") Beep(Hz, 3 * ms);
+					if (s == " ") Beep(0, 3.5 * ms);
 				}
 			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
