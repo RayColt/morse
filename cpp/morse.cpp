@@ -397,7 +397,7 @@ private:
 
 int main(int argc, char* argv[])
 {
-	// sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
+	// sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate(samples per second)
 	Morse m;
 	double Hz = 880;//880 Hz music note A5
 	double pitch = 80;
