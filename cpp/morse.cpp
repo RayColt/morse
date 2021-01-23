@@ -403,9 +403,6 @@ public:
 	*/
 	double beep_duration_ms(double d)
 	{
-		//morse:
-		//13 words per minute is one element every 92.31 ms
-		//20 - 100 may sound better
 		double ms = 100.0;
 		double w = 20.0;
 		if (!d <= 0.0)
@@ -422,7 +419,7 @@ int main(int argc, char* argv[])
 	// sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate(samples per second)
 	Morse m;
 	double Hz = 880;//880 Hz music note A5
-	double ms = m.beep_duration_ms(16.0);
+	double ms = m.beep_duration_ms(16);//arg=words per minute
 	string action;
 	if (argc == 3)
 	{
