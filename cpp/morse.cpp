@@ -450,8 +450,6 @@ int main(int argc, char* argv[])
 		if (!regex_match(arg_in, e))
 		{
 			arg_in = "1";
-			// cursor one column up and erase line. vs studio console and linux only!
-			//cout << "\033[A\33[2K" << arg_in << "\n";
 			cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
 		if (regex_match(arg_in, e))
