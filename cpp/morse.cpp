@@ -393,13 +393,32 @@ private:
 		str.erase(remove(str.begin(), str.end(), ' '), str.end());
 		return str;
 	}
+
+public:
+	/**
+	* Calculate the duration in milliseconds
+	* measured by ear: 80 ms is approx 16 wpm
+	* 
+	* @param wpm - words per minute
+	* @return double
+	*/
+	double duration_milliseconds(double wpm)
+	{
+		double ms = 0.0;
+		if (!wpm <= 0.0)
+		{	
+			ms = wpm * 5.0;
+			return ms;
+		}
+		else return ms;
+	}
 };
 
 int main(int argc, char* argv[])
 {
 	Morse m;
-	double frequency_in_hertz = 880;// 880 Hz music note A5 - 440 cycles every second
-	double duration_in_milliseconds = 80.0;// measured by ear:80.0 is approx 16 wpm
+	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
+	double duration_in_milliseconds = m.duration_milliseconds(16.0);//words per minute
 	string action;
 	if (argc == 3)
 	{
