@@ -397,10 +397,9 @@ private:
 
 int main(int argc, char* argv[])
 {
-	// sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate(samples per second)
 	Morse m;
-	double Hz = 880;//880 Hz music note A5
-	double beep_duration_ms = 80;
+	double frequency_in_hertz = 880;// 880 Hz music note A5 - 440 cycles every second
+	double duration_in_milliseconds = 80.0;// measured by ear:80.0 is approx 16 wpm
 	string action;
 	if (argc == 3)
 	{
@@ -429,9 +428,9 @@ int main(int argc, char* argv[])
 			{
 				char c = str.at(i);
 				string s(1, c);
-				if (s == ".") Beep(Hz, 1 * beep_duration_ms);
-				if (s == "-") Beep(Hz, 3 * beep_duration_ms);
-				if (s == " ") Beep(0, 3.5 * beep_duration_ms);
+				if (s == ".") Beep(frequency_in_hertz, 1 * duration_in_milliseconds);
+				if (s == "-") Beep(frequency_in_hertz, 3 * duration_in_milliseconds);
+				if (s == " ") Beep(0, 3.5 * duration_in_milliseconds);
 			}
 		}
 	}
@@ -474,9 +473,9 @@ int main(int argc, char* argv[])
 				{
 					char c = str.at(i);
 					string s(1, c);
-					if (s == ".") Beep(Hz, 1 * beep_duration_ms);
-					if (s == "-") Beep(Hz, 3 * beep_duration_ms);
-					if (s == " ") Beep(0, 3.5 * beep_duration_ms);
+					if (s == ".") Beep(frequency_in_hertz, 1 * duration_in_milliseconds);
+					if (s == "-") Beep(frequency_in_hertz, 3 * duration_in_milliseconds);
+					if (s == " ") Beep(0, 3.5 * duration_in_milliseconds);
 				}
 			}
 			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
