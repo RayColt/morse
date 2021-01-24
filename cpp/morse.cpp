@@ -396,7 +396,7 @@ private:
 
 public:
 	/**
-	* Calculate the duration in milliseconds
+	* Calculate words per second to the duration in milliseconds
 	* measured by ear: 80 ms is approx 16 wpm
 	* 
 	* @param wpm - words per minute
