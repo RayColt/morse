@@ -525,7 +525,7 @@ int main(int argc, char* argv[])
 		if (m.action == "sound")
 		{
 			cout << "\\wpm: " << m.words_per_minute << ", " << m.duration_milliseconds(m.words_per_minute) << "x1000Hz\n";
-			cout << "\\herz: " << m.frequency_in_hertz << "Hz (tone)\n";
+			cout << "\\hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
 			int size = morse.size();
