@@ -26,6 +26,8 @@ using namespace std;
 * hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's(01 ))
 * With sound options: ./morse.exe es \hz:880 \wpm:16 morse or txt to morse
 * hz is tone hight and wpm is words per minute(speed), default 880Hz and 16wpm
+* 
+* The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 **/
 class Morse
 {
