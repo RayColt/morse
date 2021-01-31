@@ -516,8 +516,8 @@ int main(int argc, char* argv[])
 		}
 		str = m.trim(m.fix_input(str));
 		if (m.action == "encode") cout << m.morse_encode(str) << "\n"; else
-		if (m.action == "binary")	cout << m.morse_binary(str) << "\n"; else
-		if (m.action == "decode")	cout << m.morse_decode(str) << "\n"; else
+		if (m.action == "binary") cout << m.morse_binary(str) << "\n"; else
+		if (m.action == "decode") cout << m.morse_decode(str) << "\n"; else
 		if (m.action == "hexa") cout << m.bin_morse_hexadecimal(str, 0) << "\n"; else
 		if (m.action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
 		if (m.action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
@@ -585,8 +585,8 @@ int main(int argc, char* argv[])
 			}
 			else
 			if (m.action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n"; else
-			if (m.action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n"; else
-			if (m.action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n"; else
+			if (m.action == "binary") cout << m.morse_binary(m.fix_input(arg_in)) << "\n"; else
+			if (m.action == "decode") cout << m.morse_decode(m.fix_input(arg_in)) << "\n"; else
 			if (m.action == "hexa") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in), 0) << "\n"; else
 			if (m.action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in), 0) << "\n"; else
 			if (m.action == "hexabin") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in), 1) << "\n"; else
