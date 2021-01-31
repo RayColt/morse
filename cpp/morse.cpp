@@ -33,7 +33,7 @@ class Morse
 public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
-	string action;
+	string action = "encode";
 
 public:
 	Morse() { fill_morse_maps(); }
