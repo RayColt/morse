@@ -28,6 +28,7 @@ using namespace std;
 * hz is tone hight and wpm is words per minute(speed), default 880Hz and 16wpm
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
+* amplitude = 32000.0;//amplitude 32KHz for digital sound or 0.85 * 32767 = 27,851.95 Hz;
 **/
 class Morse
 {
