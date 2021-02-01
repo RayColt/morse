@@ -514,7 +514,8 @@ int main(int argc, char* argv[])
 		argv += n;
 		// generate morse code
 		string str;
-		while (argc > 2) {
+		while (argc > 2) 
+		{
 			str += m.arg_string(argv[2]);
 			argc -= 1;
 			argv += 1;
@@ -589,13 +590,14 @@ int main(int argc, char* argv[])
 				}
 			}
 			else
-			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n"; else
-			if (action == "binary") cout << m.morse_binary(m.fix_input(arg_in)) << "\n"; else
-			if (action == "decode") cout << m.morse_decode(m.fix_input(arg_in)) << "\n"; else
-			if (action == "hexa") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in), 0) << "\n"; else
-			if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in), 0) << "\n"; else
-			if (action == "hexabin") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in), 1) << "\n"; else
-			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in), 1) << "\n";
+			arg_in = m.fix_input(arg_in);
+			if (action == "encode") cout << m.morse_encode(arg_in) << "\n"; else
+			if (action == "binary") cout << m.morse_binary(arg_in) << "\n"; else
+			if (action == "decode") cout << m.morse_decode(arg_in) << "\n"; else
+			if (action == "hexa") cout << m.bin_morse_hexadecimal(arg_in, 0) << "\n"; else
+			if (action == "hexadec") cout << m.hexadecimal_bin_txt(arg_in, 0) << "\n"; else
+			if (action == "hexabin") cout << m.bin_morse_hexadecimal(arg_in, 1) << "\n"; else
+			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(arg_in, 1) << "\n";
 		}
 		cout << "Press any key to close program . . .";
 		int c = getchar();
