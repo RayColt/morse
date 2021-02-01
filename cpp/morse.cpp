@@ -414,8 +414,7 @@ private:
 public:
 	/**
 	* Calculate words per second to the duration in milliseconds
-	* Paris is the standard word, so if you can send PARIS five times in a minute,
-	* with proper inter-word spacing, then that's 5 WPM
+	* overall 5 words per minute while sounding the letters at 15 wpm
 	* 
 	* @param wpm - words per minute
 	* @return double
@@ -541,7 +540,7 @@ int main(int argc, char* argv[])
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
 		if (action == "sound")
 		{
-			cout << "\\wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
+			cout << "\\wpm: " << m.words_per_minute << "\n";
 			cout << "\\hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
