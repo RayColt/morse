@@ -18,6 +18,9 @@ using namespace std;
 * Feel free to make morse, morsed or morseb binaries
 * from it, like once was implemented into Linux and Unix os's. Just remove or
 * adapt the sound parts.
+* 
+* You can damage your hearing or your speakers if you play tones at extreme volumes!
+* This program will not allow to play morse < 20 Hz and > 8,000 Hz.
 *
 * Usage console app version: ./morse.exe
 * Usage console line two arguments version: ./morse.exe es,e,b,d,he,hd,hb or hbd morse or txt
@@ -25,7 +28,7 @@ using namespace std;
 * he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's(.- ))
 * hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's(01 ))
 * With sound options: ./morse.exe es \hz:880 \wpm:16 morse or txt to morse
-* hz is tone hight and wpm is words per minute(speed), default 880Hz and 16wpm
+* hz is tone hight and wpm is words per minute(speed), default 880 Hz and 16 wpm
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 * amplitude = 32000.0;//amplitude 32KHz for digital sound or 0.85 * 32767 = 27,851.95 Hz;
@@ -36,6 +39,8 @@ class Morse
 public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
+	double max_frequency_in_hertz = 8000.0;
+	double min_frequency_in_hertz = 20.0;
 
 public:
 	Morse() { fill_morse_maps(); }
@@ -446,8 +451,10 @@ public:
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
+			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
+			cout << "This program will not allow to play morse < 20 Hz and > 8,000 Hz.\n";
 			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
-			cout << "hz is tone hight and wpm is words per minute, default 880Hz and 16wpm\n\n";
+			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n\n";
 			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n";
 		}
 		else
@@ -456,6 +463,8 @@ public:
 			if (strncmp(argv[2], "\\hz:", 4) == 0)
 			{
 				frequency_in_hertz = atof(&argv[2][4]);
+				if (frequency_in_hertz > max_frequency_in_hertz) frequency_in_hertz = max_frequency_in_hertz;
+				if (frequency_in_hertz < min_frequency_in_hertz) frequency_in_hertz = min_frequency_in_hertz;
 			}
 			else
 				if (strncmp(argv[2], "\\wpm:", 5) == 0)
