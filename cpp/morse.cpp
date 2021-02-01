@@ -120,7 +120,7 @@ private:
 	*/
 	string getBinChar(string character)
 	{
-		return  morse_map.find(character)->second;
+		return morse_map.find(character)->second;
 	}
 
 private:
@@ -448,7 +448,7 @@ public:
 			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
 			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
 			cout << "hz is tone hight and wpm is words per minute, default 880Hz and 16wpm\n\n";
-			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n\n";
+			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n";
 		}
 		else
 		while (argc > 1 && argv[2][0] == '\\')
