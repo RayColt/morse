@@ -40,7 +40,7 @@ public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
 	double max_frequency_in_hertz = 8000.0;
-	double min_frequency_in_hertz = 20.0;
+	double min_frequency_in_hertz = 37.0;
 
 public:
 	Morse() { fill_morse_maps(); }
@@ -423,13 +423,13 @@ public:
 	{
 		double ms = 0.0;
 		if (!wpm <= 0.0)
-		{	
+		{
 			ms = wpm * 5.0;
 			return ms;
 		}
 		else return ms;
 	}
-
+	
 public:
 	/**
 	* Reaf cmd line user arguments
@@ -452,9 +452,10 @@ public:
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
-			cout << "This program will not allow to play morse < 20 Hz and > 8,000 Hz.\n";
+			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
-			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n\n";
+			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n";
+			cout << "For inspiration have look at music notes their frequencies.\n\n";
 			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n";
 		}
 		else
@@ -539,7 +540,7 @@ int main(int argc, char* argv[])
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
 		if (action == "sound")
 		{
-			cout << "\\wpm: " << m.words_per_minute << ", " << m.duration_milliseconds(m.words_per_minute) << "x1000Hz\n";
+			cout << "\\wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
 			cout << "\\hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
