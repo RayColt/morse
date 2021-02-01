@@ -446,7 +446,7 @@ public:
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
-			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n";
+			cout << "Example: morse es \\wpm:15 \hz:880 paris paris paris\n";
 		}
 		else
 		while (argc > 1 && argv[2][0] == '\\')
