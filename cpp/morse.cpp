@@ -414,8 +414,7 @@ private:
 public:
 	/**
 	* Calculate words per second to the duration in milliseconds
-	* overall 5 words per minute while sounding the letters at 15 wpm
-	* 
+	*
 	* @param wpm - words per minute
 	* @return double
 	*/
@@ -424,7 +423,10 @@ public:
 		double ms = 0.0;
 		if (!wpm <= 0.0)
 		{
-			ms = wpm * 5.0;
+			//50 elements per word
+			double wps = wpm / 60.0; //words per second
+			double eps = 50 * wps; //elements per second
+			ms = 1000.0 / eps; //milliseconds per element
 			return ms;
 		}
 		else return ms;
@@ -540,7 +542,7 @@ int main(int argc, char* argv[])
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
 		if (action == "sound")
 		{
-			cout << "\\wpm: " << m.words_per_minute << "\n";
+			cout << "\\wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
 			cout << "\\hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
