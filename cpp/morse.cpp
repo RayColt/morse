@@ -445,7 +445,7 @@ public:
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
-			cout << "(only with decoding dit/dah characters double quotes are necessary to preserve double spaces who create words)\n\n";
+			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
 			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
 			cout << "hz is tone hight and wpm is words per minute, default 880Hz and 16wpm\n\n";
 			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n\n";
