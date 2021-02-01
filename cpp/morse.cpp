@@ -28,7 +28,7 @@ using namespace std;
 * he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's(.- ))
 * hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's(01 ))
 * With sound options: ./morse.exe es \hz:880 \wpm:16 morse or txt to morse
-* hz is tone hight and wpm is words per minute(speed), default 880 Hz and 16 wpm
+* hz is tone hight and wpm is words per minute(speed), default 698.46 Hz and 15 wpm
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 * amplitude = 32000.0;//amplitude 32KHz for digital sound or 0.85 * 32767 = 27,851.95 Hz;
@@ -37,8 +37,8 @@ class Morse
 {
 /* defaults */
 public:
-	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
-	double words_per_minute = 16.0;//words per minute
+	double frequency_in_hertz = 698.46;// 698.46 Hz music note F5
+	double words_per_minute = 15.0;//words per minute
 	double max_frequency_in_hertz = 8000.0;
 	double min_frequency_in_hertz = 37.0;
 
@@ -414,7 +414,6 @@ private:
 public:
 	/**
 	* Calculate words per second to the duration in milliseconds
-	* measured by ear: 80 ms is approx 16 wpm(80/16=5)
 	* 13 wpm is one element every 92.31 ms(92.31/13=7.1)
 	* 
 	* @param wpm - words per minute
@@ -425,7 +424,7 @@ public:
 		double ms = 0.0;
 		if (!wpm <= 0.0)
 		{
-			ms = wpm * 5.0;
+			ms = wpm * 7.1007692307692307692307692307692;
 			return ms;
 		}
 		else return ms;
@@ -455,9 +454,9 @@ public:
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
-			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n";
+			cout << "hz is tone hight and wpm is words per minute, default 698.46 Hz and 15 wpm\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
-			cout << "Example: ./morse.exe es \\hz:440 \\wpm:24 so s o\n";
+			cout << "Example: ./morse.exe es \\hz:698.46 \\wpm:15 paris paris paris\n";
 		}
 		else
 		while (argc > 1 && argv[2][0] == '\\')
