@@ -549,7 +549,7 @@ int main(int argc, char* argv[])
 	{
 		// console part
 		string arg_in;
-		cout << "MORSE (cmd line: morse.exe \\help for info\n";
+		cout << "MORSE (cmd line: [morse.exe \\help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n0 [encode with sound]\n";
 		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
