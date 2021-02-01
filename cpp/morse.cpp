@@ -414,7 +414,8 @@ private:
 public:
 	/**
 	* Calculate words per second to the duration in milliseconds
-	* measured by ear: 80 ms is approx 16 wpm
+	* measured by ear: 80 ms is approx 16 wpm(80/16=5)
+	* 13 wpm is one element every 92.31 ms(92.31/13=7.1)
 	* 
 	* @param wpm - words per minute
 	* @return double
