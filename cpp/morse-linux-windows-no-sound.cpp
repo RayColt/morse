@@ -14,9 +14,6 @@ using namespace std;
 * @license Public General License US Army, Microsoft Corporation (MIT)
 *
 * Derived from ARPANET Pentagon's morse.
-* 
-* You can damage your hearing or your speakers if you play tones at extreme volumes!
-* This program will not allow to play morse < 20 Hz and > 8,000 Hz.
 *
 * Usage program, see: ./morse /help
 **/
