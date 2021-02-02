@@ -432,6 +432,11 @@ public:
 	{
 		int args = 0;
 		bool ok = false;
+		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
+			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
+		{
+			ok = true;
+		}
 		if (strncmp(argv[1], "\\help", 5) == 0)
 		{
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
@@ -450,17 +455,7 @@ public:
 			cout << "Example: morse es \\wpm:18 \\hz:739.99 paris paris paris\n";
 			ok = true;
 		}
-		else if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
-			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
-		{
-			ok = true;
-		}
-		else if(ok == false)
-		{
-			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
-			exit(1);
-		}
-		else
+		else if(ok)
 		{
 			while (argc > 1 && argv[2][0] == '\\')
 			{
@@ -484,6 +479,11 @@ public:
 				argv += 1;
 				args += 1;
 			}
+		}
+		else
+		{
+			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+			exit(1);
 		}
 		return args;
 	}
