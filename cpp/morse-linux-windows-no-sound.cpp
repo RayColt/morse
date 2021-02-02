@@ -439,13 +439,13 @@ public:
 			cout << "Example 2: ./morse e hello morse!!\n\n";
 			cout << "Have a look at morse.cpp with sound options, only for windows!\n";
 			ok = true;
-		}
-		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
+		} 
+		else if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
 			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
 		{
 			ok = true;
 		} 
-		if(ok == false)
+		else if(ok == false)
 		{
 			fprintf(stderr, "option error %s, see ./morse \\help for info\n", argv[2]);
 			exit(1);
