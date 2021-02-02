@@ -431,7 +431,18 @@ public:
 	int get_options(int argc, char* argv[])
 	{
 		int args = 0;
-		if (strncmp(argv[1], "\\help", 5) == 0)
+		bool ok = false;
+		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
+			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
+		{
+			ok = true;
+		}
+		if (ok == false)
+		{
+			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+			exit(1);
+		}
+		if (strncmp(argv[1], "\\help", 6) == 0)
 		{
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
 			cout << "Usage console app version: ./morse.exe\n\n";
@@ -440,13 +451,14 @@ public:
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
-			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
+			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
 			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
 			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n\n";
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
 			cout << "Example: morse es \\wpm:18 \\hz:739.99 paris paris paris\n";
+			ok = true;
 		}
 		else
 		while (argc > 1 && argv[2][0] == '\\')
@@ -464,7 +476,7 @@ public:
 				}
 				else
 				{
-					fprintf(stderr, "Option error(morse \help for info): %s\n", argv[2]);
+					fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
 					exit(1);
 				}
 			argc -= 1;
@@ -575,9 +587,10 @@ int main(int argc, char* argv[])
 			if (arg_in == "7") action = "hexabindec";
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
+			arg_in = m.fix_input(arg_in);
 			if (action == "sound")
 			{
-				string str = m.morse_encode(m.fix_input(arg_in));
+				string str = m.morse_encode(arg_in);
 				cout << str << "\n";
 				int size = str.size();
 				for (size_t i = 0; i < size; ++i)
@@ -590,14 +603,13 @@ int main(int argc, char* argv[])
 				}
 			}
 			else
-			arg_in = m.fix_input(arg_in);
-			if (action == "encode") cout << m.morse_encode(arg_in) << "\n"; else
-			if (action == "binary") cout << m.morse_binary(arg_in) << "\n"; else
-			if (action == "decode") cout << m.morse_decode(arg_in) << "\n"; else
-			if (action == "hexa") cout << m.bin_morse_hexadecimal(arg_in, 0) << "\n"; else
-			if (action == "hexadec") cout << m.hexadecimal_bin_txt(arg_in, 0) << "\n"; else
-			if (action == "hexabin") cout << m.bin_morse_hexadecimal(arg_in, 1) << "\n"; else
-			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(arg_in, 1) << "\n";
+				if (action == "encode") cout << m.morse_encode(arg_in) << "\n"; else
+				if (action == "binary") cout << m.morse_binary(arg_in) << "\n"; else
+				if (action == "decode") cout << m.morse_decode(arg_in) << "\n"; else
+				if (action == "hexa") cout << m.bin_morse_hexadecimal(arg_in, 0) << "\n"; else
+				if (action == "hexadec") cout << m.hexadecimal_bin_txt(arg_in, 0) << "\n"; else
+				if (action == "hexabin") cout << m.bin_morse_hexadecimal(arg_in, 1) << "\n"; else
+				if (action == "hexabindec") cout << m.hexadecimal_bin_txt(arg_in, 1) << "\n";
 		}
 		cout << "Press any key to close program . . .";
 		int c = getchar();
