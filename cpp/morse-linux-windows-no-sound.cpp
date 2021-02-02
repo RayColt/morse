@@ -426,26 +426,29 @@ public:
 	{
 		int args = 0;
 		bool ok = false;
-		if (strncmp(argv[1], "/help", 5) == 0)
-		{
-			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
-			cout << "Usage console app version: ./morse\n\n";
-			cout << "Usage console line version:\n ./morse e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "e=encode, b=binary-encode, d=decode\n";
-			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
-			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
-			cout << "Example 1: ./morse d \"... ---  ...  ---\"\n";
-			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "Example 2: ./morse e hello morse!!\n\n";
-			cout << "Have a look at morse.cpp with sound options, only for windows!\n";
-			ok = true;
-		} 
-		else if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
+		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
 			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
 		{
 			ok = true;
-		} 
-		else if(ok == false)
+		}
+		else if (ok)
+		{
+			if (strncmp(argv[1], "/help", 5) == 0)
+			{
+				cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
+				cout << "Usage console app version: ./morse\n\n";
+				cout << "Usage console line version:\n ./morse e,b,d,he,hd,hb or hbd morse or txt\n\n";
+				cout << "e=encode, b=binary-encode, d=decode\n";
+				cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
+				cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
+				cout << "Example 1: ./morse d \"... ---  ...  ---\"\n";
+				cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
+				cout << "Example 2: ./morse e hello morse!!\n\n";
+				cout << "Have a look at morse.cpp with sound options, only for windows!\n";
+				ok = true;
+			}
+		}
+		if(!ok)
 		{
 			fprintf(stderr, "option error %s, see ./morse \\help for info\n", argv[2]);
 			exit(1);
