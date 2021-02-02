@@ -23,8 +23,6 @@ class Morse
 public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
-	double max_frequency_in_hertz = 8000.0;
-	double min_frequency_in_hertz = 37.0;
 
 public:
 	Morse() { fill_morse_maps(); }
