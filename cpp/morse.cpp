@@ -432,17 +432,7 @@ public:
 	{
 		int args = 0;
 		bool ok = false;
-		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
-			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
-		{
-			ok = true;
-		}
-		if (ok == false)
-		{
-			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
-			exit(1);
-		}
-		if (strncmp(argv[1], "\\help", 6) == 0)
+		if (strncmp(argv[1], "\\help", 5) == 0)
 		{
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
 			cout << "Usage console app version: ./morse.exe\n\n";
@@ -460,28 +450,40 @@ public:
 			cout << "Example: morse es \\wpm:18 \\hz:739.99 paris paris paris\n";
 			ok = true;
 		}
-		else
-		while (argc > 1 && argv[2][0] == '\\')
+		else if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
+			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
 		{
-			if (strncmp(argv[2], "\\hz:", 4) == 0)
+			ok = true;
+		}
+		else if(ok == false)
+		{
+			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+			exit(1);
+		}
+		else
+		{
+			while (argc > 1 && argv[2][0] == '\\')
 			{
-				frequency_in_hertz = atof(&argv[2][4]);
-				if (frequency_in_hertz > max_frequency_in_hertz) frequency_in_hertz = max_frequency_in_hertz;
-				if (frequency_in_hertz < min_frequency_in_hertz) frequency_in_hertz = min_frequency_in_hertz;
-			}
-			else
-				if (strncmp(argv[2], "\\wpm:", 5) == 0)
+				if (strncmp(argv[2], "\\hz:", 4) == 0)
 				{
-					words_per_minute = atof(&argv[2][5]);
+					frequency_in_hertz = atof(&argv[2][4]);
+					if (frequency_in_hertz > max_frequency_in_hertz) frequency_in_hertz = max_frequency_in_hertz;
+					if (frequency_in_hertz < min_frequency_in_hertz) frequency_in_hertz = min_frequency_in_hertz;
 				}
 				else
-				{
-					fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
-					exit(1);
-				}
-			argc -= 1;
-			argv += 1;
-			args += 1;
+					if (strncmp(argv[2], "\\wpm:", 5) == 0)
+					{
+						words_per_minute = atof(&argv[2][5]);
+					}
+					else
+					{
+						fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+						exit(1);
+					}
+				argc -= 1;
+				argv += 1;
+				args += 1;
+			}
 		}
 		return args;
 	}
@@ -559,7 +561,6 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		// console part
 		string arg_in;
 		cout << "MORSE (cmd line: [morse.exe \\help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
