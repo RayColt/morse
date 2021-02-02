@@ -452,7 +452,7 @@ public:
 		} 
 		if(ok == false)
 		{
-			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+			fprintf(stderr, "option error %s, see ./morse \\help for info\n", argv[2]);
 			exit(1);
 		}
 		return args;
