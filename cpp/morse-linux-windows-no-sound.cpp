@@ -431,22 +431,19 @@ public:
 		{
 			ok = true;
 		}
-		else if (ok)
+		if (strncmp(argv[1], "/help", 5) == 0)
 		{
-			if (strncmp(argv[1], "/help", 5) == 0)
-			{
-				cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
-				cout << "Usage console app version: ./morse\n\n";
-				cout << "Usage console line version:\n ./morse e,b,d,he,hd,hb or hbd morse or txt\n\n";
-				cout << "e=encode, b=binary-encode, d=decode\n";
-				cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
-				cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
-				cout << "Example 1: ./morse d \"... ---  ...  ---\"\n";
-				cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-				cout << "Example 2: ./morse e hello morse!!\n\n";
-				cout << "Have a look at morse.cpp with sound options, only for windows!\n";
-				ok = true;
-			}
+			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
+			cout << "Usage console app version: ./morse\n\n";
+			cout << "Usage console line version:\n ./morse e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "e=encode, b=binary-encode, d=decode\n";
+			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
+			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
+			cout << "Example 1: ./morse d \"... ---  ...  ---\"\n";
+			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
+			cout << "Example 2: ./morse e hello morse!!\n\n";
+			cout << "Have a look at morse.cpp with sound options, only for windows!\n";
+			ok = true;
 		}
 		if(!ok)
 		{
