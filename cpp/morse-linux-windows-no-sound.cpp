@@ -13,17 +13,22 @@ using namespace std;
 * @copyright Copyright (c) 1975, 2021 Ray Colt
 * @license Public General License US Army, Microsoft Corporation (MIT)
 *
-* Derived from ARPANET Pentagon's morse, the url more save, http version.
-* Feel free to make morse, morsed or morseb binaries
-* for it, like once was implemented into Linux and Unix os's.
+* Derived from ARPANET Pentagon's morse.
+* 
+* You can damage your hearing or your speakers if you play tones at extreme volumes!
+* This program will not allow to play morse < 20 Hz and > 8,000 Hz.
 *
-* Usage console app version: ./morse.exe
-* Usage console line two arguments version: ./morse.exe "[e,b,d]" "morse or txt"
-* e=encode, b=binary-encode, d=decode
-* ./morse.exe e "morse is fun!!" OR ./morse.exe "e" "morse is fun!!"
+* Usage program, see: ./morse /help
 **/
 class Morse
 {
+/* defaults */
+public:
+	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
+	double words_per_minute = 16.0;//words per minute
+	double max_frequency_in_hertz = 8000.0;
+	double min_frequency_in_hertz = 37.0;
+
 public:
 	Morse() { fill_morse_maps(); }
 
@@ -107,7 +112,7 @@ private:
 	*/
 	string getBinChar(string character)
 	{
-		return  morse_map.find(character)->second;
+		return morse_map.find(character)->second;
 	}
 
 private:
@@ -312,7 +317,7 @@ private:
 		return scr;
 	}
 
-private:
+public:
 	/**
 	* trimp automatically strips space at the start and end of a given string <br>
 	*
@@ -392,67 +397,159 @@ private:
 		str.erase(remove(str.begin(), str.end(), ' '), str.end());
 		return str;
 	}
+
+public:
+	/**
+	* Calculate words per second to the duration in milliseconds
+	*
+	* @param wpm - words per minute
+	* @return double
+	*/
+	double duration_milliseconds(double wpm)
+	{
+		double ms = 0.0;
+		if (!wpm <= 0.0)
+		{
+			//50 elements per word
+			double wps = wpm / 60.0; //words per second
+			double eps = 50 * wps; //elements per second
+			ms = 1000.0 / eps; //milliseconds per element
+			return ms;
+		}
+		else return ms;
+	}
+	
+public:
+	/**
+	* Reaf cmd line user arguments
+	*
+	* @param argc
+	* @param argv[]
+	* @return int
+	*/
+	int get_options(int argc, char* argv[])
+	{
+		int args = 0;
+		bool ok = false;
+		if (strncmp(argv[1], "/help", 5) == 0)
+		{
+			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
+			cout << "Usage console app version: ./morse\n\n";
+			cout << "Usage console line version:\n ./morse e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "e=encode, b=binary-encode, d=decode\n";
+			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
+			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
+			cout << "Example 1: ./morse d \"... ---  ...  ---\"\n";
+			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
+			cout << "Example 2: ./morse e hello morse!!\n\n";
+			cout << "Have a look at morse.cpp with sound options, only for windows!\n";
+			ok = true;
+		}
+		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
+			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
+		{
+			ok = true;
+		} 
+		if(ok == false)
+		{
+			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+			exit(1);
+		}
+		return args;
+	}
+
+public:
+	/**
+	* Generate string from arguments
+	* @param arg
+	* 
+	* @return string
+	*/
+	string arg_string(char* arg)
+	{
+		char c; string str;
+		while ((c = *arg++) != '\0')
+		{
+			str += c;
+		}
+		str += " ";
+		return str;
+	}
 };
 
 int main(int argc, char* argv[])
 {
 	Morse m;
-	string action;
-	if (argc == 3)
+	int n;
+	string action = "encode";
+	if (argc != 1)
 	{
-		// arguments part
-		if (strcmp(argv[1], "e") == 0) action = "encode";
-		if (strcmp(argv[1], "d") == 0) action = "decode";
-		if (strcmp(argv[1], "b") == 0) action = "binary";
-		if (strcmp(argv[1], "he") == 0) action = "hexa";
-		if (strcmp(argv[1], "hd") == 0) action = "hexadec";
-		if (strcmp(argv[1], "hb") == 0) action = "hexabin";
+		if (strcmp(argv[1], "es") == 0) action = "sound"; else
+		if (strcmp(argv[1], "e") == 0) action = "encode"; else
+		if (strcmp(argv[1], "d") == 0) action = "decode"; else
+		if (strcmp(argv[1], "b") == 0) action = "binary"; else
+		if (strcmp(argv[1], "he") == 0) action = "hexa"; else
+		if (strcmp(argv[1], "hd") == 0) action = "hexadec"; else
+		if (strcmp(argv[1], "hb") == 0) action = "hexabin"; else
 		if (strcmp(argv[1], "hbd") == 0) action = "hexabindec";
-		if (action == "encode") cout << m.morse_encode(m.fix_input(argv[2])) << "\n";
-		if (action == "binary")	cout << m.morse_binary(m.fix_input(argv[2])) << "\n";
-		if (action == "decode")	cout << m.morse_decode(m.fix_input(argv[2])) << "\n";
-		if (action == "hexa") cout << m.bin_morse_hexadecimal(m.fix_input(argv[2]), 0) << "\n";
-		if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(argv[2]), 0) << "\n";
-		if (action == "hexabin") cout << m.bin_morse_hexadecimal(m.fix_input(argv[2]), 1) << "\n";
-		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(m.fix_input(argv[2]), 1) << "\n";
+		// check options
+		n = m.get_options(argc, argv);
+		argc -= n;
+		argv += n;
+		// generate morse code
+		string str;
+		while (argc > 2) 
+		{
+			str += m.arg_string(argv[2]);
+			argc -= 1;
+			argv += 1;
+		}
+		str = m.trim(m.fix_input(str));
+		if (action == "encode") cout << m.morse_encode(str) << "\n"; else
+		if (action == "binary") cout << m.morse_binary(str) << "\n"; else
+		if (action == "decode") cout << m.morse_decode(str) << "\n"; else
+		if (action == "hexa") cout << m.bin_morse_hexadecimal(str, 0) << "\n"; else
+		if (action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
+		if (action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
+		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n";
 	}
 	else
 	{
 		// console part
 		string arg_in;
-		cout << "MORSE (cmd line: morse e,b,d,he,hd,hb or hbd \"your code or message\")\n";
+		cout << "MORSE (cmd line: [./morse /help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: \n1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
+		cout << "morse actions:\n";
+		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
 		cout << "4 [hexa encode], 5 [hexa decode].\n";
 		cout << "6 [hexa bin encode], 7 [hexa bin decode].\n";
 		cout << "choose action 1,2,3,4,5,6 or 7 and press [enter]:\n";
 		getline(cin, arg_in);
-		regex e("[1-7]");
+		regex e("[0-7]");
 		if (!regex_match(arg_in, e))
 		{
 			arg_in = "1";
-			// cursor one column up and erase line. vs studio console and linux only!
-			//cout << "\033[A\33[2K" << arg_in << "\n";
 			cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
 		if (regex_match(arg_in, e))
 		{
-			if (arg_in == "1") action = "encode";
-			if (arg_in == "2") action = "binary";
-			if (arg_in == "3") action = "decode";
-			if (arg_in == "4") action = "hexa";
-			if (arg_in == "5") action = "hexadec";
-			if (arg_in == "6") action = "hexabin";
+			if (arg_in == "1") action = "encode"; else
+			if (arg_in == "2") action = "binary"; else
+			if (arg_in == "3") action = "decode"; else
+			if (arg_in == "4") action = "hexa"; else
+			if (arg_in == "5") action = "hexadec"; else
+			if (arg_in == "6") action = "hexabin"; else
 			if (arg_in == "7") action = "hexabindec";
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
-			if (action == "encode") cout << m.morse_encode(m.fix_input(arg_in)) << "\n";
-			if (action == "binary")	cout << m.morse_binary(m.fix_input(arg_in)) << "\n";
-			if (action == "decode")	cout << m.morse_decode(m.fix_input(arg_in)) << "\n";
-			if (action == "hexa") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in), 0) << "\n";
-			if (action == "hexadec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in), 0) << "\n";
-			if (action == "hexabin") cout << m.bin_morse_hexadecimal(m.fix_input(arg_in), 1) << "\n";
-			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(m.fix_input(arg_in), 1) << "\n";
+			arg_in = m.fix_input(arg_in);
+			if (action == "encode") cout << m.morse_encode(arg_in) << "\n"; else
+			if (action == "binary") cout << m.morse_binary(arg_in) << "\n"; else
+			if (action == "decode") cout << m.morse_decode(arg_in) << "\n"; else
+			if (action == "hexa") cout << m.bin_morse_hexadecimal(arg_in, 0) << "\n"; else
+			if (action == "hexadec") cout << m.hexadecimal_bin_txt(arg_in, 0) << "\n"; else
+			if (action == "hexabin") cout << m.bin_morse_hexadecimal(arg_in, 1) << "\n"; else
+			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(arg_in, 1) << "\n";
 		}
 		cout << "Press any key to close program . . .";
 		int c = getchar();
