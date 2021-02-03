@@ -405,6 +405,13 @@ public:
 	/**
 	* Calculate words per second to the duration in milliseconds
 	*
+	* Dit: 1 unit
+	* Dah: 3 units 
+	* Intra-character space: 1 unit 
+	* Inter-character space: 3 Farnsworth-units 
+	* Word space: longer than 7 Farnsworth-units
+	* Standard word Paris is 50 units, elements. (with one extra word space)
+	* 
 	* @param wpm - words per minute
 	* @return double
 	*/
