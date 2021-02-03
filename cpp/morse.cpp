@@ -23,7 +23,14 @@ using namespace std;
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 * 
-* Todo?: Linux with sound, see "beep 1 man" set souncard: sudo chmod 777 /dev/input/by-path/platform-pcspkr-event-spkr
+* Todo: Linux with morse sound
+* set device: sudo chmod 777 /dev/input/by-path/platform-pcspkr-event-spkr
+* sudo apt-get install beep
+* and/or
+* sudo apt-get install sox
+* #play -n synth <duration in seconds> sine <freq in Hz> vol <volume (0-1)>
+* play -n synth 0.1 sine 880 vol 0.5
+*
 **/
 class Morse
 {
