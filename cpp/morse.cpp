@@ -23,7 +23,7 @@ using namespace std;
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 * 
-* Todo: Linux with sound, see "beep(1) man" set souncard: sudo chmod 777 /dev/input/by-path/platform-pcspkr-event-spkr
+* Todo?: Linux with sound, see "beep 1 man" set souncard: sudo chmod 777 /dev/input/by-path/platform-pcspkr-event-spkr
 **/
 class Morse
 {
