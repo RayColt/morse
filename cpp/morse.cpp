@@ -20,6 +20,8 @@ using namespace std;
 * This program will not allow to play morse < 20 Hz and > 8,000 Hz.
 *
 * Usage program, see: ./morse \help
+* 
+* The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 **/
 class Morse
 {
