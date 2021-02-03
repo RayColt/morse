@@ -23,7 +23,7 @@ using namespace std;
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 * 
-* Todo: Linux with morse sound
+* Todo: Linux with morse sound, first bypass the ol pc-speaker, not in use anymore!
 * set device: sudo chmod 777 /dev/input/by-path/platform-pcspkr-event-spkr
 * sudo apt-get install beep
 * and/or
