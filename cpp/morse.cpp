@@ -450,10 +450,11 @@ public:
 		}
 		if (strncmp(argv[1], "\\help", 5) == 0)
 		{
-			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
+			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
+			cout << "Morse encoding being used : \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20\n\n";
 			cout << "Usage console app version: ./morse.exe\n\n";
 			cout << "Usage console line version:\n ./morse.exe es,e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "es=encode with sound, e=encode, b=binary-encode, d=decode\n";
+			cout << "es=encode with sound, e=encode, b=binary-encode, d=decode (.- 01's)\n";
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
