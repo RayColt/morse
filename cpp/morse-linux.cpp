@@ -216,7 +216,7 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(action)! \nMorse encoding being used: \n. - spaces(action 3), 0 1 spaces(action 3), 2D 2E 20(action 5), 30 31 20(action 7)";
+			return "You used the wrong decode method(see \\help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
 		}
 	}
 
