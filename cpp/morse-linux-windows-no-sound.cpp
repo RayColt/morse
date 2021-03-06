@@ -198,7 +198,7 @@ public:
 		}
 		else
 		{
-			return "only these characters in morse are allowed: 0 1 . - and spaces";
+			return "You used the wrong decode method(action)! \nMorse encoding being used: \n. - spaces(action 3), 0 1 spaces(action 3), 2D 2E 20(action 5), 30 31 20(action 7)";
 		}
 	}
 
