@@ -1,6 +1,5 @@
 /**
 * C++ MorseWav Class
-* based upon morsewav.c
 * Convert morse code to audio WAV file using PCM
 * 
 * @author Ray Colt <ray_colt@pentagon.mil>
