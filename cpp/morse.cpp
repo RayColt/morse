@@ -5,6 +5,7 @@
 #include <vector>
 #include <regex>
 #include <windows.h>
+#include <morse-wav.cpp>
 
 using namespace std;
 /**
@@ -33,11 +34,16 @@ public:
 	double words_per_minute = 16.0;//words per minute
 	double max_frequency_in_hertz = 8000.0;
 	double min_frequency_in_hertz = 37.0;
-
+	/**
+	* Constructor
+	*/
 public:
-	Morse() { fill_morse_maps(); }
+	Morse() { fill_morse_maps();}
 
 private:
+	/**
+	* Fill Multimaps with morse tables
+	*/
 	multimap <string, string> morse_map;
 	multimap <string, string> morse_map_reversed;
 	void fill_morse_maps()
@@ -453,8 +459,8 @@ public:
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
 			cout << "Morse encoding being used : \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20\n\n";
 			cout << "Usage console app version: ./morse.exe\n\n";
-			cout << "Usage console line version:\n ./morse.exe es,e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "es=encode with sound, e=encode, b=binary-encode, d=decode (.- 01's)\n";
+			cout << "Usage console line version:\n ./morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "es=encode with sound,ew encode with sound and wav file, e=encode, b=binary-encode, d=decode (.- 01's)\n";
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
@@ -465,6 +471,7 @@ public:
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
 			cout << "Example: morse es \\wpm:18 \\hz:739.99 paris paris paris\n";
+			cout << "Example: morse ew \\wpm:16 \\hz:880 paris paris paris\n";
 			ok = true;
 		}
 		else if(ok)
@@ -527,6 +534,7 @@ int main(int argc, char* argv[])
 	if (argc != 1)
 	{
 		if (strcmp(argv[1], "es") == 0) action = "sound"; else
+		if (strcmp(argv[1], "ew") == 0) action = "wav"; else
 		if (strcmp(argv[1], "e") == 0) action = "encode"; else
 		if (strcmp(argv[1], "d") == 0) action = "decode"; else
 		if (strcmp(argv[1], "b") == 0) action = "binary"; else
@@ -554,20 +562,27 @@ int main(int argc, char* argv[])
 		if (action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
 		if (action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
-		if (action == "sound")
+		if (action == "sound" || action == "wav")
 		{
 			cout << "\\wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
 			cout << "\\hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
-			int size = morse.size();
-			for (size_t i = 0; i < size; ++i)
+			if (action == "wav")
 			{
-				char c = morse.at(i);
-				string s(1, c);
-				if (s == ".") Beep(m.frequency_in_hertz, 1 * m.duration_milliseconds(m.words_per_minute));
-				if (s == "-") Beep(m.frequency_in_hertz, 3 * m.duration_milliseconds(m.words_per_minute));
-				if (s == " ") Beep(0, 3.5 * m.duration_milliseconds(m.words_per_minute));
+				MorseWav mw = MorseWav(morse.c_str(), m.frequency_in_hertz, m.words_per_minute, true);
+			}
+			else
+			{
+				int size = morse.size();
+				for (size_t i = 0; i < size; ++i)
+				{
+					char c = morse.at(i);
+					string s(1, c);
+					if (s == ".") Beep(m.frequency_in_hertz, 1 * m.duration_milliseconds(m.words_per_minute));
+					if (s == "-") Beep(m.frequency_in_hertz, 3 * m.duration_milliseconds(m.words_per_minute));
+					if (s == " ") Beep(0, 3.5 * m.duration_milliseconds(m.words_per_minute));
+				}
 			}
 		}
 	}
@@ -576,13 +591,13 @@ int main(int argc, char* argv[])
 		string arg_in;
 		cout << "MORSE (cmd line: [morse.exe \\help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: \n0 [encode with sound]\n";
+		cout << "morse actions: \n0 [encode with sound], 8 [encode with sound to wav file]\n";
 		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
 		cout << "4 [hexa encode], 5 [hexa decode].\n";
 		cout << "6 [hexa bin encode], 7 [hexa bin decode].\n";
-		cout << "choose action 0,1,2,3,4,5,6 or 7 and press [enter]:\n";
+		cout << "choose action 0,1,2,3,4,5,6,7 or 8 and press [enter]:\n";
 		getline(cin, arg_in);
-		regex e("[0-7]");
+		regex e("[0-8]");
 		if (!regex_match(arg_in, e))
 		{
 			arg_in = "1";
@@ -597,22 +612,30 @@ int main(int argc, char* argv[])
 			if (arg_in == "4") action = "hexa"; else
 			if (arg_in == "5") action = "hexadec"; else
 			if (arg_in == "6") action = "hexabin"; else
-			if (arg_in == "7") action = "hexabindec";
+			if (arg_in == "7") action = "hexabindec"; else
+			if (arg_in == "8") action = "wav";
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
 			arg_in = m.fix_input(arg_in);
-			if (action == "sound")
+			if (action == "sound" || action == "wav")
 			{
 				string str = m.morse_encode(arg_in);
 				cout << str << "\n";
-				int size = str.size();
-				for (size_t i = 0; i < size; ++i)
+				if (action == "wav")
 				{
-					char c = str.at(i);
-					string s(1, c);
-					if (s == ".") Beep(m.frequency_in_hertz, 1 * m.duration_milliseconds(m.words_per_minute));
-					if (s == "-") Beep(m.frequency_in_hertz, 3 * m.duration_milliseconds(m.words_per_minute));
-					if (s == " ") Beep(0, 3.5 * m.duration_milliseconds(m.words_per_minute));
+					MorseWav mw = MorseWav(str.c_str(), m.frequency_in_hertz, m.words_per_minute, true);
+				}
+				else
+				{
+					int size = str.size();
+					for (size_t i = 0; i < size; ++i)
+					{
+						char c = str.at(i);
+						string s(1, c);
+						if (s == ".") Beep(m.frequency_in_hertz, 1 * m.duration_milliseconds(m.words_per_minute));
+						if (s == "-") Beep(m.frequency_in_hertz, 3 * m.duration_milliseconds(m.words_per_minute));
+						if (s == " ") Beep(0, 3.5 * m.duration_milliseconds(m.words_per_minute));
+					}
 				}
 			}
 			else
