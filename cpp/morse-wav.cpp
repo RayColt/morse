@@ -1,13 +1,12 @@
 /**
-* C++ MorseWav Class
+* C++ MorseWav Class file used by morse.cpp
 * Convert morse code to audio WAV file using PCM
 * 
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1978, 2021 Ray Colt
 * @license Public General License US Army, Microsoft Corporation (MIT)
 *
-* Usage: MorseWav mw = MorseWav(mrs, 880, 10, true);
-* TODO:implement into morse.cpp
+*
 **/
 
 #include <math.h>
@@ -110,7 +109,8 @@ private:
     /**
     * Define dit, dah, end of letter, end of word.
     * 
-    * The rules of 1/3 and 1/2/4:
+    * The rules of 1/3/7 and 1/2/4:
+    * With Farnsworth-units it is 1/3/7, I will use the 1/2/4 because of mobile apps
     * Morse code is: tone for one unit (dit) or three units (dah)
     * followed by the sum of one unit of silence (always),
     * plus two units of silence (if end of letter, one space),
