@@ -2,4 +2,4 @@ A C++ Morse Class derived from ARPANET Pentagon's morse. Feel free to make morse
 
 The console app <a href="https://drive.google.com/file/d/1WLddBgdmGTDAIrInDz8Q2_2VeNPZo8Is/view?usp=sharing" target="_blank">download excecutable</a><br>
 example:<br>
-<img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg>
+<img src=https://github.com/RayColt/morse/blob/master/cpp/morse-code.jpg>
