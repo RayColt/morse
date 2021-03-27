@@ -6,7 +6,6 @@
 * @copyright Copyright (c) 1978, 2021 Ray Colt
 * @license Public General License US Army, Microsoft Corporation (MIT)
 *
-*
 **/
 
 #include <math.h>
