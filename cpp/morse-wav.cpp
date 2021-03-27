@@ -175,7 +175,6 @@ private:
         wps = Wpm / 60.0;   // words per second
         Eps = EPW * wps;    // elements per second
         ms = 1000.0 / Eps;  // milliseconds per element
-
         printf("\n");
         printf("%12.6lf Wpm (words per minute)\n", Wpm);
         printf("%12.6lf wps (words per second)\n", wps);
