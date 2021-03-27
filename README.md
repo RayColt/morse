@@ -4,7 +4,7 @@ JavaScript: form<br>
 C++: console app <a href="https://drive.google.com/file/d/1WLddBgdmGTDAIrInDz8Q2_2VeNPZo8Is/view?usp=sharing" target="_blank">download excecutable</a><br>
 
 C++ Windows and Linux ARPANET version<br>
-<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>          
+<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse-code.jpg></a>          
 
 The real, first and only US Morse mapping,<br>
       based upon Synthesizer Binary tables, from a mouse I believe,<br>
