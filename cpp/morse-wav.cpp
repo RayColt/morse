@@ -20,17 +20,17 @@ using namespace std;
 class MorseWav
 {
 private:
+    #define EPW 50      // elements per word (definition)
     const char *MorseCode;
     int Debug;      // debug mode
     int Play;       // play WAV file
     const char *Path = "morse.wav";    // output filename
     double Tone = 1050;    // tone frequency (Hz)
-    #define EPW 50      // elements per word (definition)
     double Wpm = 12;     // words per minute
     double Eps;     // elements per second (frequency of basic morse element)
     double Bit;     // duration of basic morse element,cell,quantum (seconds)
     double Sps;     // samples per second (WAV file, sound card)
-    short* pcm_data;
+    short* pcm_data; 
     long pcm_count;
     long wav_size;
 
@@ -47,9 +47,6 @@ public:
         // Note 60 seconds = 1 minute and 50 elements = 1 morse word.
         Eps = Wpm / 1.2;    // elements per second (frequency of morse coding)
         Bit = 1.2 / Wpm;    // seconds per element (period of morse coding)
-        
-       // cout << "morse: ";
-        //cout << MorseCode << "\n";
         printf("wave: %9.3lf Hz (/sps:%lg)\n", Sps, Sps);
         printf("tone: %9.3lf Hz (/tone:%lg)\n", Tone, Tone);
         printf("code: %9.3lf Hz (/wpm:%lg)\n", Eps, Wpm);
@@ -57,7 +54,6 @@ public:
         check_ratios();
         morse_tone(MorseCode);
         wav_write(Path, pcm_data, pcm_count);
-
         if (play)
         {
             char cmd[1000];
@@ -83,14 +79,12 @@ private:
         double w = 2.0 * pi * Tone;
         long i, n, size;
         static long seconds;
-
         if (pcm_data == NULL)
         {
             seconds = 1;
             size = (long)(Sps * sizeof pcm_data[0] * seconds);
             pcm_data = (short*)malloc(size);
         }
-
         n = (long)(Bit * Sps);
         for (i = 0; i < n; i += 1)
         {
@@ -120,7 +114,6 @@ private:
     void dit() { tone(1); tone(0); }
     void dah() { tone(1); tone(1); tone(1); tone(0); }
     void space() { tone(0); tone(0); }
-
     /**
     * Create Tones fro morse code.
     *
@@ -131,12 +124,11 @@ private:
         char c;
         while ((c = *code++) != '\0')
         {
-            printf("%c", c);
+            //printf("%c", c);
             if (c == '.') dit();
             if (c == '-') dah();
             if (c == ' ') space();
         }
-        printf(" ");
     }
 
 private:
@@ -181,7 +173,6 @@ private:
     void show_details()
     {
         double wps, ms;
-
         wps = Wpm / 60.0;   // words per second
         Eps = EPW * wps;    // elements per second
         ms = 1000.0 / Eps;  // milliseconds per element
@@ -191,39 +182,33 @@ private:
         printf("%12.6lf wps (words per second)\n", wps);
         printf("%12.6lf EPW (elements per word)\n", (double)EPW);
         printf("%12.6lf Eps (elements per second)\n", Eps);
-
         printf("\n");
         printf("%12.3lf ms dit\n", ms);
         printf("%12.3lf ms dah\n", ms * 3);
         printf("%12.3lf ms gap (element)\n", ms);
         printf("%12.3lf ms gap (character)\n", ms * 3);
         printf("%12.3lf ms gap (word)\n", ms * 7);
-
         printf("\n");
         printf("%12.3lf Hz pcm frequency\n", Sps);
         printf("%12.3lf Hz tone frequency\n", Tone);
         printf("%12.3lf    pcm/tone ratio\n", Sps / Tone);
-
         printf("\n");
         printf("%12.3lf Hz pcm frequency\n", Sps);
         printf("%12.3lf Hz element frequency\n", Eps);
         printf("%12.3lf    pcm/element ratio\n", Sps / Eps);
-
         printf("\n");
         printf("%12.3lf Hz tone frequency\n", Tone);
         printf("%12.3lf Hz element frequency\n", Eps);
         printf("%12.3lf    tone/element ratio\n", Tone / Eps);
-
         printf("\n");
     }
 
+private:
     /**
     * Create WAV file from PCM array.
     */
-private:
     typedef unsigned short WORD;
     typedef unsigned long DWORD;
-
     typedef struct _wave
     {
         WORD  wFormatTag;      // format type
@@ -259,29 +244,24 @@ private:
             fprintf(stderr, "Open failed: %s\n", path);
             exit(1);
         }
-
         wave.wFormatTag = 0x1;
         wave.nChannels = 1;
         wave.wBitsPerSample = sizeof data[0] * 8;
         wave.nBlockAlign = sizeof data[0] * wave.nChannels;
         wave.nSamplesPerSec = (long)Sps;
         wave.nAvgBytesPerSec = (long)Sps * wave.nBlockAlign;
-
         wave_size = sizeof wave;
         data_size = count * wave.nChannels * (wave.wBitsPerSample / 8);
         riff_size = 20 + wave_size + data_size;
         FWRITE("RIFF", 4);
         FWRITE(&riff_size, 4);
-
         FWRITE("WAVE", 4);
         FWRITE("fmt ", 4);
         FWRITE(&wave_size, 4);
         FWRITE(&wave, wave_size);
-
         FWRITE("data", 4);
         FWRITE(&data_size, 4);
         FWRITE(data, data_size);
-
         fclose(file);
     }
 };
