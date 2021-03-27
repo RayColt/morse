@@ -28,12 +28,12 @@ using namespace std;
 **/
 class Morse
 {
-/* defaults */
 public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
 	double max_frequency_in_hertz = 8000.0;
 	double min_frequency_in_hertz = 37.0;
+
 	/**
 	* Constructor
 	*/
@@ -591,10 +591,10 @@ int main(int argc, char* argv[])
 		string arg_in;
 		cout << "MORSE (cmd line: [morse.exe \\help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: \n0 [encode with sound], 8 [encode with sound to wav file]\n";
-		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
-		cout << "4 [hexa encode], 5 [hexa decode].\n";
-		cout << "6 [hexa bin encode], 7 [hexa bin decode].\n";
+		cout << "morse actions: \n0 [encode with sound], 1 [encode with sound to wav file]\n";
+		cout << "2 [encode], 3 [binary encode], 4 [decode morse/binary].\n";
+		cout << "5 [hexa encode], 6 [hexa decode].\n";
+		cout << "7 [hexa bin encode], 8 [hexa bin decode].\n";
 		cout << "choose action 0,1,2,3,4,5,6,7 or 8 and press [enter]:\n";
 		getline(cin, arg_in);
 		regex e("[0-8]");
@@ -606,14 +606,15 @@ int main(int argc, char* argv[])
 		if (regex_match(arg_in, e))
 		{
 			if (arg_in == "0") action = "sound"; else
-			if (arg_in == "1") action = "encode"; else
-			if (arg_in == "2") action = "binary"; else
-			if (arg_in == "3") action = "decode"; else
-			if (arg_in == "4") action = "hexa"; else
-			if (arg_in == "5") action = "hexadec"; else
-			if (arg_in == "6") action = "hexabin"; else
-			if (arg_in == "7") action = "hexabindec"; else
-			if (arg_in == "8") action = "wav";
+			if (arg_in == "1") action = "wav"; else
+			if (arg_in == "2") action = "encode"; else
+			if (arg_in == "3") action = "binary"; else
+			if (arg_in == "4") action = "decode"; else
+			if (arg_in == "5") action = "hexa"; else
+			if (arg_in == "6") action = "hexadec"; else
+			if (arg_in == "7") action = "hexabin"; else
+			if (arg_in == "8") action = "hexabindec"; 
+			
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
 			arg_in = m.fix_input(arg_in);
