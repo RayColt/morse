@@ -23,8 +23,6 @@ using namespace std;
 * Usage program, see: ./morse \help
 * 
 * The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
-* 
-* 
 **/
 class Morse
 {
