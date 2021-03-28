@@ -472,7 +472,8 @@ public:
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse\n";
+			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse(using Windows Beep())\n";
+			cout << "With sound options: ./morse.exe ew \\hz:880 \\wpm:16 txt to morse(using Windows WAV)\n";
 			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n\n";
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
@@ -596,7 +597,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		string arg_in;
-		cout << "MORSE (cmd line: [morse.exe \\help] for info)\n";
+		cout << "MORSE (cmd line version: [morse.exe \\help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n0 [encode with sound], 1 [encode with sound to wav file]\n";
 		cout << "2 [encode], 3 [binary encode], 4 [decode morse/binary].\n";
@@ -607,7 +608,7 @@ int main(int argc, char* argv[])
 		regex e("[0-8]");
 		if (!regex_match(arg_in, e))
 		{
-			arg_in = "1";
+			arg_in = "2";
 			cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
 		if (regex_match(arg_in, e))
