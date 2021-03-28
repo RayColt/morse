@@ -105,7 +105,6 @@ private:
     * followed by the sum of one unit of silence (always),
     * plus two units of silence (if end of letter, one space),
     * plus four units of silence (if also end of word).
-    *
     */
     void dit() { tone(1); tone(0); }
     void dah() { tone(1); tone(1); tone(1); tone(0); }
