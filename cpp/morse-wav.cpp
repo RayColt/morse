@@ -1,12 +1,3 @@
-/**
-* C++ MorseWav Class file used by morse.cpp
-* Convert morse code to audio WAV file using PCM
-* 
-* @author Ray Colt <ray_colt@pentagon.mil>
-* @copyright Copyright (c) 1978, 2021 Ray Colt
-* @license Public General License US Army, Microsoft Corporation (MIT)
-**/
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +5,14 @@
 #include <iostream>
 
 using namespace std;
-
+/**
+* C++ MorseWav Class file used by morse.cpp
+* Convert morse code to audio WAV file using PCM
+*
+* @author Ray Colt <ray_colt@pentagon.mil>
+* @copyright Copyright (c) 1978, 2021 Ray Colt
+* @license Public General License US Army, Microsoft Corporation (MIT)
+**/
 class MorseWav
 {
 private:
