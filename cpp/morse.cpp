@@ -255,7 +255,7 @@ public:
 	string hexadecimal_bin_txt(string str, int modus)
 	{
 		string str1, str2;
-		//regex e("(20|30|31|2D|2E|\\s)+");???NOT WORKING???
+		//regex e("(20|30|31|2D|2E|\\s)+");???NOT ALWAYS WORKING???
 		string line = remove_whitespaces(str);
 		//if (regex_match(line, e))
 		//{
