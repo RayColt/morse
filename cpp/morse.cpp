@@ -255,10 +255,10 @@ public:
 	string hexadecimal_bin_txt(string str, int modus)
 	{
 		string str1, str2;
-		regex e("(20|30|31|2D|2E)+");
+		//regex e("(20|30|31|2D|2E|\\s)+");???NOT WORKING???
 		string line = remove_whitespaces(str);
-		if (regex_match(line, e))
-		{
+		//if (regex_match(line, e))
+		//{
 			const char* a[] = { "2E", "2D", "30", "31" };
 			if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 			if (modus == 1) { str1 = a[2]; str2 = a[3]; };
@@ -268,11 +268,11 @@ public:
 			line = regex_replace(line, regex(str2), "1");
 			string s = morse_decode(trim(line));
 			return s;
-		}
-		else
-		{
-			return "You used the wrong decode method(see \\help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
-		}
+		//}
+		//else
+		//{
+		//	return "You used the wrong decode method(see \\help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+		//}
 	}
 
 private:
