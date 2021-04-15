@@ -5,7 +5,7 @@
 #include <vector>
 #include <regex>
 #include <windows.h>
-#include <morse-wav.cpp>
+#include "morse-wav.cpp""
 
 using namespace std;
 /**
@@ -466,7 +466,7 @@ public:
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
 			cout << "Morse encoding being used : \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20\n\n";
 			cout << "Usage console app version: ./morse.exe\n\n";
-			cout << "Usage console line version:\n ./morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "Usage cmd line version:\n ./morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
 			cout << "es=encode with sound, ew encode with sound and wav file, e=encode, b=binary-encode, d=decode (.- 01's)\n";
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
@@ -539,6 +539,7 @@ int main(int argc, char* argv[])
 	Morse m;
 	int n;
 	string action = "encode";
+	double sps = 44100;
 	if (argc != 1)
 	{
 		if (strcmp(argv[1], "es") == 0) action = "sound"; else
@@ -583,6 +584,10 @@ int main(int argc, char* argv[])
 			else
 			{
 				int size = morse.size();
+				printf("wave: %9.3lf Hz (/sps:%lg)\n", 44100, 44100);
+				printf("tone: %9.3lf Hz (/tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
+				printf("code: %9.3lf Hz (/wpm:%lg)\n", m.words_per_minute/1.2, m.words_per_minute);
+				cout << "to change Tone(Hz) and WPM use cmd morse.exe \\help for info\n";
 				for (size_t i = 0; i < size; ++i)
 				{
 					char c = morse.at(i);
@@ -597,7 +602,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		string arg_in;
-		cout << "MORSE (cmd line version: [morse.exe \\help] for info)\n";
+		cout << "MORSE (CMD line version: morse.exe \\help for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n0 [encode with sound], 1 [encode with sound to wav file]\n";
 		cout << "2 [encode], 3 [binary encode], 4 [decode morse/binary].\n";
@@ -637,6 +642,10 @@ int main(int argc, char* argv[])
 				else
 				{
 					int size = str.size();
+					printf("wave: %9.3lf Hz (/sps:%lg)\n", sps, sps);
+					printf("tone: %9.3lf Hz (/tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
+					printf("code: %9.3lf Hz (/wpm:%lg)\n", m.words_per_minute / 1.2, m.words_per_minute);
+					cout << "to change Tone(Hz) and WPM use cmd morse.exe \\help for info\n";
 					for (size_t i = 0; i < size; ++i)
 					{
 						char c = str.at(i);
