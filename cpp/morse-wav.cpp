@@ -26,7 +26,7 @@ private:
     double Eps;     // elements per second (frequency of basic morse element)
     double Bit;     // duration of basic morse element,cell,quantum (seconds)
     double Sps;     // samples per second (WAV file, sound card)
-    short* pcm_data;
+    short* pcm_data = NULL;
     long pcm_count;
     long wav_size;
 
