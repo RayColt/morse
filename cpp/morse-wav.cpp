@@ -17,16 +17,16 @@ class MorseWav
 {
 private:
     #define EPW 50      // elements per word (definition)
-    const char *MorseCode;
+    const char* MorseCode;
     int Debug;      // debug mode
     int Play;       // play WAV file
-    const char *Path = "morse.wav";    // output filename
-    double Tone = 1050;    // tone frequency (Hz)
+    const char* Path = "morse.wav";    // output filename
+    double Tone = 987.77;    // tone frequency (Hz)
     double Wpm = 12;     // words per minute
     double Eps;     // elements per second (frequency of basic morse element)
     double Bit;     // duration of basic morse element,cell,quantum (seconds)
     double Sps;     // samples per second (WAV file, sound card)
-    short* pcm_data; 
+    short* pcm_data;
     long pcm_count;
     long wav_size;
 
@@ -34,8 +34,8 @@ public:
     /**
     * Constructor
     */
-    MorseWav(const char *morsecode, double tone, double wpm, bool play)
-    { 
+    MorseWav(const char* morsecode, double tone, double wpm, bool play)
+    {
         MorseCode = morsecode;
         Wpm = wpm;
         Tone = tone;
@@ -53,7 +53,7 @@ public:
         if (play)
         {
             char cmd[1000];
-            #pragma warning(suppress : 4996)
+#pragma warning(suppress : 4996)
             sprintf(cmd, "morse.wav /play /close %s", Path);
             printf("** %s\n", cmd);
             system(cmd);
@@ -65,7 +65,7 @@ private:
     * Get binary morse code (dit/dah) for a given character.
     * Generate one quantum of silence or tone in PCM/WAV array.
     * sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
-    * 
+    *
     * @param on_off
     */
     void tone(int on_off)
@@ -95,10 +95,10 @@ private:
         }
     }
 
-private:  
+private:
     /**
     * Define dit, dah, end of letter, end of word.
-    * 
+    *
     * The rules of 1/3/7 and 1/2/4:
     * With Farnsworth-units it is 1/3/7, I will use the 1/2/4 because of mobile apps
     * Morse code is: tone for one unit (dit) or three units (dah)
@@ -129,7 +129,7 @@ private:
 private:
     /**
     * Check for sub-optimal combination of rates (poor sounding sinewaves).
-    */ 
+    */
     void check_ratios(void)
     {
         char nb[] = "WARNING: sub-optimal sound ratio";
@@ -161,10 +161,10 @@ private:
         return fabs(ab - ratio) > 1e-4;
     }
 
- private:
-     /**
-     * Display detailed data
-     */
+private:
+    /**
+    * Display detailed data
+    */
     void show_details()
     {
         double wps, ms;
@@ -213,7 +213,7 @@ private:
         WORD  wBitsPerSample;  // number of bits per sample of mono data
     } WAVE;
 
-    #define FWRITE(buf,size) \
+#define FWRITE(buf,size) \
     wav_size += size; \
     if (fwrite(buf, size, 1, file) != 1) { \
         fprintf(stderr, "Write failed: %s\n", path); \
@@ -232,7 +232,7 @@ private:
         long data_size, wave_size, riff_size;
         FILE* file;
         WAVE wave;
-        #pragma warning(suppress : 4996)
+#pragma warning(suppress : 4996)
         if ((file = fopen(path, "wb")) == NULL)
         {
             fprintf(stderr, "Open failed: %s\n", path);
