@@ -5,7 +5,7 @@
 #include <vector>
 #include <regex>
 #include <windows.h>
-#include "morse-wav.cpp""
+#include "morse-wav.cpp"
 
 using namespace std;
 /**
