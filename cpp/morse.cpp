@@ -584,7 +584,7 @@ int main(int argc, char* argv[])
 			else
 			{
 				int size = morse.size();
-				printf("wave: %9.3lf Hz (/sps:%lg)\n", 44100, 44100);
+				printf("wave: %9.3lf Hz (/sps:%lg)\n", sps, sps);
 				printf("tone: %9.3lf Hz (/tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
 				printf("code: %9.3lf Hz (/wpm:%lg)\n", m.words_per_minute/1.2, m.words_per_minute);
 				cout << "to change Tone(Hz) and WPM use cmd morse.exe \\help for info\n";
