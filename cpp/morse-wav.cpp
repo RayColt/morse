@@ -21,8 +21,8 @@ private:
     int Debug;      // debug mode
     int Play;       // play WAV file
     const char* Path = "morse.wav";    // output filename
-    double Tone = 987.77;    // tone frequency (Hz)
-    double Wpm = 12;     // words per minute
+    double Tone;    // tone frequency (Hz)
+    double Wpm;     // words per minute
     double Eps;     // elements per second (frequency of basic morse element)
     double Bit;     // duration of basic morse element,cell,quantum (seconds)
     double Sps;     // samples per second (WAV file, sound card)
@@ -91,7 +91,7 @@ private:
                 size = (long)(Sps * sizeof pcm_data[0] * seconds);
                 pcm_data = (short*)realloc(pcm_data, size);
             }
-            pcm_data[pcm_count++] = (short)(on_off * ampl * sin(w * t));// y = Asin(2πfx + θ)
+            pcm_data[pcm_count++] = (short)(on_off * ampl * sin(w * t));
         }
     }
 
