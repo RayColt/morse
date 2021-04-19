@@ -15,7 +15,7 @@ or just a military  algorithm:-):<br />
         <b>We removed the first number one,
         reversed it(think Endian/IBM PowerPC) 
         to save Data and CPU's in war times.<br>
-<a href="https://raycolt.github.io/morse/">WORKING EXAMPLE</a><br>
+<a href="https://raycolt.github.io/morse/">WORKING HTML EXAMPLE</a><br>
 <pre>
 uint16_t Morse::encode(uint8_t character) 
 {
