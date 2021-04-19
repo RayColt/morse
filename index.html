@@ -208,12 +208,12 @@
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
 		var line = morse_binary(str);
-		line = line.replaceAll("  ", "A");
-		line = line.replaceAll(" ", "K");
-		line = line.replaceAll("0", str1);
-		line = line.replaceAll("1", str2);
-		line = line.replaceAll("A", "20 20 ");
-		line = line.replaceAll("K", "20 ");
+		line = line.replace(/  /g, "A");
+		line = line.replace(/ /g, "K");
+		line = line.replace(/0/g, str1);
+		line = line.replace(/1/g, str2);
+		line = line.replace(/A/g, "20 20 ");
+		line = line.replace(/K/g, "20 ");
 		return line.trim();
 	}
 
@@ -233,11 +233,13 @@
 		var a = ["2E", "2D", "30", "31"];
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };;
-		var line = str.replaceAll(" ","");
-		line = line.replaceAll("2020", "  ");
-		line = line.replaceAll("20", " ");
-		line = line.replaceAll(str1,"0");
-		line = line.replaceAll(str2,"1");
+		var line = str.replace(/ /g,"");
+		line = line.replace(/2020/g, "  ");
+		line = line.replace(/20/g, " ");
+		var regex1 =  new RegExp(str1,'g');
+		var regex2 =  new RegExp(str2,'g');
+		line = line.replace(regex1,"0");
+		line = line.replace(regex2,"1");
 		return morse_decode(line.trim());
 	}
 </script>
