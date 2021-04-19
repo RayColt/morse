@@ -1,6 +1,6 @@
 <html>
 <head>
-<script type="text/javascript">	
+<script type="text/javascript">
 /**
  * JavaScript MorseMap
  *
@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2015 Ray Colt
  * @license Public General License US Army
  *
- */ 
+ */
 	var morseMap = {
 		" " : "", // SPACE (0b1)
 		"!" : "101011", // -.-.--
@@ -65,15 +65,16 @@
 		"_" : "001101", // ..--.-
 		"ERR" : "00000000" // ........
 	};
+
 	var reversedMorseMap = array_flip(morseMap);
-	
+
 	/**
 	 * Similar to array_flip in php, returns an array in flip order, <br>
 	 * i.e. keys from array become values and values from array become keys. <br>
      *
 	 * @param arr
 	 * @return array
-	 */		
+	 */
 	function array_flip(arr) {
 		var key = null;
 		var tmp_arr = {};
@@ -83,12 +84,12 @@
 		}
 		return tmp_arr;
 	}
-		
+
 	/**
 	 * Similar to strtr in php, characters in 'from' will be <br>
 	 * replaced by characters in 'to' in the same <br>
 	 * order character by character.
-	 * 
+	 *
 	 * @param str
 	 * @param from
 	 * @param to
@@ -100,7 +101,7 @@
 		for (var i = 0, len = str.length; i < len; i++) {
 			var c = str.charAt(i);
 			var p = from.indexOf(c);
-			if (p >= 0) {				
+			if (p >= 0) {
 				if (out == null)
 					out = str.split("");
 				out[i] = to.charAt(p);
@@ -108,6 +109,7 @@
 		}
 		return out != null ? out.join("") : str;
 	}
+
 	/**
 	 * Get binary morse code (dit/dah) for a given character
 	 *
@@ -117,6 +119,7 @@
 	function getBinChar(character) {
 		return morseMap[character];
 	}
+
 	/**
 	 * Get morse code (dit/dah) for a given character
 	 *
@@ -126,6 +129,7 @@
 	function getMorse(character) {
 		return strtr(morseMap[character], "01", ".-");
 	}
+
 	/**
 	 * Get character for given morse code
 	 *
@@ -135,6 +139,7 @@
 	function getCharacter(morse) {
 		return reversedMorseMap[strtr(morse, ".-", "01")];
 	}
+
 	/**
 	 * Get binary morse code for given string
 	 *
@@ -150,6 +155,7 @@
 		}
 		return line.trim();
 	}
+
 	/**
 	 * Get morse code for given string
 	 *
@@ -165,6 +171,7 @@
 		}
 		return line.trim();
 	}
+
 	/**
 	 * Get character string for given morse code
 	 *
@@ -183,28 +190,87 @@
 		}
 		return line.replace(/\s{2,}/g," ").trim();
 	}
+
+	/**
+	* (\  /)
+	* ( .  .)
+	* Get hexadecimal morse code for given string
+	*
+	* @param str
+	* @param modus
+	* @return String
+	*/
+	function bin_morse_hexadecimal(str, modus)
+	{
+		var str1 = "";
+		var str2 = "";
+		var a = ["2E ", "2D ", "30 ", "31 "];
+		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
+		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
+		var line = morse_binary(str);
+		line = line.replaceAll("  ", "A");
+		line = line.replaceAll(" ", "K");
+		line = line.replaceAll("0", str1);
+		line = line.replaceAll("1", str2);
+		line = line.replaceAll("A", "20 20 ");
+		line = line.replaceAll("K", "20 ");
+		return line.trim();
+	}
+
+	/**
+	* (\  /)
+	* ( .  .)
+	* Get txt for given hexadecimal morse code
+	*
+	* @param str
+	* @param modus
+	* @return string
+	*/
+	function hexadecimal_bin_txt(str, modus)
+	{
+		var str1 = "";
+		var str2 = "";
+		var a = ["2E", "2D", "30", "31"];
+		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
+		if (modus == 1) { str1 = a[2]; str2 = a[3]; };;
+		var line = str.replaceAll(" ","");
+		line = line.replaceAll("2020", "  ");
+		line = line.replaceAll("20", " ");
+		line = line.replaceAll(str1,"0");
+		line = line.replaceAll(str2,"1");
+		return morse_decode(line.trim());
+	}
 </script>
 </head>
 <body>
-<h1 align="center"><a href="https://github.com/RayColt/morse"><<</a> Colt's Morse PHP, C++, Java and JavaScript [<a href="https://github.com/RayColt/morse/archive/master.zip">download zip</a>]</h1>
-<script type="text/javascript">	
+<script type="text/javascript">
 	function morseForm() {
 	  var modus = document.querySelector('input[name="modus"]:checked').value;
 	  var data =  document.getElementById("data").value;
 	  if(modus == "encode")
 		  document.getElementById("data").value = morse_encode(data);
 	  if(modus == "decode")
-		  document.getElementById("data").value = morse_decode(data);	  
+		  document.getElementById("data").value = morse_decode(data);
 	  if(modus == "binary_encode")
-		  document.getElementById("data").value = morse_binary(data);	  
-	}		
+		  document.getElementById("data").value = morse_binary(data);
+	  if(modus == "binary_decode")
+		  document.getElementById("data").value = morse_decode(data);
+	  if(modus == "encode_hex")
+		  document.getElementById("data").value = bin_morse_hexadecimal(data, 0);
+	  if(modus == "decode_hex")
+		  document.getElementById("data").value = hexadecimal_bin_txt(data, 0);
+	  if(modus == "encode_hex_bin")
+		  document.getElementById("data").value = bin_morse_hexadecimal(data, 1);
+	  if(modus == "decode_hex_bin")
+		  document.getElementById("data").value = hexadecimal_bin_txt(data, 1);
+	}
 </script>
 <table width="100%" border="0" cellspacing="2" cellpadding="2">
 <tr>
   <td align="center"><b>Morse</b></td>
 </tr>
 <tr>
-  <td align="center"><textarea id="data" name="data" cols="50" rows="15">ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567890 ! $ ' " ( ) , . _ - / : ; = ? @"</textarea></td>
+  <td align="center"><textarea id="data" name="data" cols="50" rows="15">ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567890 !$'(),-./ :; =?@"</textarea></td>
 </tr>
 <tr>
   <td align="center"><table width="333" border="0">
@@ -218,8 +284,26 @@
         <td align="center"><label>
             <input type="radio" id="modus" name="modus" value="binary_encode" />
             Binary Encode</label></td>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="binary_decode" />
+            Binary Decode</label></td>
       </tr>
-    </table></td>
+      <tr>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="encode_hex" />
+            Encode Hex</label></td>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="decode_hex" />
+            Decode Hex</label></td>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="encode_hex_bin" />
+            Encode Hex Bin</label></td>
+        <td align="center"><label>
+            <input type="radio" id="modus" name="modus" value="decode_hex_bin" />
+            Decode Hex Bin</label></td>
+      </tr>
+    </table>
+    </td>
 </tr>
 <tr>
   <td align="center"><input type="submit" onClick="morseForm()" /></td>
