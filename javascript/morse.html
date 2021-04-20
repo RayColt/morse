@@ -202,8 +202,7 @@
 	*/
 	function bin_morse_hexadecimal(str, modus)
 	{
-		var str1 = "";
-		var str2 = "";
+		var str1, str2;
 		var a = ["2E ", "2D ", "30 ", "31 "];
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
@@ -228,18 +227,15 @@
 	*/
 	function hexadecimal_bin_txt(str, modus)
 	{
-		var str1 = "";
-		var str2 = "";
+		var str1, str2;
 		var a = ["2E", "2D", "30", "31"];
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };;
 		var line = str.replace(/ /g,"");
 		line = line.replace(/2020/g, "  ");
 		line = line.replace(/20/g, " ");
-		var regex1 =  new RegExp(str1,'g');
-		var regex2 =  new RegExp(str2,'g');
-		line = line.replace(regex1,"0");
-		line = line.replace(regex2,"1");
+		line = line.replace(new RegExp(str1,'g'),"0");
+		line = line.replace(new RegExp(str2,'g'),"1");
 		return morse_decode(line.trim());
 	}
 </script>
