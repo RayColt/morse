@@ -234,10 +234,8 @@
 		var line = str.replace(/ /g,"");
 		line = line.replace(/2020/g, "  ");
 		line = line.replace(/20/g, " ");
-		var regex1 =  new RegExp(str1,'g');
-		var regex2 =  new RegExp(str2,'g');
-		line = line.replace(regex1,"0");
-		line = line.replace(regex2,"1");
+		line = line.replace(new RegExp(str1,'g'),"0");
+		line = line.replace(new RegExp(str2,'g'),"1");
 		return morse_decode(line.trim());
 	}
 </script>
