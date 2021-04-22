@@ -9,7 +9,7 @@ int main()
     system("\"\"C:\\Program Files (x86)\\\Midnight Commander\\\mc.exe\"");
 }
 
-
+/* its assembley  :-)
         .file   "mc.c"
         .text
         .section        .rodata
@@ -38,3 +38,4 @@ main:
         .size   main, .-main
         .ident  "GCC: (Debian 10.2.0-16) 10.2.0"
         .section        .note.GNU-stack,"",@progbits
+*/
