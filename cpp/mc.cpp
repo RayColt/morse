@@ -1,5 +1,4 @@
 #include <cstdlib>
-
 /*
 * Midnight Commander for Windows
 * Nice C++ executable to put in System32, to run mc system wide like in Linux!!
