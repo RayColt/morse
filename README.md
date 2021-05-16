@@ -89,5 +89,7 @@ uint16_t Morse::encode(uint8_t character)
   }
 }
   </pre>
-
+<br>
+A spectrum analyzer: as you can see I typed SOS OS on 880 Hz<br>
+<img src="https://github.com/RayColt/morse/blob/master/cpp/spectrum-analyzer-morse.jpg" />
 <br>
