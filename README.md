@@ -1,6 +1,7 @@
  # Colt's HTTP int. Morse PHP, JavaScript, Java and C++<br>
 PHP & Java:  forms, class files and servlet<br>
-c# a class file<br>
+C# a class file<br>
+C an original C file file<br>
 JavaScript: form<br>
 C++ console app with sound:<br>
 -&nbsp;<a href="https://drive.google.com/file/d/1SXJdMxFFkeHMeXp5Ocnae_Mo8rWHoCpu/view?usp=sharing" target="_blank">download excecutable gcc windows version</a><br> 
