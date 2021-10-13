@@ -3,7 +3,7 @@ PHP & Java:  forms, class files and servlets<br>
 C#: a class file<br>
 C: an original morse to wav in C file<br>
 JavaScript: a form<br><br>
-C++ console app with sound:<br>
+C++ console app with sound:(C++ console app with sound: In principle you only need morse.cpp and morse-wav.cpp to create a VS or a Codeblocks(builing options: C++11 & the three static libraries you will see) project.)
 
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>          
 
