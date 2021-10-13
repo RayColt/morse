@@ -462,7 +462,7 @@ public:
 		{
 			ok = true;
 		}
-		if (strncmp(argv[1], "-help", 5) == 0)
+		if (strncmp(argv[1], "-help", 5) == 0 || strncmp(argv[1], "-h", 2) == 0)
 		{
 			cout << "#######################################################################\n";
 			cout << "## MORSE HELP                                             PLEH ESROM ##\n";
