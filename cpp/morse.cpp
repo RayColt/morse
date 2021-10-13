@@ -31,7 +31,7 @@ public:
 	double words_per_minute = 16.0;//words per minute
 	double max_frequency_in_hertz = 8000.0;
 	double min_frequency_in_hertz = 37.0;
-
+	double samples_per_second = 44100.0;
 	/**
 	* Constructor
 	*/
@@ -212,7 +212,7 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see \\help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
 		}
 	}
 
@@ -271,7 +271,7 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see \\help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+			return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
 		}
 	}
 
@@ -456,15 +456,19 @@ public:
 	{
 		int args = 0;
 		bool ok = false;
-		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
-			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
+		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 || 
+			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || 
+			strncmp(argv[1], "hbd", 3) == 0)
 		{
 			ok = true;
 		}
-		if (strncmp(argv[1], "\\help", 5) == 0)
+		if (strncmp(argv[1], "-help", 5) == 0)
 		{
+			cout << "#######################################################################\n";
+			cout << "## MORSE HELP                                             PLEH ESROM ##\n";
+			cout << "#######################################################################\n";
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
-			cout << "Morse encoding being used : \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20\n\n";
+			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
 			cout << "Usage console app version: ./morse.exe\n\n";
 			cout << "Usage cmd line version:\n ./morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
 			cout << "es=encode with sound, ew encode with sound and wav file, e=encode, b=binary-encode, d=decode (.- 01's)\n";
@@ -472,44 +476,54 @@ public:
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "With sound options: ./morse.exe es \\hz:880 \\wpm:16 txt to morse(using Windows Beep())\n";
-			cout << "With sound options: ./morse.exe ew \\hz:880 \\wpm:16 txt to morse(using Windows WAV)\n";
-			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm\n\n";
+			cout << "With sound options: ./morse.exe es -hz:880 -wpm:16 txt to morse(using Windows Beep())\n";
+			cout << "With sound options: ./morse.exe ew -hz:880 -wpm:16 -sps:44100 txt to morse(using Windows WAV)\n";
+			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm, sps = samples per second.\n\n";
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
-			cout << "Example: morse es \\wpm:18 \\hz:739.99 paris paris paris\n";
-			cout << "Example: morse ew \\wpm:16 \\hz:880 paris paris paris\n";
+			cout << "Example: morse es -wpm:18 -hz:739.99 paris paris paris\n";
+			cout << "Example: morse ew paris paris paris\n";
+			cout << "Example: morse ew -wpm:16 -hz:880 paris paris paris\n";
+			cout << "Example: morse ew -wpm:16 -hz:880 -sps:44100 paris paris paris\n";
+			cout << "Example: morse ew -wpm:20 -hz:1050 -sps:22050 paris paris paris\n\n";
+			cout << "#######################################################################";
 			ok = true;
 		}
 		else if(ok)
 		{
-			while (argc > 1 && argv[2][0] == '\\')
+			while (argc > 1)
 			{
-				if (strncmp(argv[2], "\\hz:", 4) == 0)
+				if (strncmp(argv[2], "-hz:", 4) == 0)
 				{
 					frequency_in_hertz = atof(&argv[2][4]);
 					if (frequency_in_hertz > max_frequency_in_hertz) frequency_in_hertz = max_frequency_in_hertz;
 					if (frequency_in_hertz < min_frequency_in_hertz) frequency_in_hertz = min_frequency_in_hertz;
 				}
+				else if (strncmp(argv[2], "-wpm:", 5) == 0)
+				{
+					words_per_minute = atof(&argv[2][5]);
+				}
+				else if (strncmp(argv[2], "-sps:", 5) == 0)
+				{
+					samples_per_second = atof(&argv[2][5]);
+				}
 				else
-					if (strncmp(argv[2], "\\wpm:", 5) == 0)
-					{
-						words_per_minute = atof(&argv[2][5]);
-					}
-					else
-					{
-						fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
-						exit(1);
-					}
+				{
+					break;
+				}
 				argc -= 1;
 				argv += 1;
 				args += 1;
+				if (args == 3)
+				{
+					//break;
+				}
 			}
 		}
 		else
 		{
-			fprintf(stderr, "option error %s, see morse \\help for info\n", argv[2]);
+			fprintf(stderr, "option error %s, see morse -help for info\n", argv[2]);
 			exit(1);
 		}
 		return args;
@@ -573,21 +587,21 @@ int main(int argc, char* argv[])
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
 		if (action == "sound" || action == "wav")
 		{
-			cout << "\\wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
-			cout << "\\hz: " << m.frequency_in_hertz << "Hz (tone)\n";
+			cout << "-wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
+			cout << "-hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
 			if (action == "wav")
 			{
-				MorseWav mw = MorseWav(morse.c_str(), m.frequency_in_hertz, m.words_per_minute, true);
+				MorseWav mw = MorseWav(morse.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true);
 			}
 			else
 			{
 				int size = morse.size();
-				printf("wave: %9.3lf Hz (/sps:%lg)\n", sps, sps);
-				printf("tone: %9.3lf Hz (/tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
-				printf("code: %9.3lf Hz (/wpm:%lg)\n", m.words_per_minute/1.2, m.words_per_minute);
-				cout << "to change Tone(Hz) and WPM use cmd morse.exe \\help for info\n";
+				printf("wave: %9.3lf Hz (-sps:%lg)\n", sps, sps);
+				printf("tone: %9.3lf Hz (-tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
+				printf("code: %9.3lf Hz (-wpm:%lg)\n", m.words_per_minute/1.2, m.words_per_minute);
+				cout << "to change Tone(Hz) and WPM use cmd morse.exe -help for info\n";
 				for (size_t i = 0; i < size; ++i)
 				{
 					char c = morse.at(i);
@@ -602,7 +616,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		string arg_in;
-		cout << "MORSE (CMD line version: morse.exe \\help for info)\n";
+		cout << "MORSE (CMD line version: morse.exe -help for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n0 [encode with sound], 1 [encode with sound to wav file]\n";
 		cout << "2 [encode], 3 [binary encode], 4 [decode morse/binary].\n";
@@ -637,15 +651,15 @@ int main(int argc, char* argv[])
 				cout << str << "\n";
 				if (action == "wav")
 				{
-					MorseWav mw = MorseWav(str.c_str(), m.frequency_in_hertz, m.words_per_minute, true);
+					MorseWav mw = MorseWav(str.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true);
 				}
 				else
 				{
 					int size = str.size();
-					printf("wave: %9.3lf Hz (/sps:%lg)\n", sps, sps);
-					printf("tone: %9.3lf Hz (/tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
-					printf("code: %9.3lf Hz (/wpm:%lg)\n", m.words_per_minute / 1.2, m.words_per_minute);
-					cout << "to change Tone(Hz) and WPM use cmd morse.exe \\help for info\n";
+					printf("wave: %9.3lf Hz (-sps:%lg)\n", sps, sps);
+					printf("tone: %9.3lf Hz (-tone:%lg)\n", m.frequency_in_hertz, m.frequency_in_hertz);
+					printf("code: %9.3lf Hz (-wpm:%lg)\n", m.words_per_minute / 1.2, m.words_per_minute);
+					cout << "to change Tone(Hz) and WPM use cmd morse.exe -help for info\n";
 					for (size_t i = 0; i < size; ++i)
 					{
 						char c = str.at(i);
