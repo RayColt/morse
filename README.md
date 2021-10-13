@@ -8,7 +8,6 @@ C++: console app with sound:<br>
 -&nbsp;<a href="https://drive.google.com/file/d/1MrJOFtkr_BHSYHAnNMIQSfdfye46rceK/view?usp=sharing" target="_blank">download excecutable visual c++ windows version</a>&nbsp;&nbsp;
 <a href="https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0" target="_blank">(do not forget to download visual c++ redistributable)</a><br> 
 
-C++ Windows and Linux ARPANET version<br>
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a>          
 
 The real, first and only US Morse mapping,<br>
