@@ -482,7 +482,7 @@ public:
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
-			cout << "Example: morse es -wpm:18 -hz:739.99 paris paris paris\n";
+			cout << "Example: morse es -wpm:18 -hz:739.99 paris paris paris (sps not available in es mode)\n";
 			cout << "Example: morse ew paris paris paris\n";
 			cout << "Example: morse ew -wpm:16 -hz:880 paris paris paris\n";
 			cout << "Example: morse ew -wpm:16 -hz:880 -sps:44100 paris paris paris\n";
