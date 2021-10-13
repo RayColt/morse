@@ -7,7 +7,7 @@ C++ console app with sound:<br>
 <a href="https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0" target="_blank">(do not forget to download visual c++ redistributable)</a><br> 
 
 example:<br>
-<img src=https://github.com/RayColt/morse/blob/master/cpp/morse-code.jpg>
+<img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg>
 <br>
 <a href="https://www.qsl.net/dl4yhf/spectra1.html" target="_blank">A spectrum analyzer</a>: as you can see I typed SOS OS on 880 Hz(music note A5)<br>
 <img src="https://github.com/RayColt/morse/blob/master/cpp/spectrum-analyzer-morse.jpg" />
