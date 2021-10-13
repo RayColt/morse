@@ -34,22 +34,25 @@ public:
     /**
     * Constructor
     */
-    MorseWav(const char* morsecode, double tone, double wpm, bool play)
+    MorseWav(const char* morsecode, double tone, double wpm, double samples_per_second, bool play)
     {
         MorseCode = morsecode;
         Wpm = wpm;
         Tone = tone;
-        Sps = 44100;
+        Sps = samples_per_second;
         // Note 60 seconds = 1 minute and 50 elements = 1 morse word.
         Eps = Wpm / 1.2;    // elements per second (frequency of morse coding)
         Bit = 1.2 / Wpm;    // seconds per element (period of morse coding)
-        printf("wave: %9.3lf Hz (/sps:%lg)\n", Sps, Sps);
-        printf("tone: %9.3lf Hz (/tone:%lg)\n", Tone, Tone);
-        printf("code: %9.3lf Hz (/wpm:%lg)\n", Eps, Wpm);
+        printf("wave: %9.3lf Hz (-sps:%lg)\n", Sps, Sps);
+        printf("tone: %9.3lf Hz (-tone:%lg)\n", Tone, Tone);
+        printf("code: %9.3lf Hz (-wpm:%lg)\n", Eps, Wpm);
         //show_details();
         check_ratios();
         morse_tone(MorseCode);
         wav_write(Path, pcm_data, pcm_count);
+        printf("%ld PCM samples", pcm_count);
+        printf(" (%.1lf s @ %.1lf kHz)", (double)pcm_count / Sps, Sps / 1e3);
+        printf(" written to %s (%.1f kB)\n", Path, wav_size / 1024.0);
         if (play)
         {
             char cmd[1000];
@@ -110,7 +113,7 @@ private:
     void dah() { tone(1); tone(1); tone(1); tone(0); }
     void space() { tone(0); tone(0); }
     /**
-    * Create Tones fro morse code.
+    * Create Tones from morse code.
     *
     * @param code
     */
