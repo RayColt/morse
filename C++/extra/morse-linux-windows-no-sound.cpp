@@ -433,7 +433,7 @@ public:
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
 			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
 			cout << "Usage console app version: morse.exe\n\n";
-			cout << "Usage cmd line version:\n morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "Usage cmd line version:\n morse.exe e,b,d,he,hd,hb or hbd morse or txt\n\n";
 			cout << "e=encode, b=binary-encode, d=decode (.- 01's)\n";
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
