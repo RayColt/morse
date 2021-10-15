@@ -433,7 +433,7 @@ public:
 			cout << "Usage console app version: morse.exe\n\n";
 			cout << "Usage cmd line version:\n morse.exe e,b,d,he,hd,hb or hbd morse or txt\n\n";
 			cout << "e=encode, b=binary-encode, d=decode (.- 01's)\n";
-			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
+			cout << "he=hexadecimal encode, hd=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
