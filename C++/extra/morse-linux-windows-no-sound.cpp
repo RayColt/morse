@@ -15,15 +15,13 @@ using namespace std;
 *
 * Derived from ARPANET Pentagon's morse.
 *
-* Usage program, see: ./morse /help
+* Usage program, see: morse -help or -h
 **/
 class Morse
 {
-/* defaults */
-public:
-	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
-	double words_per_minute = 16.0;//words per minute
-
+	/**
+	* Constructor
+	*/
 public:
 	Morse() { fill_morse_maps(); }
 
@@ -413,7 +411,7 @@ public:
 		}
 		else return ms;
 	}
-	
+
 public:
 	/**
 	* Reaf cmd line user arguments
@@ -442,11 +440,7 @@ public:
 			cout << "Example: morse.exe e paris paris paris\n";
 			cout << "Example: morse.exe he paris paris paris\n\n";
 			cout << "#######################################################################";
-		}
-		else
-		{
-			fprintf(stderr, "option error %s, see morse -help for info\n", argv[2]);
-			exit(1);
+			args = 1;
 		}
 		return args;
 	}
@@ -454,7 +448,7 @@ public:
 	/**
 	* Generate string from arguments
 	* @param arg
-	* 
+	*
 	* @return string
 	*/
 	string arg_string(char* arg)
@@ -486,22 +480,27 @@ int main(int argc, char* argv[])
 		if (strcmp(argv[1], "hbd") == 0) action = "hexabindec";
 		// check options
 		n = m.get_options(argc, argv);
+		//argc -= n;
+		//argv += n;
 		// generate morse code
-		string str;
-		while (argc > 2) 
+		if (n == 0)
 		{
-			str += m.arg_string(argv[2]);
-			argc -= 1;
-			argv += 1;
+			string str;
+			while (argc > 2)
+			{
+				str += m.arg_string(argv[2]);
+				argc -= 1;
+				argv += 1;
+			}
+			str = m.trim(m.fix_input(str));
+			if (action == "encode") cout << m.morse_encode(str) << "\n"; else
+			if (action == "binary") cout << m.morse_binary(str) << "\n"; else
+			if (action == "decode") cout << m.morse_decode(str) << "\n"; else
+			if (action == "hexa") cout << m.bin_morse_hexadecimal(str, 0) << "\n"; else
+			if (action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
+			if (action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
+			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n";
 		}
-		str = m.trim(m.fix_input(str));
-		if (action == "encode") cout << m.morse_encode(str) << "\n"; else
-		if (action == "binary") cout << m.morse_binary(str) << "\n"; else
-		if (action == "decode") cout << m.morse_decode(str) << "\n"; else
-		if (action == "hexa") cout << m.bin_morse_hexadecimal(str, 0) << "\n"; else
-		if (action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
-		if (action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
-		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n";
 	}
 	else
 	{
