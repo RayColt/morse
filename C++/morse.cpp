@@ -515,10 +515,6 @@ public:
 				argc -= 1;
 				argv += 1;
 				args += 1;
-				if (args == 3)
-				{
-					//break;
-				}
 			}
 		}
 		else
