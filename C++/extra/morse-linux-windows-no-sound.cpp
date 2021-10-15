@@ -425,35 +425,31 @@ public:
 	int get_options(int argc, char* argv[])
 	{
 		int args = 0;
-		bool ok = false;
-		if (strncmp(argv[1], "e", 1) == 0 || strncmp(argv[1], "b", 1) == 0 || strncmp(argv[1], "d", 1) == 0 ||
-			strncmp(argv[1], "he", 2) == 0 || strncmp(argv[1], "hd", 2) == 0 || strncmp(argv[1], "hb", 2) == 0 || strncmp(argv[1], "hbd", 3) == 0)
+		if (strncmp(argv[1], "-help", 5) == 0 || strncmp(argv[1], "-h", 2) == 0)
 		{
-			ok = true;
-		}
-		if (strncmp(argv[1], "/help", 5) == 0)
-		{
-			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
-			cout << "Morse encoding being used : \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20\n\n";
-			cout << "Usage console app version: ./morse\n\n";
-			cout << "Usage console line version:\n ./morse e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "#######################################################################\n";
+			cout << "## MORSE HELP                                             PLEH ESROM ##\n";
+			cout << "#######################################################################\n";
+			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
+			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
+			cout << "Usage console app version: morse.exe\n\n";
+			cout << "Usage cmd line version:\n morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
 			cout << "e=encode, b=binary-encode, d=decode (.- 01's)\n";
 			cout << "he=hexadecimal encode, he=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
-			cout << "Example 1: ./morse d \"... ---  ...  ---\"\n";
+			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "Example 2: ./morse e hello morse!!\n\n";
-			cout << "Have a look at morse.cpp with sound options, only for windows!\n";
-			ok = true;
+			cout << "Example: morse.exe e paris paris paris\n";
+			cout << "Example: morse.exe he paris paris paris\n\n";
+			cout << "#######################################################################";
 		}
-		if(!ok)
+		else
 		{
-			fprintf(stderr, "option error %s, see ./morse /help for info\n", argv[2]);
+			fprintf(stderr, "option error %s, see morse -help for info\n", argv[2]);
 			exit(1);
 		}
 		return args;
 	}
-
 public:
 	/**
 	* Generate string from arguments
@@ -490,8 +486,6 @@ int main(int argc, char* argv[])
 		if (strcmp(argv[1], "hbd") == 0) action = "hexabindec";
 		// check options
 		n = m.get_options(argc, argv);
-		argc -= n;
-		argv += n;
 		// generate morse code
 		string str;
 		while (argc > 2) 
@@ -513,7 +507,7 @@ int main(int argc, char* argv[])
 	{
 		// console part
 		string arg_in;
-		cout << "MORSE (cmd line: [./morse /help] for info)\n";
+		cout << "MORSE (cmd line: [morse.exe -help] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions:\n";
 		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
