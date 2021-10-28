@@ -235,12 +235,6 @@ private:
         long data_size, wave_size, riff_size;
         FILE* file;
         WAVE wave;
-#pragma warning(suppress : 4996)
-        if ((file = fopen(path, "wb")) == NULL)
-        {
-            fprintf(stderr, "Open failed: %s\n", path);
-            exit(1);
-        }
         wave.wFormatTag = 0x1;
         wave.nChannels = 1;
         wave.wBitsPerSample = sizeof data[0] * 8;
@@ -248,8 +242,15 @@ private:
         wave.nSamplesPerSec = (long)Sps;
         wave.nAvgBytesPerSec = (long)Sps * wave.nBlockAlign;
         wave_size = sizeof wave;
-        data_size = count * wave.nChannels * (wave.wBitsPerSample / 8);
+        data_size = (count * wave.wBitsPerSample * wave.nChannels) / 8;// (Sample Rate * BitsPerSample * Channels) / 8
         riff_size = 20 + wave_size + data_size;
+
+#pragma warning(suppress : 4996)
+        if ((file = fopen(path, "wb")) == NULL)
+        {
+            fprintf(stderr, "Open failed: %s\n", path);
+            exit(1);
+        }
         FWRITE("RIFF", 4);
         FWRITE(&riff_size, 4);
         FWRITE("WAVE", 4);
