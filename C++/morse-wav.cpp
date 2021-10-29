@@ -16,7 +16,7 @@ using namespace std;
 class MorseWav
 {
 private:
-    #define EPW 50      // elements per word (definition)
+#define EPW 50      // elements per word (definition)
     const char* MorseCode;
     int Debug;      // debug mode
     int Play;       // play WAV file
@@ -150,6 +150,7 @@ private:
         }
     }
 
+private:
     /**
     * Calculate poor ratio.
     *
@@ -242,9 +243,8 @@ private:
         wave.nSamplesPerSec = (long)Sps;
         wave.nAvgBytesPerSec = (long)Sps * wave.nBlockAlign;
         wave_size = sizeof wave;
-        data_size = (count * wave.wBitsPerSample * wave.nChannels) / 8;// (Sample Rate * BitsPerSample * Channels) / 8
+        data_size = (count * wave.wBitsPerSample * wave.nChannels) / 8;
         riff_size = 20 + wave_size + data_size;
-
 #pragma warning(suppress : 4996)
         if ((file = fopen(path, "wb")) == NULL)
         {
