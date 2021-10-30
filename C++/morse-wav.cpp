@@ -236,9 +236,9 @@ private:
     {
         long data_size, wave_size, riff_size;
         FILE* file;
-        WAVE wave; 
+        WAVE wave;
         wave.wFormatTag = 0x1;
-        wave.nChannels = 1; // 1 or 2 mono or stereo (TODO FIX STEREO)
+        wave.nChannels = 1; // 1 or 2 ~ mono or stereo (BUILD MONO)
         wave.wBitsPerSample = 16; // 8 or 16
         wave.nBlockAlign = (wave.wBitsPerSample * wave.nChannels) / 8;
         wave.nSamplesPerSec = Sps;
