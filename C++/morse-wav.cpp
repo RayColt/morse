@@ -17,7 +17,7 @@ class MorseWav
 {
 private:
 #define EPW 50      // elements per word (definition)
-    const char* MorseCode;
+    const char* MorseCode; // string array with morse
     int Debug;      // debug mode
     int Play;       // play WAV file
     const char* Path = "morse.wav";    // output filename
@@ -26,8 +26,8 @@ private:
     double Eps;     // elements per second (frequency of basic morse element)
     double Bit;     // duration of basic morse element,cell,quantum (seconds)
     double Sps;     // samples per second (WAV file, sound card)
-    short* pcm_data = NULL;
-    long pcm_count;
+    short* pcm_data = NULL; // array with data
+    long pcm_count; // total number of samples
     long wav_size;
 
 public:
@@ -73,7 +73,7 @@ private:
     */
     void tone(int on_off)
     {
-        double ampl = 32000.0;//amplitude 32KHz for digital sound or 0.85 * 32767 = 27,851.95 Hz;
+        double ampl = 32000.0;//amplitude 32KHz for digital sound
         double pi = 3.1415926535;
         double w = 2.0 * pi * Tone;
         long i, n, size;
@@ -215,6 +215,7 @@ private:
         DWORD nAvgBytesPerSec; // for buffer estimation
         WORD  nBlockAlign;     // block size of data
         WORD  wBitsPerSample;  // number of bits per sample of mono data
+        WORD  cbSize;          // size, in bytes, of extra format information 
     } WAVE;
 
 #define FWRITE(buf,size) \
@@ -235,16 +236,17 @@ private:
     {
         long data_size, wave_size, riff_size;
         FILE* file;
-        WAVE wave;
+        WAVE wave; 
         wave.wFormatTag = 0x1;
-        wave.nChannels = 1;
-        wave.wBitsPerSample = sizeof data[0] * 8;
-        wave.nBlockAlign = sizeof data[0] * wave.nChannels;
-        wave.nSamplesPerSec = (long)Sps;
-        wave.nAvgBytesPerSec = (long)Sps * wave.nBlockAlign;
-        wave_size = sizeof wave;
+        wave.nChannels = 1; // 1 or 2 mono or stereo (TODO FIX STEREO)
+        wave.wBitsPerSample = 16; // 8 or 16
+        wave.nBlockAlign = (wave.wBitsPerSample * wave.nChannels) / 8;
+        wave.nSamplesPerSec = Sps;
+        wave.nAvgBytesPerSec = wave.nSamplesPerSec * wave.nBlockAlign;
+        wave.cbSize = 0;
+        wave_size = sizeof wave; // = fmt size = 16
         data_size = (count * wave.wBitsPerSample * wave.nChannels) / 8;
-        riff_size = 20 + wave_size + data_size;
+        riff_size = 20 + wave_size + data_size; // 36 + data_size
 #pragma warning(suppress : 4996)
         if ((file = fopen(path, "wb")) == NULL)
         {
