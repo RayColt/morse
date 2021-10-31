@@ -470,8 +470,9 @@ public:
 			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
 			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
 			cout << "Usage console app version: morse.exe\n\n";
-			cout << "Usage cmd line version:\n morse.exe es,ew,e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "es=encode with sound, ew encode with sound and wav file, e=encode, b=binary-encode, d=decode (.- 01's)\n";
+			cout << "Usage cmd line version:\n morse.exe es,ew,ewm,e,b,d,he,hd,hb or hbd morse or txt\n\n";
+			cout << "es=encode with sound, ew= encode with sound & wav file, ewm= sound & wav but mono";
+			cout << "e = encode, b = binary - encode, d = decode(. - 01's)\n";
 			cout << "he=hexadecimal encode, hd=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
@@ -557,6 +558,7 @@ int main(int argc, char* argv[])
 	{
 		if (strcmp(argv[1], "es") == 0) action = "sound"; else
 		if (strcmp(argv[1], "ew") == 0) action = "wav"; else
+		if (strcmp(argv[1], "ewm") == 0) action = "wav_mono"; else
 		if (strcmp(argv[1], "e") == 0) action = "encode"; else
 		if (strcmp(argv[1], "d") == 0) action = "decode"; else
 		if (strcmp(argv[1], "b") == 0) action = "binary"; else
@@ -584,7 +586,7 @@ int main(int argc, char* argv[])
 		if (action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
 		if (action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
 		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
-		if (action == "sound" || action == "wav")
+		if (action == "sound" || action == "wav" || action == "wav_mono")
 		{
 			cout << "-wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
 			cout << "-hz: " << m.frequency_in_hertz << "Hz (tone)\n";
@@ -592,7 +594,11 @@ int main(int argc, char* argv[])
 			cout << morse << "\n";
 			if (action == "wav")
 			{
-				MorseWav mw = MorseWav(morse.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true);
+				MorseWav mw = MorseWav(morse.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true, 2);
+			}
+			else if (action == "wav_mono")
+			{
+				MorseWav mw = MorseWav(morse.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true, 1);
 			}
 			else
 			{
@@ -617,11 +623,11 @@ int main(int argc, char* argv[])
 		string arg_in;
 		cout << "MORSE (CMD line version: morse.exe -help for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
-		cout << "morse actions: \n0 [encode with sound], 1 [encode with sound to wav file]\n";
-		cout << "2 [encode], 3 [binary encode], 4 [decode morse/binary].\n";
-		cout << "5 [hexa encode], 6 [hexa decode].\n";
-		cout << "7 [hexa bin encode], 8 [hexa bin decode].\n";
-		cout << "choose action 0,1,2,3,4,5,6,7 or 8 and press [enter]:\n";
+		cout << "morse actions: \n0 [encode with sound], 1 [encode with stereo sound to wav file] \n2 [encode with mono sound to wav file]\n";
+		cout << "3 [encode], 4 [binary encode], 5 [decode morse/binary].\n";
+		cout << "6 [hexa encode], 7 [hexa decode].\n";
+		cout << "8 [hexa bin encode], 9 [hexa bin decode].\n";
+		cout << "choose action 0,1,2,3,4,5,6,7,8 or 9 and press [enter]:\n";
 		getline(cin, arg_in);
 		regex e("[0-8]");
 		if (!regex_match(arg_in, e))
@@ -633,24 +639,29 @@ int main(int argc, char* argv[])
 		{
 			if (arg_in == "0") action = "sound"; else
 			if (arg_in == "1") action = "wav"; else
-			if (arg_in == "2") action = "encode"; else
-			if (arg_in == "3") action = "binary"; else
-			if (arg_in == "4") action = "decode"; else
-			if (arg_in == "5") action = "hexa"; else
-			if (arg_in == "6") action = "hexadec"; else
-			if (arg_in == "7") action = "hexabin"; else
-			if (arg_in == "8") action = "hexabindec";
+			if (arg_in == "2") action = "wav_mono"; else
+			if (arg_in == "3") action = "encode"; else
+			if (arg_in == "4") action = "binary"; else
+			if (arg_in == "5") action = "decode"; else
+			if (arg_in == "6") action = "hexa"; else
+			if (arg_in == "7") action = "hexadec"; else
+			if (arg_in == "8") action = "hexabin"; else
+			if (arg_in == "9") action = "hexabindec";
 
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
 			arg_in = m.fix_input(arg_in);
-			if (action == "sound" || action == "wav")
+			if (action == "sound" || action == "wav" || action == "wav_mono")
 			{
 				string str = m.morse_encode(arg_in);
 				cout << str << "\n";
 				if (action == "wav")
 				{
-					MorseWav mw = MorseWav(str.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true);
+					MorseWav mw = MorseWav(str.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true, 2);
+				}
+				else if (action == "wav_mono")
+				{
+					MorseWav mw = MorseWav(str.c_str(), m.frequency_in_hertz, m.words_per_minute, m.samples_per_second, true, 1);
 				}
 				else
 				{
