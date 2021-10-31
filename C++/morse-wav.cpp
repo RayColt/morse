@@ -235,6 +235,7 @@ private:
     void wav_write(const char* path, short* data, long count)
     {
         long data_size, wave_size, riff_size;
+        int fmt_size = 16;
         FILE* file;
         WAVE wave;
         wave.wFormatTag = 0x1;
@@ -244,9 +245,9 @@ private:
         wave.nSamplesPerSec = Sps;
         wave.nAvgBytesPerSec = wave.nSamplesPerSec * wave.nBlockAlign;
         wave.cbSize = 0;
-        wave_size = sizeof wave; // = fmt size = 16
+        wave_size = sizeof wave;
         data_size = (count * wave.wBitsPerSample * wave.nChannels) / 8;
-        riff_size = 20 + wave_size + data_size; // 36 + data_size
+        riff_size = fmt_size + wave_size + data_size; // 36 + data_size
 #pragma warning(suppress : 4996)
         if ((file = fopen(path, "wb")) == NULL)
         {
