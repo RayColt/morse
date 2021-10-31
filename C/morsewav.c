@@ -396,7 +396,7 @@ void wav_write(char* path, short* data, long count)
 
     wave_size = sizeof wave;
     data_size = count * wave.nChannels * (wave.wBitsPerSample / 8);
-    riff_size = 20 + wave_size + data_size;
+    riff_size = 16 + wave_size + data_size;
     FWRITE("RIFF", 4);
     FWRITE(&riff_size, 4);
 
