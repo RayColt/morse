@@ -7,7 +7,7 @@
 using namespace std;
 /**
 * C++ MorseWav Class file used by morse.cpp
-* Convert morse code to audio WAV file using PCM
+* Convert morse code to MONO Audio WAV file using PCM
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1978, 2021 Ray Colt
