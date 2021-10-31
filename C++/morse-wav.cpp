@@ -90,7 +90,7 @@ private:
             double t = (double)i / Sps;
             if (pcm_count == Sps * seconds)
             {
-                seconds += 1;
+                seconds++;
                 size = (long)(Sps * sizeof pcm_data[0] * seconds);
                 pcm_data = (short*)realloc(pcm_data, size);
             }
