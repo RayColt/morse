@@ -471,7 +471,7 @@ public:
 			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
 			cout << "Usage console app version: morse.exe\n\n";
 			cout << "Usage cmd line version:\n morse.exe es,ew,ewm,e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "es=encode with sound, ew= encode with sound & wav file, ewm= sound & wav but mono";
+			cout << "es=encode with sound, ew= encode with sound & wav file, ewm= sound & wav but mono\n";
 			cout << "e = encode, b = binary - encode, d = decode(. - 01's)\n";
 			cout << "he=hexadecimal encode, hd=hexadecimal decode (2E 2D and 20's)\n";
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
