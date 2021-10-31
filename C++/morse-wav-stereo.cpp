@@ -108,7 +108,7 @@ private:
             double t = (double)i / Sps;
             if (pcm_count == Sps * seconds)
             {
-                seconds ++;
+                seconds++;
                 size = (seconds * sizeof buffer_pcm * Sps);
                 buffer_pcm = reallocate_PCM16_stereo_buffer(buffer_pcm, size);
             }
