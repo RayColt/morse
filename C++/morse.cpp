@@ -477,17 +477,17 @@ public:
 			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "With sound options: morse.exe es -hz:880 -wpm:16 txt to morse(using Windows Beep())\n";
-			cout << "With sound options: morse.exe ew -hz:880 -wpm:16 -sps:44100 txt to morse(using Windows WAV)\n";
+			cout << "With sound options: ./morse.exe es -hz:880 -wpm:16 txt to morse(using Windows Beep())\n";
+			cout << "With sound options: ./morse.exe ew -hz:880 -wpm:16 -sps:44100 txt to morse(using Windows WAV)\n";
 			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm, sps = samples per second.\n\n";
 			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
 			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
 			cout << "For inspiration have look at music notes their frequencies.\n\n";
-			cout << "Example: morse.exe es -wpm:18 -hz:739.99 paris paris paris (sps not available in es mode)\n";
-			cout << "Example: morse.exe ew paris paris paris\n";
-			cout << "Example: morse.exe ew -wpm:16 -hz:880 paris paris paris\n";
-			cout << "Example: morse.exe ew -wpm:16 -hz:880 -sps:44100 paris paris paris\n";
-			cout << "Example: morse.exe ew -wpm:20 -hz:1050 -sps:22050 paris paris paris\n\n";
+			cout << "Example: ./morse.exe es -wpm:18 -hz:739.99 paris paris paris (sps not available in es mode)\n";
+			cout << "Example: ./morse.exe ew paris paris paris\n";
+			cout << "Example: ./morse.exe ew -wpm:16 -hz:880 paris paris paris\n";
+			cout << "Example: ./morse.exe ewm -wpm:16 -hz:880 -sps:44100 paris paris paris\n";
+			cout << "Example: ./morse.exe ew -wpm:20 -hz:1050 -sps:22050 paris paris paris\n\n";
 			cout << "#######################################################################";
 			ok = true;
 		}
