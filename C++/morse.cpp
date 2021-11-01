@@ -629,10 +629,10 @@ int main(int argc, char* argv[])
 		cout << "8 [hexa bin encode], 9 [hexa bin decode].\n";
 		cout << "choose action 0,1,2,3,4,5,6,7,8 or 9 and press [enter]:\n";
 		getline(cin, arg_in);
-		regex e("[0-8]");
+		regex e("[0-9]");
 		if (!regex_match(arg_in, e))
 		{
-			arg_in = "2";
+			arg_in = "3";
 			cout << "wrong input, action " << arg_in << " is active now" << "\n";
 		}
 		if (regex_match(arg_in, e))
