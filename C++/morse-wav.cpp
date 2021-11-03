@@ -299,7 +299,7 @@ private:
     * @param data
     * @param count
     */
-    void wav_write(const char* path, PCM16_mono_t* data, PCM16_stereo_t* buffer_pcm, long count)
+    void wav_write(const char* path, PCM16_mono_t* buffer_mono_pcm, PCM16_stereo_t* buffer_pcm, long count)
     {
         long data_size, wave_size, riff_size;
         int fmt_size = 16;
@@ -331,7 +331,7 @@ private:
         FWRITE(&data_size, 4);
         if (MONO_STEREO == 1)
         {
-            FWRITE(data, data_size);
+            FWRITE(buffer_mono_pcm, data_size);
         }
         else
         {
