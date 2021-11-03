@@ -112,7 +112,7 @@ private:
     void tone(int on_off)
     {
         double ampl = 32000.0;//amplitude 32KHz for digital sound
-        double pi = 3.1415926535;
+        double pi = 3.1415926535897932384626433832795;
         double w = 2.0 * pi * Tone;
         long i, n, size;
         static long seconds;
