@@ -169,9 +169,6 @@ private:
     * Define dit, dah, end of letter, end of word.
     *
     * The rules of 1/3/7 and 1/2/4:
-    * 1/2/4 we will be using with the smallest unit is one tone
-    * space between chars is one tone and between words is 4 tones
-    * 
     * Morse code is: tone for one unit (dit) or three units (dah)
     * followed by the sum of one unit of silence (always),
     * plus two units of silence (if end of letter, one space),
