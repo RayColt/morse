@@ -1,4 +1,4 @@
-// ray colt malibu 1978 (c)
+// ray colt malibu 1978 (c) - an original sketch version
 // morsewav -- Convert text to morse code to audio WAV file.
 //
 // The goal was to create a morse code ring tone for an iPhone.
