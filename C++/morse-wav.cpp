@@ -305,7 +305,7 @@ private:
         FILE* file;
         WAVE wave;
         wave.wFormatTag = 0x1;
-        wave.nChannels = MONO_STEREO; // 1 or 2 ~ mono or stereo (BUILD STEREO)
+        wave.nChannels = MONO_STEREO; // 1 or 2 ~ mono or stereo
         wave.wBitsPerSample = 16; // 8 or 16
         wave.nBlockAlign = (wave.wBitsPerSample * wave.nChannels) / 8;
         wave.nSamplesPerSec = Sps;
