@@ -169,9 +169,6 @@ private:
     * Define dit, dah, end of letter, end of word.
     *
     * The rules of 1/3/7 and 1/2/4:
-    * With Farnsworth-units it is 1/3/7, I will use the 1/2/4 because of mobile apps
-    * and it is the compressed digital Farnsworth version, the whole idea of international morse
-    * up to empty keys in programming languages their collections
     * Morse code is: tone for one unit (dit) or three units (dah)
     * followed by the sum of one unit of silence (always),
     * plus two units of silence (if end of letter, one space),
