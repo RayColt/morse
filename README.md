@@ -10,7 +10,7 @@ Windows C++ console app with sound:(C++ console app with sound: In principle you
 The real, first and only US Morse mapping,<br>
       based upon Synthesizer Binary tables, from a mouse I believe,<br>
 or just a military  algorithm:-):<br />
-        <b>We removed the first number one,
+        <b>We removed the first number one(0b1),
         reversed it(think Endian/IBM PowerPC) 
         to save Data and CPU's in war times.<br>
 <a href="https://raycolt.github.io/morse/">WORKING HTML EXAMPLE</a><br>
