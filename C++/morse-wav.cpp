@@ -15,12 +15,20 @@ using namespace std;
 **/
 class MorseWav
 {
+    /**
+    * Datastructors
+    */
 private:
     typedef struct PCM16_stereo_s
     {
         int16_t left;
         int16_t right;
     } PCM16_stereo_t;
+
+    typedef struct PCM16_mono_s
+    {
+        int16_t speaker;
+    } PCM16_mono_t;
 
     PCM16_stereo_t* allocate_PCM16_stereo_buffer(int32_t size)
     {
@@ -30,6 +38,16 @@ private:
     PCM16_stereo_t* reallocate_PCM16_stereo_buffer(PCM16_stereo_t* buffer, int32_t size)
     {
         return (PCM16_stereo_t*)realloc(buffer, sizeof(PCM16_stereo_t) * size);
+    }
+
+    PCM16_mono_t* allocate_PCM16_mono_buffer(int32_t size)
+    {
+        return (PCM16_mono_t*)malloc(sizeof(PCM16_mono_t) * size);
+    }
+
+    PCM16_mono_t* reallocate_PCM16_mono_buffer(PCM16_mono_t* buffer, int32_t size)
+    {
+        return (PCM16_mono_t*)realloc(buffer, sizeof(PCM16_mono_t) * size);
     }
 
 private:
@@ -44,7 +62,8 @@ private:
     double Eps;     // elements per second (frequency of basic morse element)
     double Bit;     // duration of basic morse element,cell,quantum (seconds)
     double Sps;     // samples per second (WAV file, sound card)
-    short* pcm_data = NULL; // array with data
+    //short* pcm_data = NULL; 
+    PCM16_mono_t* buffer_mono_pcm = NULL; // array with data
     PCM16_stereo_t* buffer_pcm = NULL;
     long pcm_count; // total number of samples
     long wav_size;
@@ -69,7 +88,7 @@ public:
         //show_details();
         check_ratios();
         morse_tone(MorseCode);
-        wav_write(Path, pcm_data, buffer_pcm, pcm_count);
+        wav_write(Path, buffer_mono_pcm, buffer_pcm, pcm_count);
         printf("%ld PCM samples", pcm_count);
         printf(" (%.1lf s @ %.1lf kHz)", (double)pcm_count / Sps, Sps / 1e3);
         printf(" written to %s (%.1f kB)\n", Path, wav_size / 1024.0);
@@ -98,13 +117,13 @@ private:
         double w = 2.0 * pi * Tone;
         long i, n, size;
         static long seconds;
-        if (MONO_STEREO == 1)
+        if (MONO_STEREO == 1) // mono
         {
-            if (pcm_data == NULL)
+            if (buffer_mono_pcm == NULL)
             {
                 seconds = 1;
-                size = (long)(Sps * sizeof pcm_data[0] * seconds);
-                pcm_data = (short*)malloc(size);
+                size = (seconds * sizeof buffer_mono_pcm * Sps);
+                buffer_mono_pcm = allocate_PCM16_mono_buffer(size);
             }
         }
         else // stereo
@@ -120,16 +139,16 @@ private:
         for (i = 0; i < n; i++)
         {
             double t = (double)i / Sps;
-            if (MONO_STEREO == 1)
+            if (MONO_STEREO == 1) // mono
             {
                 double t = (double)i / Sps;
                 if (pcm_count == Sps * seconds)
                 {
                     seconds++;
-                    size = (long)(Sps * sizeof pcm_data[0] * seconds);
-                    pcm_data = (short*)realloc(pcm_data, size);
+                    size = (seconds * sizeof buffer_mono_pcm * Sps);
+                    buffer_mono_pcm = reallocate_PCM16_mono_buffer(buffer_mono_pcm, size);
                 }
-                pcm_data[pcm_count++] = (short)(on_off * ampl * sin(w * t));
+                buffer_mono_pcm[pcm_count++].speaker = (int16_t)(on_off * ampl * sin(w * t));
             }
             else // stereo
             {
@@ -280,7 +299,7 @@ private:
     * @param data
     * @param count
     */
-    void wav_write(const char* path, short* data, PCM16_stereo_t* buffer_pcm, long count)
+    void wav_write(const char* path, PCM16_mono_t* data, PCM16_stereo_t* buffer_pcm, long count)
     {
         long data_size, wave_size, riff_size;
         int fmt_size = 16;
