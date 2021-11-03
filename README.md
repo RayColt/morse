@@ -12,7 +12,7 @@ The real, first and only US Morse mapping,<br>
 or just a military  algorithm:-):<br />
         <b>We removed the first number one(0b1),
         reversed it(think Endian/IBM PowerPC) 
-        to save Data and CPU's in war times.<br>
+        to save Data and CPU's in war times. Its even URL Save.<br>
 <a href="https://raycolt.github.io/morse/">WORKING HTML EXAMPLE</a><br>
 <pre>
 uint16_t Morse::encode(uint8_t character) 
