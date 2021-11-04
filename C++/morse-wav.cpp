@@ -96,11 +96,12 @@ public:
         printf(" written to %s (%.1f kB)\n", Path, wav_size / 1024.0);
         if (play)
         {
-            char cmd[1000];
-#pragma warning(suppress : 4996)
-            sprintf(cmd, "morse.wav /play /close %s", Path);
-            printf("** %s\n", cmd);
-            system(cmd);
+            string str = Path;
+            str += " /play /close ";
+            str += Path;
+            const char* c = str.c_str();
+            printf("** %s\n", c);
+            system(str.c_str());
         }
     }
 
