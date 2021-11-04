@@ -50,6 +50,9 @@ private:
         return (PCM16_mono_t*)realloc(buffer, sizeof(PCM16_mono_t) * size);
     }
 
+    /**
+    * Instance variables -1
+    */
 private:
 #define EPW 50      // elements per word (definition)
     const char* MorseCode; // string array with morse
