@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 /**
@@ -49,7 +50,7 @@ private:
     {
         return (PCM16_mono_t*)realloc(buffer, sizeof(PCM16_mono_t) * size);
     }
-
+ 
     /**
     * Instance variables -1
     */
@@ -181,6 +182,7 @@ private:
     void dit() { tone(1); tone(0); }
     void dah() { tone(1); tone(1); tone(1); tone(0); }
     void space() { tone(0); tone(0); }
+
     /**
     * Create Tones from morse code.
     *
@@ -287,9 +289,9 @@ private:
         WORD  cbSize;          // size, in bytes, of extra format information 
     } WAVE;
 
-#define FWRITE(buf,size) \
+#define FWRITE(buffer, size) \
     wav_size += size; \
-    if (fwrite(buf, size, 1, file) != 1) { \
+    if (fwrite(buffer, size, 1, file) != 1) { \
         fprintf(stderr, "Write failed: %s\n", path); \
         exit(1); \
     }
