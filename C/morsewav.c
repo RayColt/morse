@@ -1,4 +1,4 @@
-// ray colt malibu 1978 (c) - an original sketch version
+// ray colt malibu 1978 (c)
 // morsewav -- Convert text to morse code to audio WAV file.
 //
 // The goal was to create a morse code ring tone for an iPhone.
@@ -261,35 +261,35 @@ int get_options(int argc, char* argv[])
         }
         else
 
-            if (strncmp(argv[1], "/tone:", 6) == 0) {
-                Tone = atof(&argv[1][6]);
-            }
-            else
+        if (strncmp(argv[1], "/tone:", 6) == 0) {
+        Tone = atof(&argv[1][6]);
+        }
+        else
 
-                if (strncmp(argv[1], "/out:", 5) == 0) {
-                    Path = &argv[1][5];
-                }
-                else
+        if (strncmp(argv[1], "/out:", 5) == 0) {
+        Path = &argv[1][5];
+        }
+        else
 
-                    if (strcmp(argv[1], "/play") == 0) {
-                        Play = 1;
-                    }
-                    else
+        if (strcmp(argv[1], "/play") == 0) {
+        Play = 1;
+        }
+        else
 
-                        if (strncmp(argv[1], "/sps:", 5) == 0) {
-                            Sps = atof(&argv[1][5]);
-                        }
-                        else
+        if (strncmp(argv[1], "/sps:", 5) == 0) {
+        Sps = atof(&argv[1][5]);
+        }
+        else
 
-                            if (strncmp(argv[1], "/wpm:", 5) == 0) {
-                                Wpm = atof(&argv[1][5]);
-                            }
-                            else
+        if (strncmp(argv[1], "/wpm:", 5) == 0) {
+            Wpm = atof(&argv[1][5]);
+        }
+        else
 
-                            {
-                                fprintf(stderr, "Unknown option: %s\n", argv[1]);
-                                exit(1);
-                            }
+        {
+            fprintf(stderr, "Unknown option: %s\n", argv[1]);
+            exit(1);
+        }
         argc -= 1;
         argv += 1;
         args += 1;
@@ -396,7 +396,7 @@ void wav_write(char* path, short* data, long count)
 
     wave_size = sizeof wave;
     data_size = count * wave.nChannels * (wave.wBitsPerSample / 8);
-    riff_size = 16 + wave_size + data_size;
+    riff_size = 20 + wave_size + data_size;
     FWRITE("RIFF", 4);
     FWRITE(&riff_size, 4);
 
