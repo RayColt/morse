@@ -6,7 +6,7 @@ JavaScript: a form<br><br>
 Windows C++ console app with sound:(C++ console app with sound: In principle you only need morse.cpp and morse-wav.cpp to create a VS or Codeblocks project.)
 <br><a href="http://www.mediaplayerlite.net/">Media Player Lite</a>, is what I use to play the wav files with morse.<br><br>
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a> 
-<br>I'm now building the non console version into a new public repository soon:
+<br>I'm now building the non console C++ version into a new public repository soon:
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/colts-morse-c-form-app.jpg></a>   
 
 The real, first and only US Morse mapping,<br>
