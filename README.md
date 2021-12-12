@@ -5,7 +5,7 @@ C: an original morse to wav in C file<br>
 JavaScript: a form<br><br>
 Windows C++ console app with sound:(C++ console app with sound: In principle you only need morse.cpp and morse-wav.cpp to create a VS or Codeblocks project.)
 <br><a href="http://www.mediaplayerlite.net/">Media Player Lite</a>, is what I use to play the wav files with morse.<br><br>
-<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse-colt.jpg></a> 
+<a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse.jpg></a> 
 
 <a href="https://github.com/RayColt/Colt_Morse">A windows app</a> of the console C++ morse version:<br>
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/morse-colt.jpg></a>   
