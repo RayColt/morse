@@ -9,7 +9,7 @@ Windows C++ console app with sound:(C++ console app with sound: In principle you
 <br>https://github.com/RayColt/Colt_Morse
 
 <a href="https://github.com/RayColt/morse/tree/master/cpp">A windows app</a> of the console C++ morse version:
-<img src=https://github.com/RayColt/morse/blob/master/cpp/colts-morse-c-form-app.jpg></a>   
+<img src=https://github.com/RayColt/morse/blob/master/cpp/colts-morse-c-form-app.jpg>  
 
 The real, first and only US Morse mapping,<br>
       based upon Synthesizer Binary tables, from a mouse I believe,<br>
