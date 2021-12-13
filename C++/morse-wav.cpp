@@ -52,7 +52,7 @@ private:
     }
  
     /**
-    * Instance variables -1
+    * Instance variables
     */
 private:
 #define EPW 50      // elements per word (definition)
@@ -77,6 +77,10 @@ public:
     */
     MorseWav(const char* morsecode, double tone, double wpm, double samples_per_second, bool play, int modus)
     {
+        string filename = "morse";
+        filename += to_string(time(NULL));
+        filename += ".wav";
+        Path = filename.c_str();
         MorseCode = morsecode;
         MONO_STEREO = modus;
         Wpm = wpm;
@@ -102,7 +106,7 @@ public:
             str += Path;
             const char* c = str.c_str();
             printf("** %s\n", c);
-            system(str.c_str());
+            system(c);
         }
     }
 
@@ -116,7 +120,7 @@ private:
     */
     void tone(int on_off)
     {
-        double ampl = 32000.0;//amplitude 32KHz for digital sound
+        double ampl = 32000.0;// amplitude 32KHz for digital sound
         double pi = 3.1415926535897932384626433832795;
         double w = 2.0 * pi * Tone;
         long i, n, size;
@@ -204,7 +208,7 @@ private:
     /**
     * Check for sub-optimal combination of rates (poor sounding sinewaves).
     */
-    void check_ratios(void)
+    void check_ratios()
     {
         char nb[] = "WARNING: sub-optimal sound ratio";
         if (ratio_poor(Sps, Tone))
