@@ -177,13 +177,16 @@ public:
 	string morse_encode(string str)
 	{
 		string line = "";
+		str = fix_input(str);
+		regex e("\\s{2,}");
+		str = regex_replace(str, e, " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
 			line += getMorse(stringToUpper(chr));
 			line += " ";
 		}
-		return trim(fix_input(line));
+		return line;
 	}
 
 public:
@@ -196,6 +199,7 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
+		str = fix_input(str);
 		regex e("[10\\s\\.\\-]+");
 		if (regex_match(str, e))
 		{
@@ -212,7 +216,8 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			//return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			return "_DO-NOTHING_";
 		}
 	}
 
@@ -229,6 +234,7 @@ public:
 	string bin_morse_hexadecimal(string str, int modus)
 	{
 		string str1, str2;
+		str = fix_input(str);
 		const char* a[] = { "2E ", "2D ", "30 ", "31 " };
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
@@ -255,6 +261,7 @@ public:
 	string hexadecimal_bin_txt(string str, int modus)
 	{
 		string str1, str2;
+		str = fix_input(str);
 		regex e("[20|30|31|2D|2E|\\s]+");
 		if (regex_match(str, e))
 		{
@@ -271,7 +278,8 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+			//return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+			return "_DO-NOTHING_";
 		}
 	}
 
@@ -382,7 +390,7 @@ private:
 		return vstr;
 	}
 
-public:
+private:
 	/**
 	* Fix input with whitespace to reduce errors
 	* info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
@@ -414,18 +422,6 @@ private:
 	{
 		str.erase(remove(str.begin(), str.end(), ' '), str.end());
 		return str;
-	}
-
-public:
-	/**
-	* Reduce whitespaces to minimum of two
-	*
-	* @param str
-	* @return string
-	*/
-	string reduce_whitespaces(string str)
-	{
-		return regex_replace(str, std::regex("[' ']{2,}"), "  ");
 	}
 
 public:
@@ -590,20 +586,18 @@ int main(int argc, char* argv[])
 			argc -= 1;
 			argv += 1;
 		}
-		str = m.fix_input(str);
-		if (action == "encode") cout << m.reduce_whitespaces(m.morse_encode(str)) << "\n"; else
-		if (action == "binary") cout << m.reduce_whitespaces(m.morse_binary(str)) << "\n"; else
-		if (action == "decode") cout << m.reduce_whitespaces(m.morse_decode(str)) << "\n"; else
-		if (action == "hexa") cout << m.reduce_whitespaces(m.bin_morse_hexadecimal(str, 0)) << "\n"; else
-		if (action == "hexadec") cout << m.reduce_whitespaces(m.hexadecimal_bin_txt(str, 0)) << "\n"; else
-		if (action == "hexabin") cout << m.reduce_whitespaces(m.bin_morse_hexadecimal(str, 1)) << "\n"; else
-		if (action == "hexabindec") cout << m.reduce_whitespaces(m.hexadecimal_bin_txt(str, 1)) << "\n"; else
+		if (action == "encode") cout << m.morse_encode(str) << "\n"; else
+		if (action == "binary") cout << m.morse_binary(str) << "\n"; else
+		if (action == "decode") cout << m.morse_decode(str) << "\n"; else
+		if (action == "hexa") cout << m.bin_morse_hexadecimal(str, 0) << "\n"; else
+		if (action == "hexadec") cout << m.hexadecimal_bin_txt(str, 0) << "\n"; else
+		if (action == "hexabin") cout << m.bin_morse_hexadecimal(str, 1) << "\n"; else
+		if (action == "hexabindec") cout << m.hexadecimal_bin_txt(str, 1) << "\n"; else
 		if (action == "sound" || action == "wav" || action == "wav_mono")
 		{
 			cout << "-wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
 			cout << "-hz: " << m.frequency_in_hertz << "Hz (tone)\n";
 			string morse = m.morse_encode(str);
-			morse = m.reduce_whitespaces(morse);
 			cout << morse << "\n";
 			if (action == "wav")
 			{
@@ -663,11 +657,9 @@ int main(int argc, char* argv[])
 
 			cout << "type or paste input and press [enter]\n";
 			getline(cin, arg_in);
-			arg_in = m.fix_input(arg_in);
 			if (action == "sound" || action == "wav" || action == "wav_mono")
 			{
 				string str = m.morse_encode(arg_in);
-				str = m.reduce_whitespaces(str);
 				cout << str << "\n";
 				if (action == "wav")
 				{
@@ -695,13 +687,13 @@ int main(int argc, char* argv[])
 				}
 			}
 			else
-			if (action == "encode") cout << m.reduce_whitespaces(m.morse_encode(arg_in)) << "\n"; else
-			if (action == "binary") cout << m.reduce_whitespaces(m.morse_binary(arg_in)) << "\n"; else
-			if (action == "decode") cout << m.reduce_whitespaces(m.morse_decode(arg_in)) << "\n"; else
-			if (action == "hexa") cout << m.reduce_whitespaces(m.bin_morse_hexadecimal(arg_in, 0)) << "\n"; else
-			if (action == "hexadec") cout << m.reduce_whitespaces(m.hexadecimal_bin_txt(arg_in, 0)) << "\n"; else
-			if (action == "hexabin") cout << m.reduce_whitespaces(m.bin_morse_hexadecimal(arg_in, 1)) << "\n"; else
-			if (action == "hexabindec") cout << m.reduce_whitespaces(m.hexadecimal_bin_txt(arg_in, 1)) << "\n";
+			if (action == "encode") cout << m.morse_encode(arg_in) << "\n"; else
+			if (action == "binary") cout << m.morse_binary(arg_in) << "\n"; else
+			if (action == "decode") cout << m.morse_decode(arg_in) << "\n"; else
+			if (action == "hexa") cout << m.bin_morse_hexadecimal(arg_in, 0) << "\n"; else
+			if (action == "hexadec") cout << m.hexadecimal_bin_txt(arg_in, 0) << "\n"; else
+			if (action == "hexabin") cout << m.bin_morse_hexadecimal(arg_in, 1) << "\n"; else
+			if (action == "hexabindec") cout << m.hexadecimal_bin_txt(arg_in, 1) << "\n";
 		}
 		cout << "Press any key to close program . . .";
 		int c = getchar();
