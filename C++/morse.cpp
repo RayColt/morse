@@ -628,7 +628,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		string arg_in;
-		cout << "MORSE (CMD line version: morse.exe -help or -h for info)\n";
+		cout << "MORSE 1.0 (CMD line version: morse.exe -help or -h for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n0 [encode with sound], 1 [encode with stereo sound to wav file] \n2 [encode with mono sound to wav file]\n";
 		cout << "3 [encode], 4 [binary encode], 5 [decode morse/binary].\n";
