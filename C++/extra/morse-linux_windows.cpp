@@ -214,8 +214,8 @@ public:
 		}
 		else
 		{
-			//return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
-			return "_DO-NOTHING_";
+			return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			//return "_DO-NOTHING_";
 		}
 	}
 
@@ -276,8 +276,8 @@ public:
 		}
 		else
 		{
-			//return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
-			return "_DO-NOTHING_";
+			return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+			//return "_DO-NOTHING_";
 		}
 	}
 
