@@ -7,7 +7,7 @@
 
 using namespace std;
 /**
-* C++ Morse
+* C++ Morse Class
 *
 * @author Ray Colt <ray_colt@pentagon.mil>
 * @copyright Copyright (c) 1975, 2021 Ray Colt
@@ -15,10 +15,21 @@ using namespace std;
 *
 * Derived from ARPANET Pentagon's morse.
 *
-* Usage program, see: morse -help or -h
+* You can damage your hearing or your speakers if you play tones at extreme volumes!
+* This program will not allow to play morse < 20 Hz and > 8,000 Hz.
+*
+* Usage program, see: ./morse -help or -h
+*
+* The Math: sine wave: y(t) = amplitude * sin(2 * PI * frequency * time), time = s / sample_rate
 **/
 class Morse
 {
+public:
+	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
+	double words_per_minute = 16.0;//words per minute
+	double max_frequency_in_hertz = 8000.0;
+	double min_frequency_in_hertz = 37.0;
+	double samples_per_second = 44100.0;
 	/**
 	* Constructor
 	*/
@@ -26,6 +37,9 @@ public:
 	Morse() { fill_morse_maps(); }
 
 private:
+	/**
+	* Fill Multimaps with morse tables
+	*/
 	multimap <string, string> morse_map;
 	multimap <string, string> morse_map_reversed;
 	void fill_morse_maps()
@@ -161,13 +175,16 @@ public:
 	string morse_encode(string str)
 	{
 		string line = "";
+		str = fix_input(str);
+		regex e("\\s{2,}");
+		str = regex_replace(str, e, " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
 			line += getMorse(stringToUpper(chr));
 			line += " ";
 		}
-		return trim(line);
+		return line;
 	}
 
 public:
@@ -180,6 +197,7 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
+		str = fix_input(str);
 		regex e("[10\\s\\.\\-]+");
 		if (regex_match(str, e))
 		{
@@ -196,7 +214,8 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see \\help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			//return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			return "_DO-NOTHING_";
 		}
 	}
 
@@ -213,6 +232,7 @@ public:
 	string bin_morse_hexadecimal(string str, int modus)
 	{
 		string str1, str2;
+		str = fix_input(str);
 		const char* a[] = { "2E ", "2D ", "30 ", "31 " };
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
@@ -239,15 +259,26 @@ public:
 	string hexadecimal_bin_txt(string str, int modus)
 	{
 		string str1, str2;
-		const char* a[] = { "2E", "2D", "30", "31" };
-		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
-		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
-		string line = remove_whitespaces(str);
-		line = regex_replace(line, regex("2020"), "  ");
-		line = regex_replace(line, regex("20"), " ");
-		line = regex_replace(line, regex(str1), "0");
-		line = regex_replace(line, regex(str2), "1");
-		return morse_decode(trim(line));
+		str = fix_input(str);
+		regex e("[20|30|31|2D|2E|\\s]+");
+		if (regex_match(str, e))
+		{
+			const char* a[] = { "2E", "2D", "30", "31" };
+			if (modus == 0) { str1 = a[0]; str2 = a[1]; };
+			if (modus == 1) { str1 = a[2]; str2 = a[3]; };
+			string line = remove_whitespaces(str);
+			line = regex_replace(line, regex("2020"), "  ");
+			line = regex_replace(line, regex("20"), " ");
+			line = regex_replace(line, regex(str1), "0");
+			line = regex_replace(line, regex(str2), "1");
+			string s = morse_decode(trim(line));
+			return s;
+		}
+		else
+		{
+			//return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+			return "_DO-NOTHING_";
+		}
 	}
 
 private:
@@ -357,7 +388,7 @@ private:
 		return vstr;
 	}
 
-public:
+private:
 	/**
 	* Fix input with whitespace to reduce errors
 	* info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
@@ -394,6 +425,13 @@ private:
 public:
 	/**
 	* Calculate words per second to the duration in milliseconds
+	*
+	* Dit: 1 unit
+	* Dah: 3 units
+	* Intra-character space: 1 unit
+	* Inter-character space: 3 Farnsworth-units
+	* Word space: longer than 7 Farnsworth-units
+	* Standard word Paris is 50 units, elements. (with one extra word space)
 	*
 	* @param wpm - words per minute
 	* @return double
@@ -444,6 +482,7 @@ public:
 		}
 		return args;
 	}
+
 public:
 	/**
 	* Generate string from arguments
@@ -463,6 +502,9 @@ public:
 	}
 };
 
+/**
+* Main Class
+*/
 int main(int argc, char* argv[])
 {
 	Morse m;
@@ -492,7 +534,6 @@ int main(int argc, char* argv[])
 				argc -= 1;
 				argv += 1;
 			}
-			str = m.trim(m.fix_input(str));
 			if (action == "encode") cout << m.morse_encode(str) << "\n"; else
 			if (action == "binary") cout << m.morse_binary(str) << "\n"; else
 			if (action == "decode") cout << m.morse_decode(str) << "\n"; else
@@ -506,7 +547,7 @@ int main(int argc, char* argv[])
 	{
 		// console part
 		string arg_in;
-		cout << "MORSE (cmd line: [morse.exe -help] for info)\n";
+		cout << "MORSE 1.0 (cmd line: [morse.exe -help or -h] for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions:\n";
 		cout << "1 [encode], 2 [binary encode], 3 [decode morse/binary].\n";
@@ -531,7 +572,6 @@ int main(int argc, char* argv[])
 			if (arg_in == "7") action = "hexabindec";
 			cout << "type or paste input and press [enter]\n";
 			getline(std::cin, arg_in);
-			arg_in = m.fix_input(arg_in);
 			if (action == "encode") cout << m.morse_encode(arg_in) << "\n"; else
 			if (action == "binary") cout << m.morse_binary(arg_in) << "\n"; else
 			if (action == "decode") cout << m.morse_decode(arg_in) << "\n"; else
