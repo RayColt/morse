@@ -5,7 +5,6 @@
 #include <vector>
 #include <regex>
 #include <windows.h>
-#include "Morse-Wav.cpp"
 
 using namespace std;
 /**
@@ -158,6 +157,9 @@ public:
 	string morse_binary(string str)
 	{
 		string line = "";
+		str = fix_input(str);
+		regex e("\\s{2,}");
+		str = regex_replace(str, e, " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
@@ -186,7 +188,7 @@ public:
 			line += getMorse(stringToUpper(chr));
 			line += " ";
 		}
-		return line;
+		return trim(line);
 	}
 
 public:
@@ -199,7 +201,6 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
-		str = fix_input(str);
 		regex e("[10\\s\\.\\-]+");
 		if (regex_match(str, e))
 		{
@@ -628,7 +629,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		string arg_in;
-		cout << "MORSE 1.0 (CMD line version: morse.exe -help or -h for info)\n";
+		cout << "MORSE (CMD line version: morse.exe -help or -h for info)\n";
 		cout << "morse table: \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 ! $ ' \" (), . _ - / : ; = ? @ \n";
 		cout << "morse actions: \n0 [encode with sound], 1 [encode with stereo sound to wav file] \n2 [encode with mono sound to wav file]\n";
 		cout << "3 [encode], 4 [binary encode], 5 [decode morse/binary].\n";
@@ -699,5 +700,4 @@ int main(int argc, char* argv[])
 		int c = getchar();
 		return 0;
 	}
-
 }
