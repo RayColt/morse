@@ -301,7 +301,7 @@ namespace Morse_C_Sharp
 		string fix_input(string str)
 		{
 			string ret = "";
-			Regex r = new Regex("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+			Regex r = new Regex("[a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
 			foreach (Match match in r.Matches(str))
 			{
 				ret += match.Value + " ";
