@@ -184,7 +184,7 @@ public:
 			line += getMorse(stringToUpper(chr));
 			line += " ";
 		}
-		return line;
+		return trim(line);
 	}
 
 public:
