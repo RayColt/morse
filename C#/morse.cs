@@ -144,6 +144,7 @@ namespace Morse_C_Sharp
 		public string MorseEncode(string str)
 		{
 			string line = "";
+			str = Regex.Replace(str, "\\s{2,}", " ");
 			for (int i = 0; i < str.Length; i++)
 			{
 				string chr = str.Substring(i, 1);
