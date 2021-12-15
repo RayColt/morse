@@ -18,7 +18,7 @@ namespace Morse_C_Sharp
 		 * Constructor
 		 */
 		public Morse() { FillMorseMaps(); }
-#region Morse Mapping
+		#region Morse Mapping
 		/**
 		* Fill Multimaps with morse tables
 		*/
@@ -127,14 +127,14 @@ namespace Morse_C_Sharp
 		*/
 		private string GetCharacter(string morse)
 		{
-			try 
+			try
 			{
 				return MorseMapReversed[strtr(morse, ".-", "01")];
 			}
 			catch (Exception e) { return e.Message; }
 		}
-#endregion		
-#region Public get morse functions
+		#endregion
+		#region Public get morse functions
 		/**
 		* Get morse code for given string
 		*
@@ -144,11 +144,31 @@ namespace Morse_C_Sharp
 		public string MorseEncode(string str)
 		{
 			string line = "";
+			str = fix_input(str);
 			str = Regex.Replace(str, "\\s{2,}", " ");
 			for (int i = 0; i < str.Length; i++)
 			{
 				string chr = str.Substring(i, 1);
 				line += GetMorse(chr.ToUpper());
+				line += " ";
+			}
+			return line.Trim();
+		}
+		/**
+		* Get binary morse code for given string
+		*
+		* @param str
+		* @return string
+		*/
+		public string BinaryEncode(string str)
+		{
+			string line = "";
+			str = fix_input(str);
+			str = Regex.Replace(str, "\\s{2,}", " ");
+			for (int i = 0; i < str.Length; i++)
+			{
+				string chr = str.Substring(i, 1);
+				line += GetBinaryCharacter(chr.ToUpper());
 				line += " ";
 			}
 			return line.Trim();
@@ -179,23 +199,6 @@ namespace Morse_C_Sharp
 			{
 				return "You used the wrong decode method(see help)";
 			}
-		}
-		/**
-		* Get binary morse code for given string
-		*
-		* @param str
-		* @return string
-		*/
-		public string BinaryEncode(string str)
-		{
-			string line = "";
-			for (int i = 0; i < str.Length; i++)
-			{
-				string chr = str.Substring(i, 1);
-				line += GetBinaryCharacter(chr.ToUpper());
-				line += " ";
-			}
-			return line.Trim();
 		}
 		/**
 		* Get decoded binary morse code for given string
@@ -260,8 +263,8 @@ namespace Morse_C_Sharp
 				return "You used the wrong decode method(see help)";
 			}
 		}
-#endregion
-#region string functions
+		#endregion
+		#region string functions
 		/**
 		* Similar to strtr in php, characters in 'from' will be <br>
 		* replaced by characters in 'to' in the same <br>
@@ -287,6 +290,24 @@ namespace Morse_C_Sharp
 			}
 			return output != null ? new String(output) : str;
 		}
-#endregion
+
+		/**
+		* Fix input with whitespace to reduce errors
+		* info: regex specialChars{ R"([-[\]{}()*+?.,\^$|#\s])" };
+		*
+		* @param str
+		* @return string
+		*/
+		string fix_input(string str)
+		{
+			string ret = "";
+			Regex r = new Regex("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
+			foreach (Match match in r.Matches(str))
+			{
+				ret += match.Value + " ";
+			}
+			return ret.Trim();
+		}
+		#endregion
 	}
 }
