@@ -298,7 +298,7 @@ namespace Morse_C_Sharp
 		* @param str
 		* @return string
 		*/
-		string fix_input(string str)
+		private string fix_input(string str)
 		{
 			string ret = "";
 			Regex r = new Regex("[a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
