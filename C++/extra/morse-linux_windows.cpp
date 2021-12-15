@@ -156,6 +156,8 @@ public:
 	string morse_binary(string str)
 	{
 		string line = "";
+		str = fix_input(str);
+		str = regex_replace(str, regex("\\s{2,}"), " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
@@ -176,8 +178,7 @@ public:
 	{
 		string line = "";
 		str = fix_input(str);
-		regex e("\\s{2,}");
-		str = regex_replace(str, e, " ");
+		str = regex_replace(str, regex("\\s{2,}"), " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
@@ -197,7 +198,6 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
-		str = fix_input(str);
 		regex e("[10\\s\\.\\-]+");
 		if (regex_match(str, e))
 		{
@@ -214,8 +214,8 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
-			//return "_DO-NOTHING_";
+			//return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
+			return "_DO-NOTHING_";
 		}
 	}
 
@@ -232,7 +232,6 @@ public:
 	string bin_morse_hexadecimal(string str, int modus)
 	{
 		string str1, str2;
-		str = fix_input(str);
 		const char* a[] = { "2E ", "2D ", "30 ", "31 " };
 		if (modus == 0) { str1 = a[0]; str2 = a[1]; };
 		if (modus == 1) { str1 = a[2]; str2 = a[3]; };
@@ -259,7 +258,6 @@ public:
 	string hexadecimal_bin_txt(string str, int modus)
 	{
 		string str1, str2;
-		str = fix_input(str);
 		regex e("[20|30|31|2D|2E|\\s]+");
 		if (regex_match(str, e))
 		{
@@ -276,8 +274,8 @@ public:
 		}
 		else
 		{
-			return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
-			//return "_DO-NOTHING_";
+			//return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
+			return "_DO-NOTHING_";
 		}
 	}
 
