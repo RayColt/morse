@@ -26,6 +26,8 @@ using namespace std;
 **/
 class Morse
 {
+private:
+	const string error_in = "INPUT-ERROR";
 public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
@@ -200,8 +202,9 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
-		regex e("[10\\s\\.\\-]+");
-		if (regex_match(str, e))
+		//regex e("[10\\s\\.\\-]+");
+		regex r("^[10.-]{1,5}(?:[ \t]+[10.-]{1,5})*(?:[ \t]+[10.-]{1,5}(?:[ \t]+[10.-]{1,5})*)*$");
+		if (regex_match(str, r))
 		{
 			vector<string> morsecodes = explode(str, ' ');
 			for (auto morse : morsecodes)
@@ -217,7 +220,7 @@ public:
 		else
 		{
 			//return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
-			return "_DO-NOTHING_";
+			return error_in;
 		}
 	}
 
@@ -277,7 +280,7 @@ public:
 		else
 		{
 			//return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
-			return "_DO-NOTHING_";
+			return error_in;
 		}
 	}
 
