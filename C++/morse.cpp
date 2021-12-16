@@ -163,6 +163,7 @@ public:
 		string line = "";
 		str = fix_input(str);
 		str = regex_replace(str, regex("\\s{2,}"), " ");
+		str = regex_replace(str, regex("[\t]+"), " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
@@ -184,6 +185,7 @@ public:
 		string line = "";
 		str = fix_input(str);
 		str = regex_replace(str, regex("\\s{2,}"), " ");
+		str = regex_replace(str, regex("[\t]+"), " ");
 		for (size_t i = 0; i < str.length(); i++)
 		{
 			string chr = str.substr(i, 1);
@@ -203,9 +205,8 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
-		str = fix_input(str);
-		//regex e("[10\\s\\.\\-]+");
-		regex r("^[10.-]{1,5}(?:[\\s]+[10.-]{1,5})*(?:[\\s]+[10.-]{1,5}(?:[\\s]+[10.-]{1,5})*)*$");
+		str = regex_replace(str, regex("[\t]+"), " ");
+		regex r("[10\\s\\.\\-]+");
 		if (regex_match(str, r))
 		{
 			vector<string> morsecodes = explode(str, ' ');
@@ -213,15 +214,17 @@ public:
 			{
 				if (morse.empty())
 					line += " ";
-				string chr = getCharacter(morse);
-				line += chr;
+				if (morse.size() < 9)
+				{
+					string chr = getCharacter(morse);
+					line += chr;
+				}
 			}
 			regex e("\\s{2,}");
 			return regex_replace(line, e, " ");
 		}
 		else
 		{
-			//return "You used the wrong decode method(see -help)! \nMorse encoding being used: \n. - spaces, 0 1 spaces, 2D 2E 20, 30 31 20";
 			return error_in;
 		}
 	}
