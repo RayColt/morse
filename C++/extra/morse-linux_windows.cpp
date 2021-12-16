@@ -204,8 +204,7 @@ public:
 	{
 		string line = "";
 		str = regex_replace(str, regex("[\t]+"), " ");
-		regex r("[10\\s\\.\\-]+");
-		if (regex_match(str, r))
+		if (regex_match(str, regex("[10\\s\\.\\-]+")))
 		{
 			vector<string> morsecodes = explode(str, ' ');
 			for (auto morse : morsecodes)
@@ -214,12 +213,10 @@ public:
 					line += " ";
 				if (morse.size() < 9)
 				{
-					string chr = getCharacter(morse);
-					line += chr;
+					line += getCharacter(morse);
 				}
 			}
-			regex e("\\s{2,}");
-			return regex_replace(line, e, " ");
+			return regex_replace(line, regex("\\s{2,}"), " ");
 		}
 		else
 		{
@@ -266,8 +263,7 @@ public:
 	string hexadecimal_bin_txt(string str, int modus)
 	{
 		string str1, str2;
-		regex e("[20|30|31|2D|2E|\\s]+");
-		if (regex_match(str, e))
+		if (regex_match(str, regex("[20|30|31|2D|2E|\\s]+")))
 		{
 			const char* a[] = { "2E", "2D", "30", "31" };
 			if (modus == 0) { str1 = a[0]; str2 = a[1]; };
@@ -282,7 +278,6 @@ public:
 		}
 		else
 		{
-			//return "You used the wrong decode method(see -help)! \nMorse encoding being allowed: 2D 2E 20, 30 31 20";
 			return error_in;
 		}
 	}
@@ -404,8 +399,8 @@ private:
 	*/
 	string fix_input(string str)
 	{
-		regex e("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
 		string ret = "";
+		regex e("[^a-zA-Z0-9!'\"@/_=\\s\\$\\(\\)\\,\\.\\:\\;\\?\\-]+");
 		sregex_token_iterator iter(str.begin(), str.end(), e, -1), end;
 		vector<string> vec(iter, end);
 		for (auto a : vec)
