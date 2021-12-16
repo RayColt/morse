@@ -26,6 +26,7 @@ class Morse
 {
 private:
 	const string error_in = "INPUT-ERROR";
+
 public:
 	double frequency_in_hertz = 880.0;// 880 Hz music note A5 - 440 cycles every second
 	double words_per_minute = 16.0;//words per minute
@@ -200,8 +201,9 @@ public:
 	string morse_decode(string str)
 	{
 		string line = "";
+		str = fix_input(str);
 		//regex e("[10\\s\\.\\-]+");
-		regex r("^[10.-]{1,5}(?:[ \t]+[10.-]{1,5})*(?:[ \t]+[10.-]{1,5}(?:[ \t]+[10.-]{1,5})*)*$");
+		regex r("^[10.-]{1,5}(?:[\\s]+[10.-]{1,5})*(?:[\\s]+[10.-]{1,5}(?:[\\s]+[10.-]{1,5})*)*$");
 		if (regex_match(str, r))
 		{
 			vector<string> morsecodes = explode(str, ' ');
