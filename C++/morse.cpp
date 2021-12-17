@@ -18,7 +18,7 @@ using namespace std;
 * Derived from ARPANET Pentagon's morse.
 *
 * You can damage your hearing or your speakers if you play tones at extreme volumes!
-* This program will not allow to play morse < 20 Hz and > 8,000 Hz.
+* This program will not allow to play morse < 37 Hz and > 8,000 Hz.
 *
 * Usage program, see: ./morse -help or -h
 *
@@ -476,22 +476,27 @@ public:
 			cout << "#######################################################################\n";
 			cout << "## MORSE HELP                                             PLEH ESROM ##\n";
 			cout << "#######################################################################\n";
-			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
-			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
-			cout << "Usage console app version: morse.exe\n\n";
-			cout << "Usage cmd line version:\n morse.exe es,ew,ewm,e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "es=encode with sound, ew= encode with sound & wav file, ewm= sound & wav but mono\n";
-			cout << "e = encode, b = binary - encode, d = decode(. - 01's)\n";
-			cout << "he=hexadecimal encode, hd=hexadecimal decode (2E 2D and 20's)\n";
-			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
+			cout << "Morse Dictionary, chars(url save) and spaces, lower case will be made upper case:\n";
+			cout << "ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
+			cout << "Usage console app version:\n morse.exe or morse\n\n";
+			cout << "Usage cmd line version:\n morse.exe [modus] 'morse or txt'\n\n";
+			cout << "Select Modus for encoding or decoding:\n";
+			cout << "e, d    : [. - space] Morse Normal\n";
+			cout << "b, d    : [0 1 space] Binary Morse\n";
+			cout << "he, hd  : [2E 2D 20] HeX Morse\n";
+			cout << "hb, hbd : [30 31 20] HeX Binary\n\n";
+			cout << "Select modus for encoding to sound :\n";
+			cout << "ew  : [Morse to Wav] Windows Wav Stereo - with local sound file\n";
+			cout << "ewm : [Morse to Wav] Windows Wav Mono - with local sound file\n";
+			cout << "es  : [Morse to Windows beep] Windows Windows Beep - no sps\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
-			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "With sound options: ./morse.exe es -hz:880 -wpm:16 txt to morse(using Windows Beep())\n";
-			cout << "With sound options: ./morse.exe ew -hz:880 -wpm:16 -sps:44100 txt to morse(using Windows WAV)\n";
-			cout << "hz is tone hight and wpm is words per minute, default 880 Hz and 16 wpm, sps = samples per second.\n\n";
-			cout << "You can damage your hearing or your speakers if you play tones at extreme volumes!\n";
-			cout << "This program will not allow to play morse < 37 Hz and > 8,000 Hz.\n";
-			cout << "For inspiration have look at music notes their frequencies.\n\n";
+			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
+			cout << "Sound settings:\n";
+			cout << "Tone(Hz), tone frequency in Herz, allowed between 20 Hz - 8000 Hz\n";
+			cout << "WPM, words per minute, allowed between 0 wpm - 50 wpm\n";
+			cout << "SPS, samples per second, allowed between 8000 Hz - 48000 Hz\n";
+			cout << "For creating sound files there is a maximum of 750 chars, bigger text might lead to a long term 'not responding'.\n\n";		
+			cout << "For inspiration have look at music notes their frequencies.\n";
 			cout << "Example: ./morse.exe es -wpm:18 -hz:739.99 paris paris paris (sps not available in es mode)\n";
 			cout << "Example: ./morse.exe ew paris paris paris\n";
 			cout << "Example: ./morse.exe ew -wpm:16 -hz:880 paris paris paris\n";
@@ -598,6 +603,7 @@ int main(int argc, char* argv[])
 		{
 			cout << "-wpm: " << m.words_per_minute << " (" << m.duration_milliseconds(m.words_per_minute) << " ms)\n";
 			cout << "-hz: " << m.frequency_in_hertz << "Hz (tone)\n";
+			str.resize(750);
 			string morse = m.morse_encode(str);
 			cout << morse << "\n";
 			if (action == "wav")
@@ -660,6 +666,7 @@ int main(int argc, char* argv[])
 			getline(cin, arg_in);
 			if (action == "sound" || action == "wav" || action == "wav_mono")
 			{
+				arg_in.resize(750);
 				string str = m.morse_encode(arg_in);
 				cout << str << "\n";
 				if (action == "wav")
