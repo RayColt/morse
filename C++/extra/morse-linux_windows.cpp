@@ -469,7 +469,7 @@ public:
 			cout << "#######################################################################\n";
 			cout << "Morse Dictionary, chars(url save) and spaces, lower case will be made upper case:\n";
 			cout << "ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
-			cout << "Usage console app version:\n ./morse morse\n\n";
+			cout << "Usage console app version:\n ./morse\n\n";
 			cout << "Usage cmd line version:\n morse [modus] 'morse or txt'\n\n";
 			cout << "Select Modus for encoding or decoding:\n";
 			cout << "e, d    : [. - space] Morse Normal\n";
