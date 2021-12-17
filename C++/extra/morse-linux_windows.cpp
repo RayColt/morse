@@ -467,17 +467,17 @@ public:
 			cout << "#######################################################################\n";
 			cout << "## MORSE HELP                                             PLEH ESROM ##\n";
 			cout << "#######################################################################\n";
-			cout << "morse table : \nABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n";
-			cout << "Morse encoding being used : \n. - space, 0 1 space, 2D 2E 20(space), 30 31 20(space)\n\n";
-			cout << "Usage console app version: morse.exe\n\n";
-			cout << "Usage cmd line version:\n morse.exe e,b,d,he,hd,hb or hbd morse or txt\n\n";
-			cout << "e=encode, b=binary-encode, d=decode (.- 01's)\n";
-			cout << "he=hexadecimal encode, hd=hexadecimal decode (2E 2D and 20's)\n";
-			cout << "hb=hexadecimal binary encode, hbd=hexadecimal binary decode (30 31 and 20's)\n\n";
-			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
-			cout << "(only with decoding, option d, double quotes are necessary\nto preserve double spaces who create words)\n\n";
-			cout << "Example: morse.exe e paris paris paris\n";
-			cout << "Example: morse.exe he paris paris paris\n\n";
+			cout << "Morse Dictionary, chars(url save) and spaces, lower case will be made upper case:\n";
+			cout << "ABC DEFGHIJKLMNOPQRSTUVWXYZ 12 34567 890 !$ ' \" (), . _ - / : ; = ? @ \n\n";
+			cout << "Usage console app version:\n ./morse morse\n\n";
+			cout << "Usage cmd line version:\n morse [modus] 'morse or txt'\n\n";
+			cout << "Select Modus for encoding or decoding:\n";
+			cout << "e, d    : [. - space] Morse Normal\n";
+			cout << "b, d    : [0 1 space] Binary Morse\n";
+			cout << "he, hd  : [2E 2D 20] HeX Morse\n";
+			cout << "hb, hbd : [30 31 20] HeX Binary\n\n";
+			cout << "Example: ./morse d \"... ---  ...  ---\"\n";
+			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
 			cout << "#######################################################################";
 			args = 1;
 		}
