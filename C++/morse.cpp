@@ -488,7 +488,7 @@ public:
 			cout << "Select modus for encoding to sound :\n";
 			cout << "ew  : [Morse to Wav] Windows Wav Stereo - with local sound file\n";
 			cout << "ewm : [Morse to Wav] Windows Wav Mono - with local sound file\n";
-			cout << "es  : [Morse to Windows beep] Windows Windows Beep - no sps\n\n";
+			cout << "es  : [Morse to Windows beep] Windows Speaker Beep - no sps\n\n";
 			cout << "Example: ./morse.exe d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
 			cout << "Sound settings:\n";
