@@ -478,7 +478,7 @@ public:
 			cout << "hb, hbd : [30 31 20] HeX Binary\n\n";
 			cout << "Example: ./morse d \"... ---  ...  ---\"\n";
 			cout << "(only with decoding, option d, double quotes are necessary to preserve double spaces who create words)\n\n";
-			cout << "#######################################################################";
+			cout << "#######################################################################\n";
 			args = 1;
 		}
 		return args;
