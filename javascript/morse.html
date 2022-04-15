@@ -255,10 +255,10 @@
 		  document.getElementById("data").value = morse_decode(data);
 	  if(modus == "encode_hex")
 		  document.getElementById("data").value = bin_morse_hexadecimal(data, 0);
+	  if(modus == "encode_hex_bin")
+		  document.getElementById("data").value = bin_morse_hexadecimal(data, 1);		
 	  if(modus == "decode_hex")
 		  document.getElementById("data").value = hexadecimal_bin_txt(data, 0);
-	  if(modus == "encode_hex_bin")
-		  document.getElementById("data").value = bin_morse_hexadecimal(data, 1);
 	  if(modus == "decode_hex_bin")
 		  document.getElementById("data").value = hexadecimal_bin_txt(data, 1);
 	}
