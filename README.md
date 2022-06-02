@@ -11,7 +11,7 @@ Windows C++ console app with sound:(C++ console app with sound: In principle you
 <a href="https://github.com/RayColt/morse/tree/master/cpp"><img src=https://github.com/RayColt/morse/blob/master/cpp/colt-morse.jpg></a>   
 
 The real, first and only US Morse mapping,<br>
-      based upon Synthesizer Binary tables, from a mouse I believe,<br>
+      based upon Synthesizer Binary tables, from a mouse his vocal cords I believe,<br>
 or just a military  algorithm:-):<br />
         <b>We removed the first number one(0b1 aka Obi-Wan, it became my nick name I was 4 years old, they used the name in Star Wars to honor morse code),
         reversed it(think Endian/IBM PowerPC) 
