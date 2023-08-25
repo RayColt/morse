@@ -120,7 +120,7 @@ private:
     */
     void tone(int on_off)
     {
-        double ampl = 32000.0;// amplitude 32KHz for digital sound
+        double ampl = 32000.0; // amplitude 32KHz for digital sound (max height of wave)
         double pi = 3.1415926535897932384626433832795;
         double w = 2.0 * pi * Tone;
         long i, n, size;
@@ -147,7 +147,7 @@ private:
         for (i = 0; i < n; i++)
         {
             double t = (double)i / Sps;
-            if (MONO_STEREO == 1) // mono
+            if (MONO_STEREO == 1) // MONO
             {
                 double t = (double)i / Sps;
                 if (pcm_count == Sps * seconds)
@@ -156,9 +156,10 @@ private:
                     size = (seconds * sizeof buffer_mono_pcm * Sps);
                     buffer_mono_pcm = reallocate_PCM16_mono_buffer(buffer_mono_pcm, size);
                 }
+                // generate one point on the sine wave
                 buffer_mono_pcm[pcm_count++].speaker = (int16_t)(on_off * ampl * sin(w * t));
             }
-            else // stereo
+            else // STEREO
             {
                 if (pcm_count == Sps * seconds)
                 {
@@ -167,6 +168,7 @@ private:
                     buffer_pcm = reallocate_PCM16_stereo_buffer(buffer_pcm, size);
                 }
                 pcm_count++;
+                // generate one point on the sine wave for left and right
                 buffer_pcm[pcm_count].left = (int16_t)(on_off * ampl * sin(w * t));
                 buffer_pcm[pcm_count].right = (int16_t)(on_off * ampl * sin(w * t));
             }
