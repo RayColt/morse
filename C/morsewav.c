@@ -347,11 +347,28 @@ void main(int argc, char* argv[])
 
     // (4) Play audio.
 
-    if (Play) {
-        char cmd[1000];
-        sprintf(cmd, "morse.wav /play /close %s", Path);
+    if (play) {
+        /*
+         Calculate needed buffer length:
+         Path + " /play /close " + Path + '\0'
+        */
+        size_t len = strlen(Path);
+        size_t buf_size = len * 2 + strlen(" /play /close ") + 1;
+
+        char *cmd = malloc(buf_size);
+        if (!cmd) {
+            fprintf(stderr, "Allocation failed\n");
+            return 1;
+        }
+
+        /* Build the command */
+        snprintf(cmd, buf_size, "%s /play /close %s", Path, Path);
+
+        /* Print and execute */
         printf("** %s\n", cmd);
         system(cmd);
+
+        free(cmd);
     }
 }
 
