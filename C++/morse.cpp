@@ -148,7 +148,13 @@ private:
 	*/
 	string getCharacter(string morse)
 	{
-		return morse_map_reversed.find(strtr(morse, ".-", "01"))->second;
+		string key = strtr(morse, ".-", "01");
+		auto it = morse_map_reversed.find(key);
+		if (it != morse_map_reversed.end())
+		{
+			return it->second;
+		}
+		return "-1";
 	}
 
 public:
@@ -202,7 +208,7 @@ public:
 	* @param str
 	* @return string
 	*/
-	string morse_decode(string str)
+	string Morse::morse_decode(string str)
 	{
 		string line = "";
 		str = regex_replace(str, regex("[\t]+"), " ");
@@ -212,17 +218,33 @@ public:
 			for (auto morse : morsecodes)
 			{
 				if (morse.empty())
+				{
+					// a word separator
 					line += " ";
+					continue;
+				}
 				if (morse.size() < 9)
 				{
-					line += getCharacter(morse);
+					string ch = getCharacter(morse);
+					if (ch == "-1")
+					{
+						line += "?";
+					}
+					else
+					{
+						line += ch;
+					}
+				}
+				else
+				{
+					line += "?";
 				}
 			}
 			return regex_replace(line, regex("\\s{2,}"), " ");
 		}
 		else
 		{
-			return error_in;
+			return "INPUT-ERROR";
 		}
 	}
 
