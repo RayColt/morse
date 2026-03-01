@@ -16,7 +16,7 @@ or just a military  algorithm:-):<br />
         <b>We removed the first number one(0b1 aka Obi-Wan, it became my nick name I was 4 years old, they used the name in Star Wars to honor morse code),
         reversed it(think Endian/IBM PowerPC) 
         to save Data and CPU's in war times. Its even URL Save.<br>
-<a href="https://raycolt.github.io/morse/">WORKING HTML EXAMPLE</a><br>
+<a href="https://raycolt.github.io/">WORKING HTML EXAMPLE</a><br>
 <pre>
 uint16_t Morse::encode(uint8_t character) 
 {
